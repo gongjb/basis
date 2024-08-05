@@ -1,0 +1,35 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        maven { url 'https://jitpack.io' }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.google.com' }
+        maven { url 'https://jitpack.io' }
+
+    }
+}
+
+rootProject.name = "YFTJoin"
+include ':app'
+include ':zbase'
+include ':home'
+include ':short'
+include ':centerdata'
+include ':user'
+include ':latticeview'
+include ':library'
+
+include ':amount'
+include ':processor'
+include ':annotation'

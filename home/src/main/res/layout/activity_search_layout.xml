@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+
+        <import type="com.yft.zbase.R"></import>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/themeMainColor">
+
+        <View
+            android:id="@+id/v_back"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.yft.zbase.widget.SearchBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_18_dp"
+            android:text="历史搜索"
+            android:textColor="@color/sd_b_white"
+            android:textSize="@dimen/ui_12_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+
+        <TextView
+            android:id="@+id/tv_all_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            android:textColor="@color/sd_b_white"
+            android:text="全部删除"
+            android:textSize="@dimen/ui_12_dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_del"
+            app:layout_constraintEnd_toStartOf="@+id/iv_del"
+            app:layout_constraintTop_toTopOf="@+id/iv_del" />
+
+
+        <TextView
+            android:id="@+id/iv_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            android:textColor="@color/sd_b_white"
+            android:text="删除"
+            android:textSize="@dimen/ui_12_dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_sh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_sh" />
+
+        <com.gongjiebin.latticeview.AutoLineDeleteView
+            android:id="@+id/auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_16_dp"
+            android:layout_marginTop="@dimen/ui_8_dp"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sh" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/ui_12_dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/auto">
+
+            <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                android:id="@+id/rv_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_top_back"
+            android:layout_width="@dimen/ui_30_dp"
+            android:layout_height="@dimen/ui_30_dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            android:layout_marginBottom="@dimen/ui_90_dp"
+            android:background="@color/message_black_time"
+            android:padding="@dimen/ui_5_dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:setViewRadius="@{R.dimen.ui_15_dp}">
+
+            <ImageView
+                android:layout_width="@dimen/ui_20_dp"
+                android:layout_height="@dimen/ui_20_dp"
+                android:src="@mipmap/icon_back_go_top" />
+        </FrameLayout>
+
+        <com.yft.zbase.ui.NoticeView
+            android:id="@+id/notice"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/auto" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

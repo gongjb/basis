@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.yft.zbase.R"></import>
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_home_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.yft.zbase.widget.SearchBarView
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/swipe"/>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_bar">
+                <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                    android:id="@+id/rl_home_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_top_back"
+            android:layout_width="@dimen/ui_30_dp"
+            android:layout_height="@dimen/ui_30_dp"
+            android:layout_marginBottom="@dimen/ui_90_dp"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            android:visibility="gone"
+            android:padding="@dimen/ui_5_dp"
+            android:background="@color/message_black_time"
+            app:setViewRadius="@{R.dimen.ui_15_dp}"
+            android:layout_gravity="bottom|end">
+            <ImageView
+                android:layout_width="@dimen/ui_20_dp"
+                android:layout_height="@dimen/ui_20_dp"
+                android:src="@mipmap/icon_back_go_top"/>
+        </FrameLayout>
+    </FrameLayout>
+
+</layout>

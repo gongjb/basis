@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#757575</color>
+    <color name="purple_500">#757575</color>
+    <color name="purple_700">#757575</color>
+    <color name="teal_700">#FFFFFF</color>
+    <color name="teal_200">#FF000000</color>
+    <color name="black">#FF000000</color>
+    <color name="black_00">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#E7E2E2</color>
+    <color name="divider_99">#99E7E2E2</color>
+    <color name="divider_66">#66E7E2E2</color>
+    <color name="colorPing">#185534</color>
+    <color name="colorSubscription">#247BA0</color>
+    <color name="btnColor">#21FFFFFF</color>
+    <!--  主题颜色  -->
+    <color name="themeMainColor">#18161b</color>
+    <color name="themeMainColorTwo">#222432</color>
+    <color name="themeMainColorTwo_30">#30222432</color>
+    <color name="themeMainColorTwo_60">#60222432</color>
+    <color name="themeMainColorTwo_f0">#f0222432</color>
+    <color name="themeMainColorTwo_90">#90222432</color>
+    <color name="theme_text_color">#90ffffff</color>
+    <color name="theme_text_color1">#b382D3F1</color>
+    <color name="theme_sub_text_color">#2B365E</color>
+    <color name="money_white">#D8FFFFFF</color>
+    <color name="sd_white">#CCFFFFFF</color>
+    <color name="sd_b_white">#B2FFFFFF</color>
+    <color name="sd_c_white">#BFFFFFFF</color>
+    <color name="sd_d_white">#8cFFFFFF</color>
+    <color name="theme_btn_start">#efddc2</color>
+    <color name="theme_btn_end">#e1ba89</color>
+    <color name="money_text_color">#CCEE8262</color>
+
+    <color name="theme_data_a1_start">#CCEE8262</color>
+    <color name="theme_data_a1_end">#90EE8262</color>
+    <color name="theme_data_a2_start">#82D3F1</color>
+    <color name="theme_data_a2_end">#9082D3F1</color>
+    <color name="tab_bottom_not_select">#707070</color>
+    <color name="theme_assistant">#31a7ef</color>
+
+    <color name="theme_assistant_80">#8031a7ef</color>
+    <color name="text_color_black">#515151</color>
+    <color name="text_color_black_99">#99515151</color>
+    <color name="line_color">#515151</color>
+    <color name="ui_theme_color">#82D3F1</color>
+
+
+    <color name="ui_dialog_text_color">#E0CCA8</color>
+    <color name="ui_search_color">#fad57c</color>
+    <color name="smegma_style_comm">#CD8B31</color>
+    <color name="theme_style_comm">#FC6708</color>
+    <color name="commodity_top_style_color">#FF2C26</color>
+    <color name="text_color_33">#333333</color>
+    <color name="login_backcolor">#2E332F</color>
+    <color name="text_hint_tip">#C7C7C7</color>
+    <color name="text_hint_tip2">#90C7C7C7</color>
+    <color name="text_check_number">#F53F3F</color>
+    <color name="btn_color">#FF0000</color>
+    <color name="login_text_5f">#5F5F5F</color>
+    <color name="search_btn_start_color">#90FF0000</color>
+    <color name="search_btn_end_color">#FF0000</color>
+    <color name="message_content_color">#2E332F</color>
+    <color name="message_black_time">#60000000</color>
+    <color name="theme_red">#FF0000</color>
+    <color name="theme_red_90">#90FF0000</color>
+    <color name="car_count_black_e5">#E5333333</color>
+    <color name="car_count_black_99">#99333333</color>
+    <color name="title_color_a1">@color/sd_white</color>
+    <color name="user_inv_code">#2E332F</color>
+    <color name="text_hint_color">#999999</color>
+    <color name="text_hint_color2">#666666</color>
+    <color name="text_count_plan">#00B42A</color>
+    <color name="btn_end_color_99">#99FF7D00</color>
+    <color name="btn_end_color_21">#21FF7D00</color>
+    <color name="text_dialog_hint_color">#969799</color>
+    <color name="text_yuan_bao">#535353</color>
+    <color name="view_mc">#B00010</color>
+    <color name="text_data">#909ED6E2</color>
+</resources>

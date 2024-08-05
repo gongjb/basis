@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="DbBean"
+            type="com.yft.home.bean.HomeConfigBean.KingkongListBean" />
+
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+
+        <variable
+            name="tag"
+            type="java.lang.Object" />
+
+        <variable
+            name="onClick"
+            type="com.yft.zbase.adapter.OnAdapterClickListener" />
+
+        <import type="android.view.View"/>
+        <import type="com.yft.zbase.R"/>
+    </data>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/ui_14_dp"
+        android:onClick="@{v -> onClick.onAdapterClick(v, DbBean, position)}">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ai_image"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:url_thumbnail="@{DbBean.image}"
+            app:setViewRadius="@{R.dimen.ui_55_dp}"
+            android:scaleType="centerCrop"/>
+
+        <FrameLayout
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@drawable/bg_play_mark"
+            app:setViewRadius="@{R.dimen.ui_55_dp}">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ai_image_mark"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/icon_play"
+                android:scaleType="centerCrop"/>
+
+        </FrameLayout>
+
+
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/ai_image"
+         android:orientation="vertical">
+         <TextView
+             android:id="@+id/iv_name"
+             android:layout_width="wrap_content"
+             android:maxWidth="@dimen/ui_90_dp"
+             android:layout_height="wrap_content"
+             android:gravity="left"
+             android:paddingEnd="@dimen/ui_6_dp"
+             android:maxLines="2"
+             android:text="@{DbBean.name}"
+             android:textColor="@color/sd_white"
+             android:ellipsize="end"
+             android:layout_marginTop="@dimen/ui_2_dp"
+             android:textSize="@dimen/ui_12_dp" />
+
+
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="@dimen/ui_2_dp">
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="@dimen/ui_10_dp"
+                 android:textColor="@color/theme_red"
+                 android:text="第3集"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="@dimen/ui_10_dp"
+                 android:textColor="@color/white"
+                 android:text="/"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="@dimen/ui_10_dp"
+                 android:textColor="@color/sd_d_white"
+                 android:text="共68集"/>
+         </LinearLayout>
+     </LinearLayout>
+    </RelativeLayout>
+</layout>

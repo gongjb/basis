@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+        <import type="com.yft.zbase.R" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.yft.zbase.widget.TitleBarView
+            android:id="@+id/tlt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:background="@drawable/item_main_background"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ui_50_dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/ui_8_dp"
+                    android:text="昵称"
+                    android:textColor="@color/text_color_33"
+                    android:textSize="@dimen/ui_14_dp" />
+
+                <EditText
+                    android:id="@+id/tv_nick"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/ui_8_dp"
+                    android:layout_weight="1"
+                    android:textCursorDrawable="@drawable/edittext_cursor"
+                    android:background="@null"
+                    android:gravity="start|center_vertical"
+                    android:hint="请输入您的昵称"
+                    android:paddingStart="@dimen/ui_16_dp"
+                    android:textColor="@color/text_color_33"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/ui_12_dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginStart="@dimen/ui_8_dp"
+                android:layout_marginEnd="@dimen/ui_8_dp"
+                android:background="@color/divider_66" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/ui_10_dp"
+                android:layout_marginTop="@dimen/ui_12_dp"
+                android:textColor="@color/text_hint_color"
+                android:text="关于昵称的要求（例：4-20个字符）"
+                android:ellipsize="end"
+                android:layout_marginStart="@dimen/ui_12_dp"
+                android:maxLines="1"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ui_20_dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_44_dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_28_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:background="@color/btn_color"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="@dimen/ui_16_dp"
+            app:setViewRadius="@{R.dimen.ui_22_dp}" />
+
+
+    </LinearLayout>
+</layout>

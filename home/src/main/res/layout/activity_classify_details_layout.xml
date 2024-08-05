@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.yft.zbase.R"></import>
+    </data>
+
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/v_back"
+            android:layout_width="match_parent"
+            android:layout_height="155dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.yft.zbase.widget.TitleBarView
+                android:id="@+id/tb_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.yft.zbase.widget.SearchBarView
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ui_6_dp">
+
+                <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                    android:id="@+id/rv_classify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </LinearLayout>
+
+        <com.yft.zbase.ui.NoticeView
+            android:id="@+id/notice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/ui_160_dp"/>
+
+        <FrameLayout
+            android:id="@+id/fl_top_back"
+            android:layout_width="@dimen/ui_30_dp"
+            android:layout_height="@dimen/ui_30_dp"
+            android:layout_marginBottom="@dimen/ui_90_dp"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            android:visibility="gone"
+            android:padding="@dimen/ui_5_dp"
+            android:background="@color/message_black_time"
+            app:setViewRadius="@{R.dimen.ui_15_dp}"
+            android:layout_gravity="bottom|end">
+            <ImageView
+                android:layout_width="@dimen/ui_20_dp"
+                android:layout_height="@dimen/ui_20_dp"
+                android:src="@mipmap/icon_back_go_top"/>
+        </FrameLayout>
+    </FrameLayout>
+
+
+</layout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.yft.zbase.R" />
+        <import type="com.yft.zbase.server.LanguageManage"></import>
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.yft.zbase.widget.TitleBarView
+            android:id="@+id/tlt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_set"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/item_main_background2"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/tlt"/>
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_44_dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:background="@drawable/bg_notice_yuan_rad"
+            android:gravity="center"
+            android:text='@{LanguageManage.getString("退出登录")}'
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/ui_40_dp"
+            android:layout_above="@+id/tv_v"
+            android:textColor="@color/white"
+            android:textSize="@dimen/ui_16_dp"
+            app:setViewRadius="@{R.dimen.ui_22_dp}" />
+
+        <TextView
+            android:id="@+id/tv_v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:layout_marginBottom="@dimen/ui_2_dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/sd_b_white"
+            android:textSize="@dimen/ui_13_dp"
+            tools:text="版本v1.0.1" />
+
+    </RelativeLayout>
+</layout>

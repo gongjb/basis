@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.yft.zbase.R"></import>
+    </data>
+    <com.yft.zbase.widget.RoundRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ui_12_dp"
+        android:layout_marginEnd="@dimen/ui_12_dp"
+        android:layout_marginBottom="6dp"
+        app:round_corner="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/area_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:setViewRadius="@{R.dimen.ui_10_dp}"
+            android:minHeight="200dp">
+
+            <View
+                android:id="@+id/v_background"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@mipmap/pink_block"/>
+
+            <LinearLayout
+                android:id="@+id/ll_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_12_dp"
+                    android:layout_marginTop="@dimen/ui_6_dp"
+                    android:text="生鲜特产区"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ui_14_dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_12_dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="@dimen/ui_6_dp"
+                    android:text="当前成交补贴1%,努力推广拿更好补贴"
+                    android:textSize="@dimen/ui_10_dp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_10_dp"
+                android:fadingEdgeLength="@dimen/ui_14_dp"
+                android:requiresFadingEdge="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.yft.zbase.widget.RoundRelativeLayout>
+
+</layout>

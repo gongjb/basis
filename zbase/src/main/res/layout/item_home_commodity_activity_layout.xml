@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+        <variable
+            name="CommodityBean"
+            type="com.yft.zbase.bean.CommodityBean" />
+    </data>
+
+    <com.yft.zbase.widget.RoundLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:round_corner="8dp"
+        app:stroke_color="#00000000"
+        app:stroke_width="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginBottom="@dimen/ui_6_dp"
+            android:background="@color/commodity_top_style_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/ui_8_dp"
+                android:layout_marginTop="@dimen/ui_8_dp"
+                android:textSize="@dimen/ui_18_dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@{CommodityBean.name}"
+                tools:text="中秋好物"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.yft.zbase.widget.RoundLinearLayout>
+</layout>

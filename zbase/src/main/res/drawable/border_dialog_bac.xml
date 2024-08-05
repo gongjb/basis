@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <!--这个是边框-->
+            <!--<stroke-->
+                <!--android:width="1px"-->
+                <!--android:color="#aaa" />-->
+            <!--这个是填充颜色-->
+            <solid android:color="@color/white" />
+            <!--这个是圆角读书，值越大，角度越大，0dp代表直角-->
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</layer-list>

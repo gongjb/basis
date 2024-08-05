@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_dialog_background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/imgDown"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:padding="12dp"
+                android:src="@mipmap/down" />
+
+            <RelativeLayout
+                android:id="@+id/rlProgress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:id="@+id/pro_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:indeterminateDrawable="@drawable/style_pro"/>
+
+                <TextView
+                    android:id="@+id/tvProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="@dimen/ui_2_dp"
+                    android:text="0%"
+                    android:textColor="@color/theme_red"
+                    android:textSize="@dimen/ui_10_dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="版本更新"
+            android:textColor="@color/theme_red"
+            android:textSize="16sp" />
+
+
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:background="@color/sd_d_white" />
+
+        <TextView
+            android:id="@+id/tvLoading"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center"
+            android:text="下载中..."
+            android:textColor="@color/sd_white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llButton"
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_notice_yuan_rad"
+            android:layout_marginBottom="@dimen/ui_12_dp"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:layout_height="46dp">
+
+            <TextView
+                android:id="@+id/tvCancle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="稍后更新"
+                android:textColor="@color/text_hint_tip"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/v_line"
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/sd_d_white" />
+
+            <TextView
+                android:id="@+id/tvUpData"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="马上更新"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+        <import type="com.yft.zbase.R" />
+        <import type="com.yft.zbase.server.LanguageManage"></import>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.yft.zbase.widget.TitleBarView
+            android:id="@+id/tlt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_12_dp"
+            android:background="@drawable/item_main_background2"
+            android:layout_marginEnd="@dimen/ui_12_dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_12_dp"
+            android:background="@drawable/item_main_background2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ui_16_dp"
+                android:layout_marginBottom="@dimen/ui_16_dp"
+                android:layout_marginStart="@dimen/ui_12_dp"
+                android:textColor="@color/sd_b_white"
+                android:text='@{LanguageManage.getString("安全密码")}' />
+
+            <ImageView
+                android:layout_width="@dimen/ui_10_dp"
+                android:layout_height="@dimen/ui_10_dp"
+                android:src="@mipmap/icon_message_go"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</layout>

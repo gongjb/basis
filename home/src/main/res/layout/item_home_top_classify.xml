@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <com.yft.zbase.widget.RoundRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:round_corner="@dimen/ui_8_dp"
+        android:paddingBottom="@dimen/ui_12_dp"
+        android:paddingTop="@dimen/ui_12_dp"
+        android:layout_marginStart="@dimen/ui_12_dp"
+        android:layout_marginEnd="@dimen/ui_12_dp"
+        android:minHeight="155dp"
+        android:background="@color/white"
+        app:stroke_width="1dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_classif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:requiresFadingEdge="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.yft.zbase.widget.RoundRelativeLayout>
+
+</layout>

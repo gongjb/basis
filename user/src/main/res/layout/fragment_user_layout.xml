@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.yft.zbase.bean.UserInfo" />
+
+        <import type="com.yft.zbase.R"></import>
+
+        <import type="com.yft.zbase.utils.Utils"></import>
+
+        <import type="android.view.View"></import>
+        <import type="com.yft.zbase.server.LanguageManage"></import>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/home_background"
+            android:layout_width="match_parent"
+            android:layout_height="209dp"
+            android:background="@mipmap/user_bg_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/home_mark"
+            android:layout_width="match_parent"
+            android:layout_height="209dp"
+            android:background="@drawable/bg_play_mark_0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/v_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_24_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="@dimen/ui_24_dp"
+            android:layout_height="@dimen/ui_24_dp"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            android:layout_marginEnd="@dimen/ui_20_dp"
+            android:src="@mipmap/icon_user_set"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_top" />
+
+        <ImageView
+            android:id="@+id/iv_kf"
+            android:layout_width="@dimen/ui_24_dp"
+            android:layout_height="@dimen/ui_24_dp"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            android:layout_marginEnd="@dimen/ui_20_dp"
+            android:src="@mipmap/icon_user_service"
+            app:layout_constraintEnd_toStartOf="@+id/iv_setting"
+            app:layout_constraintTop_toBottomOf="@+id/v_top" />
+
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_10_dp"
+            android:scaleType="fitXY"
+            app:error="@{R.mipmap.about_icon}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_kf"
+            app:placeholder="@{R.mipmap.about_icon}"
+            app:setViewRadius="@{R.dimen.ui_24_dp}"
+            app:url="@{user.logo}" />
+
+        <LinearLayout
+            android:id="@+id/ll_logo_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_8_dp"
+            android:maxWidth="180dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_icon"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon"
+            app:layout_constraintTop_toTopOf="@+id/iv_icon">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text='@{(user == null) ? @string/app_name : user.nickname}'
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    tools:text="nike"/>
+
+                <ImageView
+                    android:id="@+id/iv_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_8_dp"/>
+            </LinearLayout>
+
+
+
+
+            <TextView
+                android:id="@+id/tv_login_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lines="1"
+                android:textColor="@color/white"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+
+        <com.yft.zbase.widget.RoundRelativeLayout
+            android:id="@+id/fl_yqm"
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_40_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/rl_share"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_icon"
+            app:round_corner="10dp"
+            app:stroke_width="1dp">
+
+            <LinearLayout
+                android:id="@+id/ll_fd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/themeMainColorTwo">
+
+                <LinearLayout
+                    android:id="@+id/ll_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/ui_6_dp"
+                        android:layout_marginEnd="@dimen/ui_6_dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text='@{user.amount+""}'
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/ui_22_dp"
+                            android:drawableStart="@mipmap/balance_usdt"
+                            android:drawableEnd="@mipmap/balance_dollar"
+                            android:textStyle="bold"
+                            android:gravity="center_vertical"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:paddingStart="@dimen/ui_2_dp"
+                            tools:text="3293829" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ui_6_dp"
+                        android:text='@{LanguageManage.getString("余额")}'
+                        tools:text="余额"
+                        android:textColor="@color/sd_white"
+                        android:textSize="@dimen/ui_14_dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/ui_36_dp"
+                    android:layout_marginBottom="@dimen/ui_36_dp"
+                    android:background="@color/sd_d_white" />
+
+                <LinearLayout
+                    android:id="@+id/ll_sub"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/ui_6_dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/ui_6_dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/ui_22_dp"
+                            android:drawableStart="@mipmap/balance_usdt"
+                            android:drawableEnd="@mipmap/balance_dollar"
+                            android:gravity="center_vertical"
+                            android:text='@{user.amountComing+""}'
+                            android:textStyle="bold"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:paddingStart="@dimen/ui_2_dp"
+                            tools:text="0" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ui_6_dp"
+                        android:text='@{LanguageManage.getString("待分润")}'
+                        tools:text="待分润"
+                        android:textColor="@color/sd_white"
+                        android:textSize="@dimen/ui_14_dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.yft.zbase.widget.RoundRelativeLayout>
+
+
+        <com.yft.zbase.widget.RoundRelativeLayout
+            android:id="@+id/rl_share"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:background="@color/themeMainColorTwo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fl_yqm"
+            app:round_corner="10dp">
+
+
+            <com.gongjiebin.latticeview.LatticeView
+                android:id="@+id/ll_view_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_share"
+                android:layout_centerVertical="true" />
+        </com.yft.zbase.widget.RoundRelativeLayout>
+
+
+        <com.yft.zbase.widget.RoundLinearLayout
+            android:id="@+id/rl_inv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_10_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:background="@color/themeMainColorTwo"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_share"
+            app:round_corner="10dp">
+
+            <LinearLayout
+                android:id="@+id/rl_a"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ui_50_dp"
+                android:layout_marginStart="@dimen/ui_12_dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:background="@color/themeMainColorTwo"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_share">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_12_dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/ui_22_dp"
+                        android:layout_height="@dimen/ui_22_dp"
+                        android:src="@mipmap/user_img_sc"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{LanguageManage.getString("我的收藏")}'
+                        android:layout_marginStart="@dimen/ui_8_dp"
+                        android:textColor="@color/sd_b_white"
+                        android:textSize="@dimen/ui_13_dp" />
+                </LinearLayout>
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="15dp"
+                    android:dividerPadding="@dimen/ui_6_dp"
+                    android:drawableRight="@mipmap/icon_message_go"
+                    android:drawablePadding="@dimen/ui_6_dp"
+                    android:gravity="center"
+                    android:textColor="@color/text_check_number"
+                    android:textSize="@dimen/ui_17_dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_b"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ui_50_dp"
+                android:layout_marginStart="@dimen/ui_12_dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:background="@color/themeMainColorTwo"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_share">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_12_dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/ui_22_dp"
+                        android:layout_height="@dimen/ui_22_dp"
+                        android:src="@mipmap/user_img_td"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{LanguageManage.getString("我的团队")}'
+                        android:layout_marginStart="@dimen/ui_8_dp"
+                        android:textColor="@color/sd_b_white"
+                        android:textSize="@dimen/ui_13_dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="15dp"
+                    android:dividerPadding="@dimen/ui_6_dp"
+                    android:drawableRight="@mipmap/icon_message_go"
+                    android:drawablePadding="@dimen/ui_6_dp"
+                    android:gravity="center"
+                    android:textColor="@color/text_check_number"
+                    android:textSize="@dimen/ui_17_dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_c"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ui_50_dp"
+                android:layout_marginStart="@dimen/ui_12_dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:background="@color/themeMainColorTwo"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_share">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_12_dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/ui_22_dp"
+                        android:layout_height="@dimen/ui_22_dp"
+                        android:src="@mipmap/user_img_tl"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{LanguageManage.getString("投流明细")}'
+                        android:layout_marginStart="@dimen/ui_8_dp"
+                        android:textColor="@color/sd_b_white"
+                        android:textSize="@dimen/ui_13_dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="15dp"
+                    android:dividerPadding="@dimen/ui_6_dp"
+                    android:drawableRight="@mipmap/icon_message_go"
+                    android:drawablePadding="@dimen/ui_6_dp"
+                    android:gravity="center"
+                    android:textColor="@color/text_check_number"
+                    android:textSize="@dimen/ui_17_dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_d"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ui_50_dp"
+                android:layout_marginStart="@dimen/ui_12_dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:background="@color/themeMainColorTwo"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_share">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_12_dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/ui_22_dp"
+                        android:layout_height="@dimen/ui_22_dp"
+                        android:src="@mipmap/user_img_gd"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text='@{LanguageManage.getString("更多设置")}'
+                        android:layout_marginStart="@dimen/ui_8_dp"
+                        android:textColor="@color/sd_b_white"
+                        android:textSize="@dimen/ui_13_dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="15dp"
+                    android:dividerPadding="@dimen/ui_6_dp"
+                    android:drawableRight="@mipmap/icon_message_go"
+                    android:drawablePadding="@dimen/ui_6_dp"
+                    android:gravity="center"
+                    android:textColor="@color/text_check_number"
+                    android:textSize="@dimen/ui_17_dp" />
+            </LinearLayout>
+
+
+        </com.yft.zbase.widget.RoundLinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

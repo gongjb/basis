@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.yft.zbase.R"></import>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_main_background"
+        app:setViewRadius="@{R.dimen.ui_10_dp}">
+
+        <ImageView
+            android:id="@+id/iv_gift"
+            android:layout_width="@dimen/ui_28_dp"
+            android:layout_height="@dimen/ui_28_dp"
+            android:layout_marginTop="@dimen/ui_10_dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_10_dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minHeight="@dimen/ui_50_dp"
+            android:text="提示"
+            android:textColor="@color/title_color_a1"
+            android:textSize="@dimen/ui_16_dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_gift"
+            tools:text="标题" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_16_dp"
+            android:layout_marginTop="@dimen/ui_6_dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/text_dialog_hint_color"
+            android:textSize="@dimen/ui_16_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            android:text="您确定要注销账号吗？请选择注销原因。"
+            tools:text="您确定要注销账号吗？请选择注销原因。" />
+
+        <LinearLayout
+            android:id="@+id/ll_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_22_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/tv_content">
+
+            <ImageView
+                android:id="@+id/iv_one"
+                android:layout_width="@dimen/ui_22_dp"
+                android:layout_height="@dimen/ui_22_dp"
+                android:src="@mipmap/icon_on" />
+
+            <TextView
+                android:id="@+id/tv_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_6_dp"
+                android:text="安全隐私顾虑" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_22_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_one">
+
+            <ImageView
+                android:id="@+id/iv_two"
+                android:layout_width="@dimen/ui_22_dp"
+                android:layout_height="@dimen/ui_22_dp"
+                android:src="@mipmap/icon_on" />
+
+            <TextView
+                android:id="@+id/tv_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_6_dp"
+                android:text="重复多余账号" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_22_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_two">
+
+            <ImageView
+                android:id="@+id/iv_three"
+                android:layout_width="@dimen/ui_22_dp"
+                android:layout_height="@dimen/ui_22_dp"
+                android:src="@mipmap/icon_on" />
+
+            <TextView
+                android:id="@+id/tv_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_6_dp"
+                android:text="购物遇到困难" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_22_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_three">
+
+            <ImageView
+                android:id="@+id/iv_four"
+                android:layout_width="@dimen/ui_22_dp"
+                android:layout_height="@dimen/ui_22_dp"
+                android:src="@mipmap/icon_on" />
+
+            <TextView
+                android:id="@+id/tv_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_6_dp"
+                android:text="无法修改个人信息" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginTop="@dimen/ui_22_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_four">
+
+            <ImageView
+                android:id="@+id/iv_five"
+                android:layout_width="@dimen/ui_22_dp"
+                android:layout_height="@dimen/ui_22_dp"
+                android:src="@mipmap/icon_on" />
+
+            <TextView
+                android:id="@+id/tv_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_6_dp"
+                android:text="其它原因" />
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="@dimen/ui_16_dp"
+            android:background="@color/divider_66"
+            app:layout_constraintTop_toBottomOf="@+id/ll_five" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_50_dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/v_line">
+
+            <TextView
+                android:id="@+id/tv_no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxWidth="240dp"
+                android:minWidth="100dp"
+                android:text="取消" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/divider_66" />
+
+            <TextView
+                android:id="@+id/tv_yes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxWidth="240dp"
+                android:minWidth="100dp"
+                android:text="确 定"
+                android:textColor="@color/btn_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.chenenyu.router'
+apply from:"../config.gradle"
+
+android {
+    compileSdk rootProject.ext.compileSdk
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdkVer
+        multiDexEnabled true
+        applicationId "com.hk.test"
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
+
+    signingConfigs {
+        releasehk {
+            // 正式版本
+            storeFile file('../sign/hk')
+            storePassword signature.KEYSTORE_PASSWORD
+            keyPassword signature.KET_PASSWORD
+            keyAlias signature.KEY_ALIAS
+        }
+
+        sharehk {
+            // 分享版本
+            storeFile file('../sign/hk-share')
+            storePassword signature.KEYSTORE_PASSWORD
+            keyPassword signature.KET_PASSWORD
+            keyAlias signature.KEY_ALIAS
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    flavorDimensions "short"
+
+    productFlavors {
+        releasehk {
+            applicationId "com.hk.test"
+        }
+
+        sharehk {
+            applicationId "com.hk.share"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            productFlavors.releasehk.signingConfig signingConfigs.releasehk
+            productFlavors.sharehk.signingConfig signingConfigs.sharehk
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    android.applicationVariants.all { variant ->
+        // assign different version code for each output
+        def buildName = "";
+        variant.productFlavors.each { product ->
+            buildName = product.name //获取渠道名字
+        }
+
+        def type = variant.buildType.name
+        variant.outputs.each { output ->
+            def name = buildName
+            def time = new Date().format("yyyyMMddhhmmss")
+            output.outputFileName = name + "_" + variant.versionName + "_" + type + "_" + time +".apk"
+            def outputFileDir = "${project.rootDir.absoluteFile}/outputs/${variant.buildType.name}"
+            variant.getAssembleProvider().get().doLast {
+                File out = new File(outputFileDir);
+                copy {
+                    variant.outputs.forEach { file ->
+                        copy {
+                            from file.outputFile
+                            into out
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(path: ':home')
+    implementation project(path: ':zbase')
+    implementation project(path: ':user')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+
+    implementation 'com.google.errorprone:error_prone_annotations:2.3.4'
+
+}

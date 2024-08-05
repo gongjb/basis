@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.yft.zbase.R" />
+        <import type="com.yft.zbase.server.LanguageManage"></import>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/loginBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/tv_welcome"
+            android:layout_width="60dp"
+            android:layout_height="@dimen/ui_60_dp"
+            android:layout_marginTop="115dp"
+            android:text="欢迎登录ReelShort"
+            android:src="@mipmap/about_icon"
+            android:textColor="@color/text_color_33"
+            android:textSize="@dimen/ui_20_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.yft.zbase.widget.RoundRelativeLayout
+            android:id="@+id/rl_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_44_dp"
+            android:layout_marginStart="@dimen/ui_30_dp"
+            android:layout_marginTop="@dimen/ui_40_dp"
+            android:layout_marginEnd="@dimen/ui_30_dp"
+            android:background="@color/white"
+
+            app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+            app:round_corner="@dimen/ui_22_dp">
+
+            <EditText
+                android:id="@+id/ed_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:maxLines="1"
+                android:lines="1"
+                android:gravity="left|center_vertical"
+                android:hint='@{LanguageManage.getString("请输入手机号或者邮箱")}'
+                android:paddingStart="@dimen/ui_20_dp"
+                android:textColorHint="@color/text_hint_tip"
+                android:textColor="@color/text_color_33"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                android:textSize="16dp" />
+
+        </com.yft.zbase.widget.RoundRelativeLayout>
+
+
+        <com.yft.zbase.widget.RoundLinearLayout
+            android:id="@+id/rlCheck"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_44_dp"
+            android:layout_marginStart="@dimen/ui_30_dp"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            android:layout_marginEnd="@dimen/ui_30_dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/rl_phone"
+            app:round_corner="@dimen/ui_22_dp">
+
+            <EditText
+                android:id="@+id/ed_check"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@null"
+                android:maxLines="1"
+                android:lines="1"
+                android:gravity="left|center_vertical"
+                android:hint='@{LanguageManage.getString("请输入验证码")}'
+                android:textColorHint="@color/text_hint_tip"
+                android:textColor="@color/text_color_33"
+                android:textCursorDrawable="@drawable/edittext_cursor"
+                android:inputType="number"
+                android:maxLength="8"
+                android:paddingStart="@dimen/ui_20_dp"
+                android:textSize="16dp" />
+
+
+            <TextView
+                android:id="@+id/tv_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/ui_20_dp"
+                android:text='@{LanguageManage.getString("获取验证码")}'
+                android:textColor="@color/text_check_number"
+                android:textSize="@dimen/ui_16_dp" />
+
+        </com.yft.zbase.widget.RoundLinearLayout>
+
+
+        <com.yft.zbase.widget.RoundRelativeLayout
+            android:id="@+id/rl_inv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_44_dp"
+            android:layout_marginStart="@dimen/ui_30_dp"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            android:layout_marginEnd="@dimen/ui_30_dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rlCheck"
+            app:round_corner="@dimen/ui_22_dp">
+
+            <EditText
+                android:id="@+id/ed_inv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint='@{LanguageManage.getString("请输入邀请码（选填）")}'
+                android:inputType="phone"
+                android:maxLines="1"
+                android:lines="1"
+                android:paddingStart="@dimen/ui_20_dp"
+                android:textColorHint="@color/text_hint_tip"
+                android:textColor="@color/text_color_33"
+                android:textSize="16dp" />
+
+        </com.yft.zbase.widget.RoundRelativeLayout>
+
+        <com.yft.zbase.widget.RoundRelativeLayout
+            android:id="@+id/rl_lgoin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_50_dp"
+            android:layout_marginStart="@dimen/ui_30_dp"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            android:layout_marginEnd="@dimen/ui_30_dp"
+            android:background="@color/theme_red"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_inv"
+            app:round_corner="@dimen/ui_25_dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{LanguageManage.getString("登录")}'
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </com.yft.zbase.widget.RoundRelativeLayout>
+
+        <com.yft.zbase.widget.RoundRelativeLayout
+            android:id="@+id/rl_register"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_50_dp"
+            android:layout_marginStart="@dimen/ui_30_dp"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            android:layout_marginEnd="@dimen/ui_30_dp"
+            android:background="@color/theme_red"
+            android:gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_inv"
+            app:round_corner="@dimen/ui_25_dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{LanguageManage.getString("注册")}'
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </com.yft.zbase.widget.RoundRelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            android:padding="@dimen/ui_10_dp"
+            android:text='@{LanguageManage.getString("立即注册")}'
+            android:textSize="@dimen/ui_14_dp"
+            android:textColor="@color/sd_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_lgoin" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ui_10_dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register"
+            android:layout_marginTop="@dimen/ui_20_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icc"
+                android:layout_width="@dimen/ui_22_dp"
+                android:layout_height="@dimen/ui_22_dp"
+                android:src="@mipmap/icon_on"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/ui_12_dp"
+                android:layout_marginStart="@dimen/ui_6_dp"
+                android:textColor="@color/sd_white"
+                android:text='@{LanguageManage.getString("我已阅读并同意")}' />
+
+            <TextView
+                android:id="@+id/tv_xieyi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/theme_red"
+                android:layout_marginStart="@dimen/ui_4_dp"
+                android:textSize="@dimen/ui_12_dp"
+                android:text='@{LanguageManage.getString("《用户服务协议》")}'/>
+
+            <TextView
+                android:id="@+id/tv_yinsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/theme_red"
+                android:layout_marginStart="@dimen/ui_4_dp"
+                android:textSize="@dimen/ui_12_dp"
+                android:text='@{LanguageManage.getString("《隐私协议》")}'/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

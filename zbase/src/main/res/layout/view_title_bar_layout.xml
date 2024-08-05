@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.yft.zbase.R"></import>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ct_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="70dp">
+
+        <View
+            android:id="@+id/v_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_24_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_50_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_12_dp"
+            app:layout_constraintTop_toBottomOf="@+id/v_top">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/ui_40_dp"
+                android:layout_height="@dimen/ui_40_dp"
+                android:padding="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@mipmap/icon_back"/>
+
+            <TextView
+                android:id="@+id/tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/iv_back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingStart="2dp"
+                android:textSize="@dimen/ui_14_dp"
+                android:visibility="gone"
+                android:textColor="@color/sd_white"
+                android:text="返回"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/tv_back"
+                android:textColor="@color/title_color_a1"
+                android:textSize="@dimen/ui_16_dp"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/ui_6_dp"
+                android:layout_marginEnd="@dimen/ui_6_dp"
+                android:maxLines="1"
+                android:visibility="gone"
+                android:gravity="center"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toStartOf="@+id/fl_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <com.yft.zbase.widget.RoundRelativeLayout
+                android:id="@+id/rounded_layout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/ui_26_dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_back"
+                app:layout_constraintEnd_toStartOf="@+id/fl_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/ui_8_dp"
+                android:layout_marginEnd="@dimen/ui_8_dp"
+                android:visibility="gone"
+                app:round_corner="90dp"
+                app:stroke_width="1dp">
+
+            </com.yft.zbase.widget.RoundRelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/iv_right"
+                    android:layout_width="@dimen/ui_40_dp"
+                    android:layout_height="@dimen/ui_40_dp"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_back"
+                    android:scaleType="fitXY"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/rounded_layout"
+                    />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:text="关闭"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/sd_b_white"
+                android:textSize="@dimen/ui_12_dp"/>
+
+            <View
+                android:id="@+id/v_red"
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/ui_16_dp"
+                android:visibility="gone"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

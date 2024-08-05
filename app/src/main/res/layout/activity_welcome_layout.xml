@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.yft.zbase.R"></import>
+
+        <variable
+            name="isShow"
+            type="java.lang.Boolean" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/themeMainColor">
+
+        <ImageView
+            android:id="@+id/iv_url"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:visibility="@{isShow ? View.VISIBLE : View.GONE,default=gone}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_jump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="@dimen/ui_12_dp"
+            android:background="@drawable/bg_btn_inv_share"
+
+            android:layout_marginTop="@dimen/ui_36_dp"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            android:visibility="@{isShow? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/sd_white"
+            tools:text="跳过 3"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_logo"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            app:setViewRadius="@{R.dimen.ui_10_dp}"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="@{isShow? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_reload"
+            android:layout_width="120dp"
+            android:layout_height="@dimen/ui_40_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/ui_20_dp"
+            android:text="重新加载"
+            android:textSize="@dimen/ui_14_dp"
+            android:visibility="gone"
+            android:background="@color/theme_text_color1"
+            android:textColor="@color/sd_white"
+            app:setViewRadius="@{R.dimen.ui_10_dp}"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

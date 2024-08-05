@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+
+        <import type="com.yft.zbase.R"></import>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="DbBean"
+            type="com.yft.user.bean.MeItemBean" />
+
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+
+        <variable
+            name="onClick"
+            type="com.yft.zbase.adapter.OnAdapterClickListener" />
+
+        <variable
+            name="tag"
+            type="java.lang.Integer" />
+
+        <variable
+            name="size"
+            type="java.lang.Integer" />
+
+        <import type="android.text.TextUtils"></import>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_20_dp"
+            android:background="@color/divider_66"
+            android:visibility="@{DbBean.line ? View.VISIBLE : View.GONE,default=gone}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="51dp"
+            android:onClick="@{v -> onClick.onAdapterClick(v,DbBean,position)}"
+            android:visibility="@{(!DbBean.line) ? View.VISIBLE : View.GONE,default=gone}">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_start"
+                android:layout_width="@dimen/ui_22_dp"
+                android:layout_height="@dimen/ui_22_dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:layout_marginStart="@dimen/ui_16_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility='@{DbBean.stateImage != 0 ?  View.VISIBLE : View.GONE,default=gone}'
+                app:error="@{R.mipmap.about_icon}"
+                app:placeholder="@{R.mipmap.about_icon}"
+                app:url="@{DbBean.stateImage}" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_12_dp"
+                android:text="@{DbBean.title}"
+                android:textColor="@color/sd_b_white"
+                android:textSize="@dimen/ui_14_dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_to"
+                android:layout_width="9dp"
+                android:layout_height="9dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:src="@mipmap/icon_message_go"
+                app:layout_constraintBottom_toBottomOf="@id/tv_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_name" />
+
+            <TextView
+                android:id="@+id/tv_state_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:text="@{DbBean.stateStr}"
+                android:textColor="@color/sd_b_white"
+                android:textSize="@dimen/ui_12_dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_to"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_state_image"
+                android:layout_width="@dimen/ui_30_dp"
+                android:layout_height="@dimen/ui_30_dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:textSize="@dimen/ui_14_dp"
+                android:scaleType="fitXY"
+                android:visibility="@{DbBean.image ? View.VISIBLE : View.GONE,default=gone}"
+                android:src="@mipmap/me_head_photo"
+                app:setViewRadius="@{R.dimen.ui_15_dp}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_to"
+                app:layout_constraintTop_toTopOf="parent"
+                app:error="@{R.mipmap.about_icon}"
+                app:placeholder="@{R.mipmap.about_icon}"
+                app:url="@{DbBean.imageUrl}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:background="@color/themeMainColor"
+                android:visibility="@{(size-1) == position ? View.GONE : View.VISIBLE, default=gone}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+</layout>
