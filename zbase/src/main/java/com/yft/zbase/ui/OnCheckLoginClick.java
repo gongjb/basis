@@ -39,11 +39,11 @@ public abstract class OnCheckLoginClick implements View.OnClickListener {
         }
 
         if (TextUtils.isEmpty(mPmc)) {
-            RouterFactory.startRouterActivity(view.getContext(), RouterFactory.ACTIVITY_USER_LOGIN);
+            RouterFactory.startRouterActivity(view.getContext(), RouterFactory.getPage("LoginActivity"));
         } else {
             Bundle bundle = new Bundle();
             bundle.putString("pmc", mPmc);
-            RouterFactory.startRouterBundleActivity(view.getContext(), RouterFactory.ACTIVITY_USER_LOGIN, bundle);
+            RouterFactory.startRouterBundleActivity(view.getContext(), RouterFactory.getPage("LoginActivity"), bundle);
         }
     }
 

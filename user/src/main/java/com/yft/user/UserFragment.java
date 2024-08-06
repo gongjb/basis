@@ -1,5 +1,7 @@
 package com.yft.user;
 
+import static com.yft.user.router.UserRouter.ACTIVITY_SET;
+import static com.yft.zbase.router.ZbaseRouter.ACTIVITY_WEB;
 import static com.yft.zbase.utils.Utils.getUserLevel;
 import static cn.sd.ld.ui.helper.Logger.LOGE;
 
@@ -16,6 +18,7 @@ import com.gongjiebin.latticeview.BaseLatticeView;
 import com.gongjiebin.latticeview.LatticeView;
 import com.yft.user.databinding.FragmentUserLayoutBinding;
 import com.yft.user.model.UserViewModel;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.server.UserLevelType;
 import com.yft.zbase.base.BaseFragment;
 import com.yft.zbase.bean.ServiceBean;
@@ -24,7 +27,7 @@ import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.utils.ImageGlideLoader;
 import com.yft.zbase.utils.ToastUtils;
 
-@Route(RouterFactory.FRAGMENT_USER)
+@Route(UserRouter.FRAGMENT_USER)
 public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserViewModel> {
 
     @Override
@@ -110,7 +113,8 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
                     bundle.putString("title", kfStr);
                     bundle.putBoolean("isWebTitle", false);
                     bundle.putString("url", viewModel.getUserServer().getServiceUrl().getServiceLinkUrl());
-                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.ACTIVITY_WEB, bundle);
+//                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.ACTIVITY_WEB, bundle);
+                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.getPage("WebYftActivity"), bundle);
                 } else {
                     ToastUtils.toast(viewModel.getString("未匹配到客服!"));
                 }
@@ -120,7 +124,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
         mDataBing.ivSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RouterFactory.startRouterActivity(getContext(), RouterFactory.ACTIVITY_SET);
+                RouterFactory.startRouterActivity(getContext(), RouterFactory.getPage("SetActivity"));
             }
         });
 
@@ -131,7 +135,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
                 }  else if (position == 1) {
                 } else if (position == 2) {
                 } else if(position == 3) {
-                    RouterFactory.startRouterActivity(getContext(), RouterFactory.ACTIVITY_INVITE_FRIEND_2);
+                    RouterFactory.startRouterActivity(getContext(), RouterFactory.getPage("InviteFriends2Activity"));
                 }
             }
         });
@@ -141,7 +145,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
         mDataBing.rlD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RouterFactory.startRouterActivity(getContext(), RouterFactory.ACTIVITY_SET);
+                RouterFactory.startRouterActivity(getContext(), RouterFactory.getPage("SetActivity"));
             }
         });
         mDataBing.ivIcon.setOnClickListener(mGoToUserInfoClick);
@@ -193,7 +197,8 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
     private View.OnClickListener mGoToUserInfoClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            RouterFactory.startRouterActivity(UserFragment.this.requireContext(), RouterFactory.ACTIVITY_USER_INFORMATION);
+            //ActivityUserInformation
+            RouterFactory.startRouterActivity(UserFragment.this.requireContext(), RouterFactory.getPage("ActivityUserInformation"));
         }
     };
 

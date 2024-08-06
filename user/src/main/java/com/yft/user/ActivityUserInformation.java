@@ -15,6 +15,7 @@ import com.yft.user.bean.MeItemBean;
 import com.yft.user.databinding.ActivityUserInformationLayoutBinding;
 import com.yft.user.databinding.ItemUserinfoLayoutBinding;
 import com.yft.user.model.UserViewModel;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BasePhotoActivity;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.server.LanguageManage;
@@ -26,7 +27,7 @@ import com.yft.zbase.utils.ToastUtils;
 
 import java.util.LinkedList;
 
-@Route(RouterFactory.ACTIVITY_USER_INFORMATION)
+@Route(UserRouter.ACTIVITY_USER_INFORMATION)
 public class ActivityUserInformation extends BasePhotoActivity<ActivityUserInformationLayoutBinding, UserViewModel> {
     protected LinkedList<MeItemBean> mList;
     private EasyAdapter<MeItemBean, ItemUserinfoLayoutBinding> mEasyAdapter;

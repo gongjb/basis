@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:allowNativeHeapPointerTagging="false"
-        android:name="com.yft.zbase.ZBaseApplication"
+        android:name="com.fuan.market.ActionApplication"
         android:theme="@style/Theme.YFTJoin">
 
         <provider

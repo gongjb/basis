@@ -55,6 +55,7 @@ import com.yft.zbase.bean.WeChatPayParams;
 import com.yft.zbase.databinding.ActivityWebviewLayoutBinding;
 import com.yft.zbase.error.XNetSystemErrorCode;
 import com.yft.zbase.router.RouterFactory;
+import com.yft.zbase.router.ZbaseRouter;
 import com.yft.zbase.server.DynamicMarketManage;
 import com.yft.zbase.server.IDevice;
 import com.yft.zbase.server.IPay;
@@ -78,7 +79,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-@Route(RouterFactory.ACTIVITY_WEB)
+@Route(ZbaseRouter.ACTIVITY_WEB)
 public class WebYftActivity extends BasePhotoActivity<ActivityWebviewLayoutBinding, WebViewModel> implements WebJsInterface.IWebActivity {
     private SubFragmentDialog subFragmentView;
     // 通知视图控制
@@ -488,7 +489,7 @@ public class WebYftActivity extends BasePhotoActivity<ActivityWebviewLayoutBindi
     public void toLoginActivity(final String callbackFunction) {
         Bundle bundle = new Bundle();
         bundle.putString("function", callbackFunction);
-        RouterFactory.startRouterRequestActivity(WebYftActivity.this, RouterFactory.ACTIVITY_USER_LOGIN, 10000, bundle, new RouteCallback() {
+        RouterFactory.startRouterRequestActivity(WebYftActivity.this, RouterFactory.getPage("LoginActivity"), 10000, bundle, new RouteCallback() {
             @Override
             public void callback(RouteStatus status, Uri uri, String message) {
             }
@@ -508,7 +509,8 @@ public class WebYftActivity extends BasePhotoActivity<ActivityWebviewLayoutBindi
     public void toAddressSelection(String callbackFunction) {
         Bundle bundle = new Bundle();
         bundle.putString("function", callbackFunction);
-        RouterFactory.startRouterRequestActivity(WebYftActivity.this, RouterFactory.ACTIVITY_USER_SITE, 10002, bundle, new RouteCallback() {
+        //ACTIVITY_USER_SITE
+        RouterFactory.startRouterRequestActivity(WebYftActivity.this, RouterFactory.getPage("UserSiteActivity"), 10002, bundle, new RouteCallback() {
             @Override
             public void callback(RouteStatus status, Uri uri, String message) {
             }

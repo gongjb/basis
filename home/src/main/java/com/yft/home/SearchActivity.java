@@ -1,22 +1,13 @@
 package com.yft.home;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import com.alibaba.android.vlayout.DelegateAdapter;
-import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.chenenyu.router.annotation.Route;
 import com.gongjiebin.latticeview.AutoLineDeleteView;
 import com.gongjiebin.latticeview.AutoLineLayout;
@@ -26,9 +17,9 @@ import com.yft.home.adapterutil.AdapterCreateFactory;
 import com.yft.home.databinding.ActivitySearchLayoutBinding;
 import com.yft.home.model.HomeViewModel;
 
+import com.yft.home.router.HomeRouter;
 import com.yft.zbase.base.BaseActivity;
 
-import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.utils.Utils;
 import com.yft.zbase.widget.SearchBarView;
 
@@ -39,7 +30,7 @@ import java.util.List;
 /**
  * 搜索activity
  */
-@Route(RouterFactory.ACTIVITY_SEARCH)
+@Route(HomeRouter.ACTIVITY_SEARCH)
 public class SearchActivity extends BaseActivity<ActivitySearchLayoutBinding, HomeViewModel> {
     private boolean mDel;
 

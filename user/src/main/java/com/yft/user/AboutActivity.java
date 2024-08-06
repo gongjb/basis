@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.chenenyu.router.annotation.Route;
 import com.yft.user.databinding.ActivityAboutLayoutBinding;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.router.RouterFactory;
@@ -14,7 +15,7 @@ import com.yft.zbase.BuildConfig;
 import com.yft.zbase.utils.ClipboardHelper;
 import com.yft.zbase.utils.ToastUtils;
 
-@Route(RouterFactory.ACTIVITY_ABOUT)
+@Route(UserRouter.ACTIVITY_ABOUT)
 public class AboutActivity extends BaseActivity<ActivityAboutLayoutBinding, BaseViewModel> {
     @Override
     public void initView() {
@@ -52,7 +53,9 @@ public class AboutActivity extends BaseActivity<ActivityAboutLayoutBinding, Base
                 Bundle build = new Bundle();
                 build.putString("title", "用户协议");
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getUserAgreementUrl());
-                RouterFactory.startRouterBundleActivity(AboutActivity.this, RouterFactory.ACTIVITY_WEB, build);
+                //RouterFactory.ACTIVITY_WEB
+                RouterFactory.startRouterBundleActivity(AboutActivity.this,
+                        RouterFactory.getPage("WebYftActivity"), build);
             }
         });
 
@@ -62,7 +65,8 @@ public class AboutActivity extends BaseActivity<ActivityAboutLayoutBinding, Base
                 Bundle build = new Bundle();
                 build.putString("title", "隐私政策");
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getPrivacyAgreementUrl());
-                RouterFactory.startRouterBundleActivity(AboutActivity.this, RouterFactory.ACTIVITY_WEB, build);
+                RouterFactory.startRouterBundleActivity(AboutActivity.this,
+                        RouterFactory.getPage("WebYftActivity"), build);
             }
         });
     }

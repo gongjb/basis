@@ -8,6 +8,7 @@ import com.chenenyu.router.annotation.Route;
 import com.gongjiebin.latticeview.KVBean;
 import com.yft.user.databinding.ActivityNicknameLayoutBinding;
 import com.yft.user.model.UserViewModel;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.router.RouterFactory;
@@ -15,7 +16,7 @@ import com.yft.zbase.ui.OnZoomClickListener;
 import com.yft.zbase.ui.SubFragmentDialog;
 import com.yft.zbase.utils.UIUtils;
 
-@Route(RouterFactory.ACTIVITY_NICKNAME)
+@Route(UserRouter.ACTIVITY_NICKNAME)
 public class NicknameActivity extends BaseActivity<ActivityNicknameLayoutBinding, UserViewModel> {
 
     private SubFragmentDialog mSubDialog;

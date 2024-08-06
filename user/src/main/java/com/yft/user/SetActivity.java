@@ -14,6 +14,7 @@ import com.yft.user.bean.MeItemBean;
 import com.yft.user.databinding.ActivitySetLayoutBinding;
 import com.yft.user.databinding.ItemUserinfoLayoutBinding;
 import com.yft.user.model.UserViewModel;
+import com.yft.user.router.UserRouter;
 import com.yft.user.widget.FragmentLogOffDialog;
 import com.yft.zbase.BuildConfig;
 import com.yft.zbase.base.BaseActivity;
@@ -30,7 +31,7 @@ import com.yft.zbase.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(RouterFactory.ACTIVITY_SET)
+@Route(UserRouter.ACTIVITY_SET)
 public class SetActivity extends BaseActivity<ActivitySetLayoutBinding, UserViewModel> {
     private EasyAdapter<MeItemBean, ItemUserinfoLayoutBinding> mEasyAdapter;
     private List<MeItemBean> mList;

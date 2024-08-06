@@ -9,6 +9,7 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.chenenyu.router.annotation.Route;
+import com.fuan.market.router.AppRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.KVBean;
@@ -29,7 +30,7 @@ import com.fuan.market.R;
 /**
  * 引导页
  */
-@Route(RouterFactory.ACTIVITY_GUIDE)
+@Route(AppRouter.ACTIVITY_GUIDE)
 public class GuideActivity extends BaseActivity<ActivityGuideActivityBinding, BaseViewModel> {
     @Override
     public void initView() {
@@ -48,7 +49,7 @@ public class GuideActivity extends BaseActivity<ActivityGuideActivityBinding, Ba
             @Override
             public void onClick(View view) {
                 // 去登陆页面
-                RouterFactory.startRouterActivity(GuideActivity.this, RouterFactory.ACTIVITY_MAIN);
+                RouterFactory.startRouterActivity(GuideActivity.this, RouterFactory.getPage("MainActivity"));
             }
         };
         onZoomClickListener.setThemeColor(getResources().getColor(com.yft.zbase.R.color.theme_assistant));

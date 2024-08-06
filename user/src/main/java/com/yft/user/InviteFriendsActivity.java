@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.chenenyu.router.annotation.Route;
 import com.yft.user.databinding.ActivityInviteFriendLayoutBinding;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.router.RouterFactory;
@@ -26,7 +27,7 @@ import com.yft.zbase.utils.Utils;
 import com.yft.zbase.utils.ZxingUtils;
 
 
-@Route(RouterFactory.ACTIVITY_INVITE_FRIEND)
+@Route(UserRouter.ACTIVITY_INVITE_FRIEND)
 public class InviteFriendsActivity extends BaseActivity<ActivityInviteFriendLayoutBinding, BaseViewModel> {
     private IShare mShare;
 

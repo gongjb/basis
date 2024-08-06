@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.chenenyu.router.annotation.Route;
+import com.fuan.market.router.AppRouter;
 import com.yft.home.adapterutil.AdapterCreateFactory;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.bean.KVBean;
@@ -24,7 +25,7 @@ import com.fuan.market.databinding.ActivityWelcomeLayoutBinding;
 import com.fuan.market.R;
 
 
-@Route(RouterFactory.ACTIVITY_WELCOME)
+@Route(AppRouter.ACTIVITY_WELCOME)
 public class WelcomeActivity extends BaseActivity<ActivityWelcomeLayoutBinding, WelcomeViewModel> {
     /**
      * 提交dialog
@@ -53,11 +54,13 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeLayoutBinding, 
         mDataBing.ivUrl.setOnClickListener(this::onAdImageClick);
         // 重新加载按钮
         mDataBing.btnReload.setOnClickListener(view -> {
-            if (!mSubFragmentDialog.isShow()) {
-                mSubFragmentDialog.show(getSupportFragmentManager(), getClass().getCanonicalName());
-            }
-            // 再次请求
-            mViewModel.requestService();
+//            if (!mSubFragmentDialog.isShow()) {
+//                mSubFragmentDialog.show(getSupportFragmentManager(), getClass().getCanonicalName());
+//            }
+//            // 再次请求
+//            mViewModel.requestService();
+            LOGE("===>>",RouterFactory.getPage("MainActivity"));
+            RouterFactory.startRouterActivity(this, RouterFactory.getPage("MainActivity"));
         });
 
         if (mViewModel.isFirst()) {
@@ -147,7 +150,7 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeLayoutBinding, 
 
 
     private void goMainActivity() {
-        RouterFactory.startRouterActivity(this, RouterFactory.ACTIVITY_MAIN);
+        RouterFactory.startRouterActivity(this, RouterFactory.getPage("MainActivity"));
     }
 
     @Override

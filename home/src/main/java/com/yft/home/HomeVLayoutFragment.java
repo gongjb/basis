@@ -21,6 +21,7 @@ import com.yft.home.adapterutil.AdapterCreateFactory;
 import com.yft.home.bean.HomeConfigBean;
 import com.yft.home.databinding.HomeFragmentV2LayoutBinding;
 import com.yft.home.model.HomeViewModel;
+import com.yft.home.router.HomeRouter;
 import com.yft.home.vadapter.VideoHomeBannerAdapter;
 import com.yft.home.vadapter.VideoListAdapter;
 import com.yft.zbase.adapter.HomeBottomAdapter;
@@ -36,7 +37,7 @@ import com.yft.zbase.widget.SearchBarView;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(RouterFactory.FRAGMENT_HOME_VLAYOUT)
+@Route(HomeRouter.FRAGMENT_HOME_VLAYOUT)
 public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBinding, HomeViewModel> {
     private DelegateAdapter mDelegateAdapter;
     private List<DelegateAdapter.Adapter> mAdapterList;
@@ -143,7 +144,9 @@ public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBindin
     private void toSearchActivity() {
         Bundle bundle = new Bundle();
         bundle.putString("type", "normal");
-        RouterFactory.startRouterBundleActivity(HomeVLayoutFragment.this.getContext(), RouterFactory.ACTIVITY_SEARCH, bundle);
+        //ACTIVITY_SEARCH
+        RouterFactory.startRouterBundleActivity(HomeVLayoutFragment.this.getContext(),
+                RouterFactory.getPage("SearchActivity"), bundle);
     }
 
     private SwipeRecyclerView.LoadMoreListener mLoadMoreListener = () -> {

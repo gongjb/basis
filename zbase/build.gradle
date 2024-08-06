@@ -56,8 +56,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
     api project(path: ':latticeview')
-    api project(':annotation')
-    annotationProcessor project(':processor')
+
     api 'io.github.youth5201314:banner:2.2.2'
     implementation 'com.tencent:mmkv-static:1.2.12'
 
@@ -84,15 +83,4 @@ dependencies {
    // api 'com.tencent.bugly:crashreport:4.1.9.2'
 //    api 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.9.0'
-
-    // 视频播放器
-//    api 'com.shuyu:GSYVideoPlayer:7.1.6'
-    api 'com.shuyu:gsyVideoPlayer-java:7.1.6'
-
-    //是否需要ExoPlayer模式
-    api 'com.shuyu:GSYVideoPlayer-exo2:7.1.6'
-    api 'com.shuyu:gsyVideoPlayer-armv5:7.1.6'
-    api 'com.shuyu:gsyVideoPlayer-armv7a:7.1.6'
-
-    api 'com.shuyu:gsyVideoPlayer-arm64:7.1.6'
 }

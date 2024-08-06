@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YFTJoin" >
 
-        <activity
-            android:name=".UserActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"/>
 
         <activity
             android:name=".LoginActivity"
@@ -22,10 +17,6 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:exported="false"/>
 
-        <activity android:name=".PlanCashbackActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"/>
 
         <activity android:name=".ActivityUserInformation"
             android:screenOrientation="portrait"
@@ -62,58 +53,5 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:exported="false"></activity>
 
-        <activity android:name=".AboutActivity2"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-
-        <activity android:name=".MyTeamActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-
-        <!--BalanceActivity-->
-        <activity android:name=".BalanceActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-
-<!--        StreamDesActivity-->
-        <activity android:name=".StreamDesActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-<!--        TransfersDesActivity-->
-        <activity android:name=".TransfersDesActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-<!--        FavoritesListActivity-->
-        <activity android:name=".FavoritesListActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-
-<!--        TopUpDetailsActivity-->
-        <activity android:name=".TopUpDetailsActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-
-<!--        DividedDesActivity-->
-        <activity android:name=".DividedDesActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-<!--        UpdatePwdActivity-->
-        <activity android:name=".UpdatePwdActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
-<!--        PayoutDesActivity-->
-        <activity android:name=".PayoutDesActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:exported="false"></activity>
     </application>
 </manifest>

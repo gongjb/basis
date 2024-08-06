@@ -7,13 +7,14 @@ import android.view.View;
 import com.chenenyu.router.annotation.Route;
 import com.yft.user.databinding.ActivityBindPhoneLayoutBinding;
 import com.yft.user.model.LoginViewModel;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.error.ErrorCode;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.ui.OnZoomClickListener;
 import com.yft.zbase.utils.UIUtils;
 
-@Route(RouterFactory.ACTIVITY_BIND_PHONE)
+@Route(UserRouter.ACTIVITY_BIND_PHONE)
 public class BindPhoneActivity extends BaseActivity<ActivityBindPhoneLayoutBinding, LoginViewModel> {
 
     @Override

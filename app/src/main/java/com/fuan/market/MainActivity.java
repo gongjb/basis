@@ -3,22 +3,14 @@ package com.fuan.market;
 
 import static cn.sd.ld.ui.helper.Logger.LOGE;
 
-
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -28,14 +20,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.chenenyu.router.annotation.Route;
+import com.fuan.market.router.AppRouter;
 import com.gongjiebin.latticeview.BaseLatticeView;
 import com.gongjiebin.latticeview.LatticeView;
 
-import com.fuan.market.R;
 import com.fuan.market.databinding.ActivityMainBinding;
 import com.fuan.market.model.MainViewModel;
 
-import com.hk.annotation.BindPath;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.bean.DownLoadBean;
 import com.yft.zbase.bean.TargetBean;
@@ -49,15 +40,13 @@ import com.yft.zbase.utils.ImageGlideLoader;
 import com.yft.zbase.utils.UIUtils;
 import com.yft.zbase.utils.Utils;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
  * 首页
  */
 
-@BindPath(RouterFactory.ACTIVITY_MAIN)
-@Route(RouterFactory.ACTIVITY_MAIN)
+@Route(AppRouter.ACTIVITY_MAIN)
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
@@ -73,7 +62,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void initView() {
-        mPageTags = new String[]{RouterFactory.FRAGMENT_HOME_VLAYOUT, RouterFactory.FRAGMENT_USER};
+        //UserFragment
+        mPageTags = new String[]{RouterFactory.getPage("HomeVLayoutFragment"),
+                RouterFactory.getPage("UserFragment")};
 
         mPrivacyFragmentDialog = PrivacyFragmentDialog.newInstance();
         GradientDrawable grad = new GradientDrawable(//渐变色
@@ -159,7 +150,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             public void onClick(View v, ImageView imageView, Object[] urls, int position) {
                 if (position == 1) {
                     if (!mViewModel.isLogin()) {
-                        RouterFactory.startRouterActivity(MainActivity.this, RouterFactory.ACTIVITY_USER_LOGIN);
+                        RouterFactory.startRouterActivity(MainActivity.this, RouterFactory.getPage("LoginActivity"));
                         mImageTextParams.selectIndex = pageIndex;
                         mDataBing.llView.removeViews();
                         mDataBing.llView.startView();

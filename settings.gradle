@@ -24,12 +24,6 @@ rootProject.name = "YFTJoin"
 include ':app'
 include ':zbase'
 include ':home'
-include ':short'
-include ':centerdata'
 include ':user'
 include ':latticeview'
-include ':library'
 
-include ':amount'
-include ':processor'
-include ':annotation'

@@ -92,7 +92,7 @@ public class PrivacyFragmentDialog extends BaseFragmentDialog<FragmentPrivacyDia
                 build.putString("title", "用户协议");
                 build.putBoolean("isWebTitle", false);
                 build.putString("url", viewModel.getService().getUserAgreementUrl());
-                RouterFactory.startRouterBundleActivity(getActivity(), RouterFactory.ACTIVITY_WEB, build);
+                RouterFactory.startRouterBundleActivity(getActivity(), RouterFactory.getPage("WebYftActivity"), build);
             }
 
             @Override
@@ -111,7 +111,7 @@ public class PrivacyFragmentDialog extends BaseFragmentDialog<FragmentPrivacyDia
                 build.putString("title", "隐私政策");
                 build.putBoolean("isWebTitle", false);
                 build.putString("url", viewModel.getService().getPrivacyAgreementUrl());
-                RouterFactory.startRouterBundleActivity(getActivity(), RouterFactory.ACTIVITY_WEB, build);
+                RouterFactory.startRouterBundleActivity(getActivity(), RouterFactory.getPage("WebYftActivity"), build);
             }
 
             @Override

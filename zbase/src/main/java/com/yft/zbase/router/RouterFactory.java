@@ -18,55 +18,42 @@ import com.yft.zbase.server.IServerAgent;
 import com.yft.zbase.server.IUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class RouterFactory {
-
-    //用户
-    public final static String FRAGMENT_USER = "com/yft/user/UserFragment";
-    // 首页
-    public final static String FRAGMENT_HOME_VLAYOUT = "com/yft/home/HomeVLayoutFragment";
-    // 搜索
-    public final static String ACTIVITY_SEARCH = "com/yft/home/SearchActivity";
-
-    // 欢迎页面
-    public final static String ACTIVITY_WELCOME = "cn/fuan/market/WelcomeActivity";
-    // 引导页面
-    public final static String ACTIVITY_GUIDE = "cn/fuan/market/GuideActivity";
-    // 主页面
-    public final static String ACTIVITY_MAIN = "cn/fuan/market/MainActivity";
-
-    // 登陆页面
-    public final static String ACTIVITY_USER_LOGIN = "com/yft/user/LoginActivity";
-    // webview 页面
-    public final static String ACTIVITY_WEB = "com/yft/zbase/ui/WebYftActivity";
-
-    // 用户信息
-    public final static String ACTIVITY_USER_INFORMATION = "com/yft/user/ActivityUserInformation";
-    // 邀请好友
-    public final static String ACTIVITY_INVITE_FRIEND = "com/yft/user/InviteFriendsActivity";
-    // 邀请好友v2
-    public final static String ACTIVITY_INVITE_FRIEND_2 = "com/yft/user/InviteFriends2Activity";
-
-
-    // 绑定电话号码
-    public final static String ACTIVITY_BIND_PHONE = "com/yft/user/BindPhoneActivity";
-    // 修改昵称
-    public final static String ACTIVITY_NICKNAME = "com/yft/user/NicknameActivity";
-
-
-    public final static String ACTIVITY_SET = "com/yft/user/SetActivity";
-
-    // 扫描文本展示页面
-    public final static String  ACTIVITY_TEXT = "com/yft/zbase/ui/TextActivity";
-
-
-    /*----------------------------------地址选择模块-------------------------*/
-    // 地址列表
-    public final static String ACTIVITY_USER_SITE = "com/yft/user/UserSiteActivity";
-    //关于我们
-    public final static String ACTIVITY_ABOUT = "com/yft/user/AboutActivity";
     public static final String ROUTER_TEST = "";
+
+    public static final ConcurrentMap<String, String> routerPages = new ConcurrentHashMap<>();
+
+    public synchronized static void initPages(ConcurrentMap<String, String> concurrentMap) {
+        routerPages.putAll(concurrentMap);
+    }
+
+    /**
+     * 获取页面路径
+     * @param pageKey
+     * @return
+     */
+    public synchronized static String getPage(String pageKey) {
+        return routerPages.get(pageKey);
+    }
+
+    /**
+     * 创建页面路由集合
+     * @param routers
+     * @return
+     */
+    public synchronized static List<IRouter> factoryRouterPages(IRouter...routers) {
+        if (routers == null) {
+            throw new RuntimeException("routers is null");
+        }
+
+       return Arrays.asList(routers);
+    }
 
     /*
        ---------------------------------首页跳转类型----------------------------
@@ -108,8 +95,6 @@ public class RouterFactory {
     public final static String TO_HOME_SHOPCAR ="toHomeShopCar";
     public final static String TO_HOME_MINE = "toHomeMine";
 
-
-
     private static List<IToHomePageListener> mToHomePageListener;
 
     public synchronized static void addToHomePageListener(IToHomePageListener iToHomePageListener) {
@@ -125,14 +110,14 @@ public class RouterFactory {
         }
     }
 
-    public static void startRouterRequestActivity(Context context, String path, int requestCode, RouteCallback routerCallback) {
+    public synchronized static void startRouterRequestActivity(Context context, String path, int requestCode, RouteCallback routerCallback) {
         Router.build(path)
                 .callback(routerCallback)
                 .requestCode(requestCode)
                 .go(context);
     }
 
-    public static void startRouterRequestActivity(Context context, String path, int requestCode,
+    public synchronized static void startRouterRequestActivity(Context context, String path, int requestCode,
                                                   Bundle bundle, RouteCallback routerCallback) {
         Router.build(path)
                 .with(bundle)
@@ -140,13 +125,13 @@ public class RouterFactory {
                 .go(context, routerCallback);
     }
 
-    public static void startRouterBundleActivity(Context context, String path, Bundle bundle) {
+    public synchronized static void startRouterBundleActivity(Context context, String path, Bundle bundle) {
         Router.build(path)
                 .with(bundle)
                 .go(context);
     }
 
-    public static void startRouterRequestActivity(Fragment fragment, String path, int requestCode,
+    public synchronized static void startRouterRequestActivity(Fragment fragment, String path, int requestCode,
                                                   RouteCallback routerCallback) {
         Router.build(path)
                 .callback(routerCallback)
@@ -154,14 +139,14 @@ public class RouterFactory {
                 .go(fragment);
     }
 
-    public static void startRouterRequestActivity(Fragment fragment, String path, int requestCode, Bundle bundle) {
+    public synchronized static void startRouterRequestActivity(Fragment fragment, String path, int requestCode, Bundle bundle) {
         Router.build(path)
                 .requestCode(requestCode)
                 .with(bundle)
                 .go(fragment);
     }
 
-    public static void startRouterActivity(Context context, String path) {
+    public synchronized static void startRouterActivity(Context context, String path) {
         Router.build(path).go(context);
     }
 
@@ -172,7 +157,7 @@ public class RouterFactory {
      * @param path
      * @return
      */
-    public static Fragment getFragment(Context context, String path, Bundle bundle) {
+    public synchronized static Fragment getFragment(Context context, String path, Bundle bundle) {
         return Router.build(path).with(bundle).getFragment(context);
     }
 
@@ -183,17 +168,18 @@ public class RouterFactory {
      * @param path
      * @return
      */
-    public static Fragment getFragment(Context context, String path ) {
+    public synchronized static Fragment getFragment(Context context, String path ) {
         return Router.build(path).getFragment(context);
     }
 
-    public static boolean jumpToActivity(Context context, TargetBean homeListBean) {
+    public synchronized static boolean jumpToActivity(Context context, TargetBean homeListBean) {
         if (homeListBean == null) {return false;}
 
         if (RouterFactory.JUMP_INNER_MODULE.equals(homeListBean.getActionType())) {
             IUser user = DynamicMarketManage.getInstance().getServer(IServerAgent.USER_SERVER);
             if (!user.isLogin()) {
-                RouterFactory.startRouterActivity(context, RouterFactory.ACTIVITY_USER_LOGIN);
+//                RouterFactory.startRouterActivity(context, RouterFactory.ACTIVITY_USER_LOGIN);
+                RouterFactory.startRouterActivity(context, getPage("LoginActivity"));
                 return false;
             }
         }
@@ -205,7 +191,8 @@ public class RouterFactory {
                     Bundle bundle = new Bundle();
                     bundle.putString("title", "");
                     bundle.putString("url", homeListBean.getTarget());
-                    RouterFactory.startRouterBundleActivity(context, RouterFactory.ACTIVITY_WEB, bundle);
+                    //RouterFactory.startRouterBundleActivity(context, RouterFactory.ACTIVITY_WEB, bundle);
+                    RouterFactory.startRouterBundleActivity(context, getPage("WebYftActivity"), bundle);
                     break;
                 case JUMP_OUT_LINK_MODULE:
                     // Calling startActivity() from outside of an Activity  context requires the FLAG_ACTIVITY_NEW_TASK flag. Is this really what you want?
@@ -219,7 +206,7 @@ public class RouterFactory {
                 case JUMP_INVITE_FRIEND:
                     bundle = new Bundle();
                     bundle.putString("pmc", homeListBean.getPmc());
-                    RouterFactory.startRouterBundleActivity(context, RouterFactory.ACTIVITY_USER_LOGIN, bundle);
+                    RouterFactory.startRouterBundleActivity(context, getPage("LoginActivity"), bundle);
                     break;
                 case JUMP_GOODS_DETAIL_MODULE:
 
@@ -252,7 +239,7 @@ public class RouterFactory {
      * toBalanceList 跳转余额列表
      * toGiftVoucherList 跳转兑换券列表
      */
-    private static boolean startInnerModule(Context context, TargetBean homeListBean) {
+    private synchronized static boolean startInnerModule(Context context, TargetBean homeListBean) {
         IUser iUser = DynamicMarketManage.getInstance().getServer(IServerAgent.USER_SERVER);
         try {
             switch (homeListBean.getTarget()) {
@@ -272,7 +259,7 @@ public class RouterFactory {
                         String pageStr = homeListBean.getTarget();
                         Bundle bundle = new Bundle();
                         bundle.putString("initPage", pageStr);
-                        RouterFactory.startRouterBundleActivity(context, RouterFactory.ACTIVITY_MAIN, bundle);
+                        RouterFactory.startRouterBundleActivity(context, getPage("MainActivity"), bundle);
                     }
                     break;
 

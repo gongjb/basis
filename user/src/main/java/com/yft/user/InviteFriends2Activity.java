@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.chenenyu.router.annotation.Route;
 import com.yft.user.databinding.ActivityInviteFriendTwoLayoutBinding;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.router.RouterFactory;
@@ -28,7 +29,7 @@ import com.yft.zbase.utils.ToastUtils;
 import com.yft.zbase.utils.Utils;
 import com.yft.zbase.utils.ZxingUtils;
 
-@Route(RouterFactory.ACTIVITY_INVITE_FRIEND_2)
+@Route(UserRouter.ACTIVITY_INVITE_FRIEND_2)
 public class InviteFriends2Activity extends BaseActivity<ActivityInviteFriendTwoLayoutBinding, BaseViewModel> {
     private IShare mShare;
     // 图片的宽高比是

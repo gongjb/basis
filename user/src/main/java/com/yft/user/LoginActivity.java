@@ -16,6 +16,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import com.chenenyu.router.annotation.Route;
 import com.yft.user.databinding.ActivityLoginActivityBinding;
 import com.yft.user.model.LoginViewModel;
+import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.bean.UserInfo;
 import com.yft.zbase.router.RouterFactory;
@@ -26,7 +27,7 @@ import com.yft.zbase.utils.ToastUtils;
 import com.yft.zbase.utils.UIUtils;
 import com.yft.zbase.utils.Utils;
 
-@Route(RouterFactory.ACTIVITY_USER_LOGIN)
+@Route(UserRouter.ACTIVITY_USER_LOGIN)
 public class LoginActivity extends BaseActivity<ActivityLoginActivityBinding, LoginViewModel> {
     private int mGroupHigh;
     private int mGroupWidth;
@@ -270,7 +271,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginActivityBinding, Lo
                 build.putString("title", mViewModel.getString("用户协议"));
                 build.putBoolean("isWebTitle", false);
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getUserAgreementUrl());
-                RouterFactory.startRouterBundleActivity(LoginActivity.this, RouterFactory.ACTIVITY_WEB, build);
+                RouterFactory.startRouterBundleActivity(LoginActivity.this, RouterFactory.getPage("WebYftActivity"), build);
             }
         });
 
@@ -281,7 +282,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginActivityBinding, Lo
                 build.putString("title", mViewModel.getString("隐私政策"));
                 build.putBoolean("isWebTitle", false);
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getPrivacyAgreementUrl());
-                RouterFactory.startRouterBundleActivity(LoginActivity.this, RouterFactory.ACTIVITY_WEB, build);
+                RouterFactory.startRouterBundleActivity(LoginActivity.this, RouterFactory.getPage("WebYftActivity"), build);
             }
         });
     }
