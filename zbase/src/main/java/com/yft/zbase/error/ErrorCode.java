@@ -94,6 +94,7 @@ public class ErrorCode {
         } else {
             Toast.makeText(ZBaseApplication.get(), message ,Toast.LENGTH_LONG).show();
         }
+        //xiufu
     }
 
     /**
