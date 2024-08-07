@@ -6,13 +6,13 @@ import static com.yft.zbase.router.RouterFactory.TO_HOME_NEWS;
 import static com.yft.zbase.router.RouterFactory.TO_HOME_PAGE;
 import static com.yft.zbase.router.RouterFactory.TO_HOME_SHOPCAR;
 
-import android.text.TextUtils;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.hk.xnet.Template;
+import com.hk.xnet.WebServiceThrowable;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.TargetBean;
-import com.yft.zbase.error.WebServiceThrowable;
 import com.yft.zbase.router.IToHomePageListener;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.utils.UIUtils;

@@ -1,7 +1,6 @@
-package com.yft.zbase.xnet;
+package com.hk.xnet;
 
 import android.app.Application;
-import android.content.Context;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -85,5 +84,5 @@ public interface IXNet {
      */
     <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener);
 
-    void initHttp(Application application);
+    void initHttp(Application application, boolean isDebug);
 }

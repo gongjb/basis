@@ -35,7 +35,6 @@ import com.yft.zbase.bean.PayBean;
 import com.yft.zbase.bean.UserInfo;
 import com.yft.zbase.bean.WeChatPayParams;
 import com.yft.zbase.databinding.ActivityWebviewLayoutBinding;
-import com.yft.zbase.error.XNetSystemErrorCode;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.router.ZbaseRouter;
 import com.yft.zbase.server.DynamicMarketManage;

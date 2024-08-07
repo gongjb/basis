@@ -2,6 +2,7 @@ package com.yft.zbase.server;
 
 public class LanguageManage {
    private static ILanguage iLanguage = DynamicMarketManage.getInstance().getServer(IServerAgent.LANGUAGE_SERVER);
+
     /**
      * 提供给XML中调用
      * @param key

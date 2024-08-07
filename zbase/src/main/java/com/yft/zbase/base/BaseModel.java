@@ -8,6 +8,10 @@ import android.text.TextUtils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.hk.xnet.IParameter;
+import com.hk.xnet.IXNet;
+import com.hk.xnet.RequestUtils;
+import com.hk.xnet.XNetImpl;
 import com.yft.zbase.BuildConfig;
 import com.yft.zbase.bean.AddressBean;
 import com.yft.zbase.bean.DownLoadBean;
@@ -20,12 +24,8 @@ import com.yft.zbase.server.IServerAgent;
 import com.yft.zbase.server.IUser;
 import com.yft.zbase.utils.JsonUtil;
 import com.yft.zbase.utils.UtilsPaths;
-import com.yft.zbase.xnet.IParameter;
-import com.yft.zbase.xnet.IXNet;
 import com.yft.zbase.xnet.InterfacePath;
-import com.yft.zbase.xnet.RequestUtils;
 import com.yft.zbase.xnet.ResponseDataListener;
-import com.yft.zbase.xnet.XNetImpl;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import java.util.TreeMap;
 /**
  * 封装请求方式
  */
-public class BaseModel implements IParameter {
+public class BaseModel {
     private static final String PROMOTE_CHANNEL = "C10005"; //
     // 接口版本
     private String version = BuildConfig.versionCode;
@@ -92,16 +92,16 @@ public class BaseModel implements IParameter {
     }
 
     protected IXNet getNetWork() {
-        return XNetImpl.getInstance();
+        return  XNetImpl.getInstance();
     }
 
 
     public Map<String, String> getRequestParameter(TreeMap<String, String> values) {
-        return RequestUtils.getRequestParameter(values, this);
+        return RequestUtils.getRequestParameter(values, iParameter);
     }
 
     public Map<String, String> getRequestParameter() {
-        return RequestUtils.getRequestParameter(this);
+        return RequestUtils.getRequestParameter(iParameter);
     }
 
     public void requestServiceAddress(final int position,final String path, final IServiceNotice iServiceNotice) {
@@ -257,40 +257,49 @@ public class BaseModel implements IParameter {
         }
     }
 
-    @Override
-    public String getVersion() {
-        return version;
-    }
+    private IParameter iParameter  = new IParameter() {
+        @Override
+        public String getVersion() {
+            return version;
+        }
 
-    @Override
-    public String getLanguageType() {
-        return iLanguage.getLanguageType();
-    }
+        @Override
+        public String getLanguageType() {
+            return iLanguage.getLanguageType();
+        }
 
-    @Override
-    public String getDeviceId() {
-        return mDevice.getDeviceId();
-    }
+        @Override
+        public String getDeviceId() {
+            return mDevice.getDeviceId();
+        }
 
-    @Override
-    public String getAndroid() {
-        return mDevice.getAndroid();
-    }
+        @Override
+        public String getAndroid() {
+            return mDevice.getAndroid();
+        }
 
-    @Override
-    public String getPromoteChannel() {
-        return PROMOTE_CHANNEL;
-    }
+        @Override
+        public String getPromoteChannel() {
+            return PROMOTE_CHANNEL;
+        }
 
-    @Override
-    public String getToken() {
-        return mUser.getUserInfo() == null ? "" : mUser.getUserInfo().getToken();
-    }
+        @Override
+        public String getToken() {
+            return mUser.getUserInfo() == null ? "" : mUser.getUserInfo().getToken();
+        }
 
-    @Override
-    public String getClientModel() {
-        return mDevice.getModel();
-    }
+        @Override
+        public String getClientModel() {
+            return mDevice.getModel();
+        }
+
+        @Override
+        public String getKey(long requestTimestamp, String uuid, String token, String random) {
+            return cn.sd.ld.ui.helper.Utils.getMD5KeyByRequest(requestTimestamp, String.valueOf(requestTimestamp), uuid, token, random);
+        }
+    };
+
+
 
     public interface IServiceNotice {
         void onSuccess();

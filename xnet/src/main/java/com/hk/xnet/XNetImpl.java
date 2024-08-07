@@ -1,4 +1,4 @@
-package com.yft.zbase.xnet;
+package com.hk.xnet;
 
 
 import android.app.Application;
@@ -23,11 +23,6 @@ import com.lzy.okserver.OkDownload;
 import com.lzy.okserver.OkUpload;
 import com.lzy.okserver.download.DownloadListener;
 import com.lzy.okserver.upload.UploadListener;
-import com.yft.zbase.BuildConfig;
-import com.yft.zbase.ZBaseApplication;
-import com.yft.zbase.error.WebServiceThrowable;
-import com.yft.zbase.error.XNetSystemErrorCode;
-import com.yft.zbase.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -186,7 +181,6 @@ public class XNetImpl implements IXNet {
     @Override
     public <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener) {
         if(OkUpload.getInstance().getTask(path) != null) {
-            ToastUtils.toast("当前正在上传文件，请稍等！");
             return this;
         }
         PostRequest<String> postRequest = OkGo.<String>post(path);//
@@ -210,14 +204,14 @@ public class XNetImpl implements IXNet {
 
 
     @Override
-    public void initHttp(Application application) {
+    public void initHttp(Application application, boolean isDebug) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         //log相关
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
         //loggingInterceptor.setPrintLevel(HttpLoggingInterceptor.Level.BODY);
-        loggingInterceptor.setPrintLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);        //log打印级别，决定了log显示的详细程度
+        loggingInterceptor.setPrintLevel(isDebug ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);        //log打印级别，决定了log显示的详细程度
         //loggingInterceptor.setColorLevel(Level.INFO);
-        loggingInterceptor.setColorLevel(BuildConfig.DEBUG ? Level.INFO : Level.OFF);
+        loggingInterceptor.setColorLevel(isDebug ? Level.INFO : Level.OFF);
 
         builder.addInterceptor(loggingInterceptor);                                 //添加OkGo默认debug日志
         //第三方的开源库，使用通知显示当前请求的log，不过在做文件下载的时候，这个库好像有问题，对文件判断不准确
@@ -255,12 +249,11 @@ public class XNetImpl implements IXNet {
     public IXNet downLoadFile(final String path, final ResponseDataListener listener) {
         //这里只是演示，表示请求可以传参，怎么传都行，和okgo使用方法一样
         if(OkDownload.getInstance().getTask(path) != null) {
-            ToastUtils.toast("当前正在下载，请稍等！");
             return this;
         }
         GetRequest<File> request = OkGo.<File>get(path).tag(path);
         OkDownload.request(path, request)//
-                .folder(ZBaseApplication.get().getFilesDir().toString())
+                //.folder(ZBaseApplication.get().getFilesDir().toString())
                 .save()//
                 .register(new DesListener(listener, path))
                 .start();

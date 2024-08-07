@@ -1,17 +1,11 @@
-package com.yft.zbase.xnet;
-
-
-import static com.yft.zbase.utils.Logger.LOGE;
+package com.hk.xnet;
 
 import android.text.TextUtils;
-
-import com.yft.zbase.utils.Md5Encryption;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
-import java.util.UUID;
 
 
 public class RequestUtils {
@@ -37,7 +31,7 @@ public class RequestUtils {
     public static Map<String, String> getRequestParameter(IParameter iParameter) {
         TreeMap<String, String> values = new TreeMap<>();
         long requestTimestamp = System.currentTimeMillis();
-        String uuid =  UUID.randomUUID().toString().replace("-", ""); // 每次获取的不一致
+        String uuid =  iParameter.getUUID(); // 每次获取的不一致
         values.put("version", iParameter.getVersion());
         values.put("language", iParameter.getLanguageType());
         values.put("serialNumber", iParameter.getDeviceId());
@@ -50,7 +44,7 @@ public class RequestUtils {
         values.put("clientModel", iParameter.getClientModel());
         // 获取key
         String token = iParameter.getToken();
-        String key = cn.sd.ld.ui.helper.Utils.getMD5KeyByRequest(requestTimestamp, String.valueOf(requestTimestamp), uuid, token, getRandom());
+        String key = iParameter.getKey(requestTimestamp, uuid, token, getRandom());
         if(!TextUtils.isEmpty(token)) {
             values.put("token", iParameter.getToken());
         }
@@ -71,14 +65,12 @@ public class RequestUtils {
             }
         }
         sb.append(key);
-        LOGE("打印入参数" + sb.toString());
         String sign = "";
         try {
             sign = Md5Encryption.parseStrToMd5L32(sb.toString());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        LOGE("加密结果" + sign);
         return sign;
     }
 
@@ -86,6 +78,4 @@ public class RequestUtils {
         long num = random.nextLong();
         return String.valueOf(num);
     }
-
-
 }

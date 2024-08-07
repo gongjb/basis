@@ -27,3 +27,4 @@ include ':home'
 include ':user'
 include ':latticeview'
 
+include ':xnet'

@@ -10,8 +10,7 @@ import java.util.TreeMap;
 public class WelcomeModel extends BaseModel {
     public void postOpenStart(ResponseDataListener<TargetBean> responseDataListener) {
         TreeMap<String, String> treeMap = new TreeMap<>();
-        mNetWork
-                .easyPost(mUser.getBastServiceURL() + InterfacePath.START_PAGE,
+        mNetWork.easyPost(mUser.getBastServiceURL() + InterfacePath.START_PAGE,
                         getRequestParameter(treeMap),
                         responseDataListener,
                         TargetBean.class);

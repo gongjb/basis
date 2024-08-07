@@ -87,10 +87,10 @@ public class SetActivity extends BaseActivity<ActivitySetLayoutBinding, UserView
             if (isIng) {
                 return;
             }
+            isIng = true;
             final SubFragmentDialog subFragmentDialog = SubFragmentDialog.newInstance(mViewModel.getString("请稍后..."));
             subFragmentDialog.show(getSupportFragmentManager(), "clean");
             Utils.cleanCookie(this);
-            isIng = true;
             mDataBing.rvSet.postDelayed(new Runnable() {
                 @Override
                 public void run() {

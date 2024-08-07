@@ -12,24 +12,19 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.hk.xnet.XNetSystemErrorCode;
 import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.adapter.AdapterFactoryManage;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.server.DynamicMarketManage;
-import com.yft.zbase.server.IServerAgent;
-import com.yft.zbase.server.IUser;
 import com.yft.zbase.server.LanguageManage;
-import com.yft.zbase.server.LanguageSystemTo;
 import com.yft.zbase.ui.ButtonUtils;
-import com.yft.zbase.utils.ToastUtils;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ErrorCode {
 

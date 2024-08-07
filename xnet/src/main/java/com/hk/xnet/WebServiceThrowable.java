@@ -1,4 +1,4 @@
-package com.yft.zbase.error;
+package com.hk.xnet;
 
 /**
  *  服务器异常

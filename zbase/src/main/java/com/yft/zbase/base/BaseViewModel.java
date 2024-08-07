@@ -5,12 +5,12 @@ import static com.yft.zbase.utils.Logger.LOGE;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.hk.xnet.XNetSystemErrorCode;
 import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.bean.DownLoadBean;
 import com.yft.zbase.bean.KVBean;
 import com.yft.zbase.bean.ServiceBean;
 import com.yft.zbase.bean.UserInfo;
-import com.yft.zbase.error.XNetSystemErrorCode;
 import com.yft.zbase.server.DynamicMarketManage;
 import com.yft.zbase.server.IDevice;
 import com.yft.zbase.server.ILanguage;

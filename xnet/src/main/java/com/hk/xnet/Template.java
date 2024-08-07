@@ -1,4 +1,4 @@
-package com.yft.zbase.xnet;
+package com.hk.xnet;
 
 /**
  * 请求默认模版，可自定义模版

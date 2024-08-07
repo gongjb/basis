@@ -5,10 +5,10 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.hk.xnet.WebServiceThrowable;
 import com.lzy.okgo.exception.HttpException;
 import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.error.ErrorCode;
-import com.yft.zbase.error.WebServiceThrowable;
 import com.yft.zbase.server.LanguageManage;
 
 import org.json.JSONException;

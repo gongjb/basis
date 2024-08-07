@@ -10,13 +10,13 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentActivity;
 
 
+import com.hk.xnet.IXNet;
+import com.hk.xnet.XNetImpl;
 import com.yft.zbase.server.Versions;
 import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.router.RouterFactory;
-import com.yft.zbase.xnet.IXNet;
 import com.yft.zbase.xnet.ResponseDataListener;
-import com.yft.zbase.xnet.XNetImpl;
 
 import java.io.File;
 import java.util.ArrayList;
