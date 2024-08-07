@@ -1,5 +1,5 @@
 ext{
-    signature = [KEYSTORE_PASSWORD : "123456",KET_PASSWORD:"123456",KEY_ALIAS:"hk"]
+    signature = [KEYSTORE_PASSWORD : "123456", KET_PASSWORD : "123456",KEY_ALIAS : "hk"]
     zbase = [
             versionName:"1.0.0",
             versionCode: 1

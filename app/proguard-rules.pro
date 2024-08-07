@@ -51,7 +51,7 @@
 #保护注解
 -keepattributes *Annotation*
 -keepattributes Signature
--keepattributes Exceptions,InnerClasses,Deprecated,SourceFile,LineNumberTable,Annotation,EnclosingMethod
+#-keepattributes Exceptions,InnerClasses,Deprecated,SourceFile,LineNumberTable,Annotation,EnclosingMethod
 
 -keep public class * extends com.yft.zbase.base.BaseViewModel
 -keep class cn.sd.ld.ui.helper.**{*;}
@@ -112,6 +112,19 @@
 -keepattributes javax.xml.bind.annotation.*
 -keepattributes javax.annotation.processing.*
 
+
+-dontwarn com.tencent.beacon.event.open.BeaconConfig$Builder
+-dontwarn com.tencent.beacon.event.open.BeaconConfig
+-dontwarn com.tencent.beacon.event.open.BeaconEvent$Builder
+-dontwarn com.tencent.beacon.event.open.BeaconEvent
+-dontwarn com.tencent.beacon.event.open.BeaconReport
+-dontwarn com.tencent.beacon.event.open.EventResult
+-dontwarn com.tencent.beacon.event.open.EventType
+-dontwarn com.tencent.qimei.sdk.IQimeiSDK
+-dontwarn com.tencent.qimei.sdk.QimeiSDK
+-dontwarn com.tencent.qimei.strategy.terminal.ITerminalStrategy
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.lang.model.element.Modifier
 
 
 

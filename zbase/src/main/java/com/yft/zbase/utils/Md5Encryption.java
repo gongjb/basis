@@ -1,4 +1,4 @@
-package cn.sd.ld.ui.helper;
+package com.yft.zbase.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

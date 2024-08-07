@@ -1,6 +1,6 @@
 package com.yft.zbase.base;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

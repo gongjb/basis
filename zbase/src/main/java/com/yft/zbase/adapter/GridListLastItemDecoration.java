@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import cn.sd.ld.ui.helper.Logger;
 
 public class GridListLastItemDecoration extends RecyclerView.ItemDecoration {
 

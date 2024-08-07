@@ -1,6 +1,7 @@
 package com.yft.home.vadapter;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import android.graphics.Outline;
 import android.view.LayoutInflater;

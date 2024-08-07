@@ -1,7 +1,5 @@
 package com.yft.zbase.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.MotionEvent;
@@ -9,7 +7,6 @@ import android.view.View;
 
 import androidx.core.graphics.ColorUtils;
 
-import cn.sd.ld.ui.helper.Logger;
 
 public abstract class OnZoomClickListener implements View.OnClickListener,View.OnTouchListener {
     // 按钮的主题颜色

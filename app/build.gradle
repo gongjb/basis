@@ -27,8 +27,8 @@ android {
         }
 
         sharehk {
-            // 分享版本
-            storeFile file('../sign/hk-share')
+            // 分享版本 (可以切换其它签名)
+            storeFile file('../sign/hk')
             storePassword signature.KEYSTORE_PASSWORD
             keyPassword signature.KET_PASSWORD
             keyAlias signature.KEY_ALIAS
@@ -55,7 +55,6 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            zipAlignEnabled true
             shrinkResources true
             productFlavors.releasehk.signingConfig signingConfigs.releasehk
             productFlavors.sharehk.signingConfig signingConfigs.sharehk
@@ -64,7 +63,6 @@ android {
 
         debug {
             minifyEnabled false
-            zipAlignEnabled false
             shrinkResources false
         }
     }

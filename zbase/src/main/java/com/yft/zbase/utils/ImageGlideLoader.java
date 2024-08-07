@@ -1,6 +1,7 @@
 package com.yft.zbase.utils;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import android.content.Context;
 import android.widget.ImageView;

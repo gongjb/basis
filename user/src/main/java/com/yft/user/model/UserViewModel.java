@@ -1,6 +1,6 @@
 package com.yft.user.model;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import android.text.TextUtils;
 
@@ -19,7 +19,6 @@ public class UserViewModel extends BaseViewModel {
     private MutableLiveData<UserInfo> mMutableUserLiveData = new MutableLiveData<>();
 
     private MutableLiveData<KVBean> mMutableSuccessLiveData = new MutableLiveData<>();
-
 
     private MutableLiveData<String> mExitMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<String> mUpdatePwdMutableLiveData = new MutableLiveData<>();

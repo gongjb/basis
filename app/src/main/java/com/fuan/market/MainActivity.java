@@ -1,7 +1,6 @@
 package com.fuan.market;
 
-
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
@@ -51,10 +50,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private FragmentManager mFragmentManager;
     private FragmentTransaction mFragmentTransaction;
     private LatticeView.ImageTextParams<ImageGlideLoader> mImageTextParams;
-    private int pageIndex;
-    private VersionUpdateUtil versionUpdateUtil;
+    private int mPageIndex;
+    private VersionUpdateUtil mVersionUpdateUtil;
     private PrivacyFragmentDialog mPrivacyFragmentDialog;
-
     /**
      * 存放fragment页面路径
      */
@@ -72,7 +70,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 mColors);
         mDataBing.viewLine.setBackground(grad);
 
-        versionUpdateUtil = new VersionUpdateUtil();
+        mVersionUpdateUtil = new VersionUpdateUtil();
         mImageTextParams = new LatticeView.ImageTextParams();
         // 未被选中图片
         mImageTextParams.images = new Integer[] {
@@ -151,13 +149,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 if (position == 1) {
                     if (!mViewModel.isLogin()) {
                         RouterFactory.startRouterActivity(MainActivity.this, RouterFactory.getPage("LoginActivity"));
-                        mImageTextParams.selectIndex = pageIndex;
+                        mImageTextParams.selectIndex = mPageIndex;
                         mDataBing.llView.removeViews();
                         mDataBing.llView.startView();
                         return;
                     }
                 } else {
-                    pageIndex = position;
+                    mPageIndex = position;
                 }
                 selectTab(position);
             }
@@ -217,7 +215,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 // 更新描述
                 arrayList.add(downLoadBean.getDescription());
                 // 弹出更新软件的弹出框
-                versionUpdateUtil.showDownloadApkDialog(arrayList, downLoadBean.getUpdateUrl(), downLoadBean.isMustUpdate(),BuildConfig.APPLICATION_ID ,
+                mVersionUpdateUtil.showDownloadApkDialog(arrayList, downLoadBean.getUpdateUrl(), downLoadBean.isMustUpdate(),BuildConfig.APPLICATION_ID ,
                         this, BuildConfig.FLAVOR);
             }
         } catch (Exception e) {

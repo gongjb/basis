@@ -6,7 +6,6 @@ public interface IDevice extends IServerAgent {
      * @return
      */
     String getDeviceId();
-
     /**
      * 获取状态栏高度
      * @return
@@ -16,4 +15,6 @@ public interface IDevice extends IServerAgent {
     String getAndroid();
 
     String getAppAlias();
+
+    String getModel();
 }

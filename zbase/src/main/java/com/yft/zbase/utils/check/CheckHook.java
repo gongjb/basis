@@ -1,4 +1,4 @@
-package cn.sd.ld.ui.helper.check;
+package com.yft.zbase.utils.check;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;

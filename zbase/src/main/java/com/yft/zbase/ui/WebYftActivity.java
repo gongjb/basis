@@ -1,36 +1,22 @@
 package com.yft.zbase.ui;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+
+
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.os.Parcelable;
-import android.provider.MediaStore;
-import android.text.Html;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.webkit.JsResult;
-import android.webkit.PermissionRequest;
-import android.webkit.RenderProcessGoneDetail;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -41,12 +27,8 @@ import androidx.fragment.app.FragmentManager;
 import com.chenenyu.router.RouteCallback;
 import com.chenenyu.router.RouteStatus;
 import com.chenenyu.router.annotation.Route;
-import com.jaeger.library.StatusBarUtil;
 import com.yft.zbase.R;
-import com.yft.zbase.base.BaseActivity;
-import com.yft.zbase.base.BaseModel;
 import com.yft.zbase.base.BasePhotoActivity;
-import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.AddressBean;
 import com.yft.zbase.bean.KVBean;
 import com.yft.zbase.bean.PayBean;

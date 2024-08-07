@@ -1,6 +1,7 @@
 package com.yft.user.model;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import androidx.lifecycle.MutableLiveData;
 

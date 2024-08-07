@@ -1,7 +1,7 @@
 package com.yft.zbase.utils;
 
+import static com.yft.zbase.utils.Logger.LOGE;
 import static com.yft.zbase.utils.Utils.format;
-import static cn.sd.ld.ui.helper.Logger.LOGE;
 
 import android.content.ComponentName;
 import android.content.Context;

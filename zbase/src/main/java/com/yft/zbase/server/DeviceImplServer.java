@@ -9,13 +9,13 @@ import android.util.Base64;
 import com.tencent.mmkv.MMKV;
 import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.utils.Constant;
+import com.yft.zbase.utils.Md5Encryption;
 import com.yft.zbase.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-import cn.sd.ld.ui.helper.Md5Encryption;
 
 public class DeviceImplServer implements IDevice {
     private MMKV paraMk;
@@ -73,6 +73,11 @@ public class DeviceImplServer implements IDevice {
     @Override
     public String getAppAlias() {
         return "rshort";
+    }
+
+    @Override
+    public String getModel() {
+        return Build.MODEL;
     }
 
     public int getStatusBarHeight(Context context) {

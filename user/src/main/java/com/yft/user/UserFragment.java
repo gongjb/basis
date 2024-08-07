@@ -2,8 +2,8 @@ package com.yft.user;
 
 import static com.yft.user.router.UserRouter.ACTIVITY_SET;
 import static com.yft.zbase.router.ZbaseRouter.ACTIVITY_WEB;
+import static com.yft.zbase.utils.Logger.LOGE;
 import static com.yft.zbase.utils.Utils.getUserLevel;
-import static cn.sd.ld.ui.helper.Logger.LOGE;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;

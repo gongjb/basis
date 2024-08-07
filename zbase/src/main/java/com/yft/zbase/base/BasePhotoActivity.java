@@ -38,6 +38,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.yft.zbase.R;
 import com.yft.zbase.bean.ServiceBean;
 import com.yft.zbase.ui.FragmentMessageDialog;
+import com.yft.zbase.utils.Logger;
 import com.yft.zbase.utils.UIUtils;
 
 import java.io.File;
@@ -49,7 +50,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import cn.sd.ld.ui.helper.Logger;
 
 public abstract class BasePhotoActivity<T extends ViewDataBinding, K extends BaseViewModel> extends FragmentActivity {
     protected T mDataBing;

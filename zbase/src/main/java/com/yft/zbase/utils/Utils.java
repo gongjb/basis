@@ -25,11 +25,13 @@ import com.yft.zbase.bean.WeChatPayParams;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -384,7 +386,7 @@ public class Utils {
                 boolean isEx = false;
                 Intent intent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER);
                 List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_ALL);
-                if (!cn.sd.ld.ui.helper.Utils.isCollectionEmpty(list)) {
+                if (!isCollectionEmpty(list)) {
                     for (int i = 0,count=list.size(); i <count ; i++) {
                         if(list.get(i).activityInfo.applicationInfo.packageName.equalsIgnoreCase(packageName)) {
                             isEx = true;
@@ -395,7 +397,7 @@ public class Utils {
 
                 if (!isEx) {
                     List<PackageInfo> listPackageInfo = packageManager.getInstalledPackages(0);
-                    if(!cn.sd.ld.ui.helper.Utils.isCollectionEmpty(listPackageInfo)) {
+                    if(!isCollectionEmpty(listPackageInfo)) {
                         for (int i = 0; i < listPackageInfo.size(); i++) {
                             if (listPackageInfo.get(i).packageName.equalsIgnoreCase(packageName)) {
                                 isEx = true;
@@ -408,7 +410,7 @@ public class Utils {
             } else {
                 //获取系统中安装的应用包的信息。 6.0以下的不会太关心。 找不到就找不到吧
                 List<PackageInfo> listPackageInfo = packageManager.getInstalledPackages(0);
-                if (cn.sd.ld.ui.helper.Utils.isCollectionEmpty(listPackageInfo)) {
+                if (isCollectionEmpty(listPackageInfo)) {
                     return false;
                 }
                 for (int i = 0; i < listPackageInfo.size(); i++) {
@@ -503,5 +505,35 @@ public class Utils {
             e.printStackTrace();
             return value;
         }
+    }
+
+    /**
+     * 时间转换
+     * @param dateTime
+     * @return
+     * @throws java.text.ParseException
+     */
+    public static long parseTimeLong(String dateTime) throws java.text.ParseException {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateTime));
+        return calendar.getTimeInMillis();
+    }
+
+    /**
+     * 将毫秒转换为具体时间
+     * @param millisecond
+     * @return
+     */
+    public static String parseTimeStr(long millisecond) {
+        Date date = new Date(millisecond);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 hh:mm:ss");
+        return format.format(date);
+    }
+
+    public static String getStringTime(long cnt){
+        long hour = cnt / 3600;
+        long min = cnt % 3600 / 60;
+        long second = cnt % 60;
+        return String.format(Locale.CHINA,"%02d:%02d:%02d",hour,min,second);
     }
 }

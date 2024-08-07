@@ -1,7 +1,7 @@
 package com.yft.zbase.base;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
-import static cn.sd.ld.ui.helper.Utils.getModel;
+
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import android.text.TextUtils;
 
@@ -17,42 +17,35 @@ import com.yft.zbase.server.DynamicMarketManage;
 import com.yft.zbase.server.IDevice;
 import com.yft.zbase.server.ILanguage;
 import com.yft.zbase.server.IServerAgent;
-import com.yft.zbase.server.IShare;
 import com.yft.zbase.server.IUser;
 import com.yft.zbase.utils.JsonUtil;
 import com.yft.zbase.utils.UtilsPaths;
+import com.yft.zbase.xnet.IParameter;
 import com.yft.zbase.xnet.IXNet;
 import com.yft.zbase.xnet.InterfacePath;
+import com.yft.zbase.xnet.RequestUtils;
 import com.yft.zbase.xnet.ResponseDataListener;
-import com.yft.zbase.xnet.Template;
 import com.yft.zbase.xnet.XNetImpl;
 
 import java.io.File;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.TreeMap;
-import java.util.UUID;
-
-import cn.sd.ld.ui.helper.Md5Encryption;
-import cn.sd.ld.ui.helper.Utils;
 
 
 /**
  * 封装请求方式
  */
-public class BaseModel {
-    private static final String promoteChannel = "C10005";
+public class BaseModel implements IParameter {
+    private static final String PROMOTE_CHANNEL = "C10005"; //
     // 接口版本
     private String version = BuildConfig.versionCode;
     protected IXNet mNetWork;
     protected final IUser mUser;
     protected ILanguage iLanguage;
     protected final IDevice mDevice;
-    private Random random = new Random();
 
     //渠道编码
     public BaseModel() {
@@ -104,97 +97,15 @@ public class BaseModel {
 
 
     public Map<String, String> getRequestParameter(TreeMap<String, String> values) {
-        long requestTimestamp = System.currentTimeMillis();
-        String uuid =  UUID.randomUUID().toString().replace("-", ""); // 每次获取的不一致
-        values.put("version", version);
-        values.put("language", iLanguage.getLanguageType());
-        values.put("serialNumber", mDevice.getDeviceId());
-        values.put("requestTimestamp", String.valueOf(requestTimestamp));
-        values.put("requestId", uuid);
-        //clientType
-        values.put("clientType", mDevice.getAndroid());
-        values.put("promoteChannel",promoteChannel);
-        //clientModel
-        values.put("clientModel", getModel());
-        // 获取key
-        String token = mUser.getUserInfo() == null ? "" : mUser.getUserInfo().getToken();
-        String key = cn.sd.ld.ui.helper.Utils.getMD5KeyByRequest(requestTimestamp, String.valueOf(requestTimestamp), uuid, token, getRandom());
-        if(!TextUtils.isEmpty(token)) {
-            values.put("token",mUser.getUserInfo().getToken());
-        }
-        // 将其他值，转换成服务器能够识别的key
-        values.put("sign", getDigest(values, key));
-        return values;
+        return RequestUtils.getRequestParameter(values, this);
     }
 
     public Map<String, String> getRequestParameter() {
-        TreeMap<String, String> values = new TreeMap<>();
-        long requestTimestamp = System.currentTimeMillis();
-        String uuid =  UUID.randomUUID().toString().replace("-", ""); // 每次获取的不一致
-        values.put("version", version);
-        values.put("language", iLanguage.getLanguageType());
-        values.put("serialNumber", mDevice.getDeviceId());
-        values.put("requestTimestamp", String.valueOf(requestTimestamp));
-        values.put("requestId", uuid);
-        //clientType
-        values.put("clientType", mDevice.getAndroid());
-        values.put("promoteChannel",promoteChannel);
-        //clientModel
-        values.put("clientModel", getModel());
-        // 获取key
-        String token = mUser.getUserInfo() == null ? "" : mUser.getUserInfo().getToken();
-        String key = cn.sd.ld.ui.helper.Utils.getMD5KeyByRequest(requestTimestamp, String.valueOf(requestTimestamp), uuid, token, getRandom());
-        if(!TextUtils.isEmpty(token)) {
-            values.put("token",mUser.getUserInfo().getToken());
-        }
-        // 将其他值，转换成服务器能够识别的key
-        values.put("sign", getDigest(values, key));
-        return values;
-    }
-
-    private static String getDigest(TreeMap<String, String> map, String key) {
-        StringBuilder sb = new StringBuilder();
-        int in = 0;
-        for (Map.Entry entry : map.entrySet()) {
-            in++;
-            sb.append(entry.getKey()).append("=").append(entry.getValue());
-            if ((in + 1) <= map.size()) {
-                // 最后一个不拼接
-                sb.append("&");
-            }
-        }
-        sb.append(key);
-        LOGE("打印入参数" + sb.toString());
-        String sign = "";
-        try {
-            sign = Md5Encryption.parseStrToMd5L32(sb.toString());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        LOGE("加密结果" + sign);
-        return sign;
-    }
-
-
-    public String getRandom() {
-        long num = random.nextLong();
-        return String.valueOf(num);
+        return RequestUtils.getRequestParameter(this);
     }
 
     public void requestServiceAddress(final int position,final String path, final IServiceNotice iServiceNotice) {
         // 获取原始地址
-//        ServiceBean serviceBean = new ServiceBean();
-//        // serviceBean.key = KVBean.FAIL;
-//        serviceBean.setSuss(true);
-//        serviceBean.setAssignUri("http://119.91.137.201/proxy");
-//        List<String> list = new ArrayList<>();
-//        list.add("http://119.91.137.201/proxy");
-//        list.add("http://119.91.137.201/proxy");
-//        list.add("http://119.91.137.201/proxy");
-//        serviceBean.setBackupUris(list);
-//        saveServiceAddress(serviceBean);
-//        iServiceNotice.onSuccess();
-
         String basePath = "";
         if (mUser.getServiceUrl() == null) {
             // 获取到附路径
@@ -218,7 +129,7 @@ public class BaseModel {
             public void success(ServiceBean data) {
                 if (data != null) {
                     data.setAssignUri(data.getAssignUri() + "/proxy");
-                    if (!Utils.isCollectionEmpty(data.getBackupUris())) {
+                    if (!com.yft.zbase.utils.Utils.isCollectionEmpty(data.getBackupUris())) {
                         List<String> list = new ArrayList<>();
                         for (String s: data.getBackupUris()) {
                             list.add(s + "/proxy");
@@ -344,6 +255,41 @@ public class BaseModel {
         if (mNetWork != null) {
             mNetWork.cancelTagRequest(tag);
         }
+    }
+
+    @Override
+    public String getVersion() {
+        return version;
+    }
+
+    @Override
+    public String getLanguageType() {
+        return iLanguage.getLanguageType();
+    }
+
+    @Override
+    public String getDeviceId() {
+        return mDevice.getDeviceId();
+    }
+
+    @Override
+    public String getAndroid() {
+        return mDevice.getAndroid();
+    }
+
+    @Override
+    public String getPromoteChannel() {
+        return PROMOTE_CHANNEL;
+    }
+
+    @Override
+    public String getToken() {
+        return mUser.getUserInfo() == null ? "" : mUser.getUserInfo().getToken();
+    }
+
+    @Override
+    public String getClientModel() {
+        return mDevice.getModel();
     }
 
     public interface IServiceNotice {

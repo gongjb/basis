@@ -1,7 +1,6 @@
 package com.yft.zbase.error;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-import static cn.sd.ld.ui.helper.Logger.LOGE;
 
 import android.app.Activity;
 import android.app.AlarmManager;

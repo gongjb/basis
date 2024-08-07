@@ -18,7 +18,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.fuan.market.bean.AdBean;
-import cn.sd.ld.ui.helper.Logger;
 
 public class WelcomeViewModel extends BaseViewModel {
     private MutableLiveData<TargetBean> mAdBeanMutableLiveData = new MutableLiveData<>();

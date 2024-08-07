@@ -21,10 +21,10 @@ import com.yft.zbase.adapter.BaseLayoutHolder;
 import com.yft.zbase.adapter.OnAdapterClickListener;
 import com.yft.zbase.bean.CommodityBean;
 import com.yft.zbase.router.RouterFactory;
+import com.yft.zbase.utils.Utils;
 
 import java.util.List;
 
-import cn.sd.ld.ui.helper.Utils;
 
 /**
  * 首页的视频列表合集

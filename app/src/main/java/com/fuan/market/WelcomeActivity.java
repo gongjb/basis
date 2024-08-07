@@ -1,6 +1,7 @@
 package com.fuan.market;
 
-import static cn.sd.ld.ui.helper.Logger.LOGE;
+
+import static com.yft.zbase.utils.Logger.LOGE;
 
 import android.text.TextUtils;
 import android.view.View;
