@@ -1,12 +1,10 @@
 package com.yft.zbase.utils;
 
 import android.accounts.NetworkErrorException;
-import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.hk.xnet.WebServiceThrowable;
-import com.lzy.okgo.exception.HttpException;
 import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.error.ErrorCode;
 import com.yft.zbase.server.LanguageManage;
@@ -27,10 +25,11 @@ public class ToastUtils {
             return;
         }
 
-        if (throwable instanceof HttpException) {
-            toast(LanguageManage.getSysytemString("您访问的接口已经不存在，请联系开发者！"));
-            return;
-        }
+//        if (throwable instanceof HttpException) {
+//            toast(LanguageManage.getSysytemString("您访问的接口已经不存在，请联系开发者！"));
+//            return;
+//        }
+
         if (throwable instanceof NetworkErrorException) {
             toast(LanguageManage.getSysytemString("请检查网络是否已经断开！"));
             return;
