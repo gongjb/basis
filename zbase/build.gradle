@@ -57,7 +57,7 @@ dependencies {
 
     api project(path: ':latticeview')
     api project(path: ':xnet')
-//    api 'com.github.gjb-cn.basis:xnet:1.0.1'
+   //api 'com.github.gjb-cn.basis:xnet:1.0.1'
     api 'io.github.youth5201314:banner:2.2.2'
     implementation 'com.tencent:mmkv-static:1.2.12'
 
