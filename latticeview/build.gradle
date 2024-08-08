@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion rootProject.ext.targetSdkVer
     buildToolsVersion rootProject.ext.buildToolsVersion
-
+    namespace 'com.gongjiebin.latticeview'
     defaultConfig {
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdkVer

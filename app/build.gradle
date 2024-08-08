@@ -4,7 +4,7 @@ apply from:"../config.gradle"
 
 android {
     compileSdk rootProject.ext.compileSdk
-
+    namespace 'com.fuan.market'
     defaultConfig {
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdkVer

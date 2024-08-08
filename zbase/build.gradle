@@ -3,7 +3,7 @@ apply plugin: 'com.chenenyu.router'
 apply from:"../config.gradle"
 android {
     compileSdk rootProject.ext.compileSdk
-
+    namespace 'com.yft.zbase'
     defaultConfig {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdkVer

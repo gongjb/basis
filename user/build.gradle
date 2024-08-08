@@ -3,7 +3,7 @@ apply plugin: 'com.chenenyu.router'
 
 android {
     compileSdk rootProject.ext.compileSdk
-
+    namespace 'com.yft.user'
     defaultConfig {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdkVer

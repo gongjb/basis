@@ -4,7 +4,7 @@ plugins {
 
 android {
     compileSdk rootProject.ext.compileSdk
-    namespace 'com.example.namespace'
+    namespace 'com.hk.xnet'
     defaultConfig {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdkVer
