@@ -45,6 +45,7 @@ public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBindin
     private DefineLoadMoreView defineLoadMoreView;
     private float height;
 
+
     @Override
     public void initView() {
         height = Utils.getScreenHeight(getContext()) * 2;
