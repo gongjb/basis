@@ -4,7 +4,6 @@ package com.yft.zbase.base;
 import android.os.Bundle;
 
 
-import androidx.core.graphics.ColorUtils;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.annotation.Nullable;
