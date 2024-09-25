@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.chenenyu.router'
 apply from:"../config.gradle"
-
+def channel_name = project.hasProperty("CNAME") ? "${CNAME}" : ""
 android {
     compileSdk rootProject.ext.compileSdk
     namespace 'com.fuan.market'
@@ -80,8 +80,14 @@ android {
         def type = variant.buildType.name
         variant.outputs.each { output ->
             def name = buildName
+            def cname = channel_name;
             def time = new Date().format("yyyyMMddhhmmss")
-            output.outputFileName = name + "_" + variant.versionName + "_" + type + "_" + time +".apk"
+            if ("".equals(cname)) {
+                output.outputFileName = name + "_" + variant.versionName + "_" + type + "_" + time +".apk"
+            } else {
+                output.outputFileName = name + "_" +cname + "_"+ variant.versionName + "_" + type + "_" + time +".apk"
+            }
+
             def outputFileDir = "${project.rootDir.absoluteFile}/outputs/${variant.buildType.name}"
             variant.getAssembleProvider().get().doLast {
                 File out = new File(outputFileDir);
@@ -108,15 +114,28 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation project(path: ':home')
-    implementation project(path: ':zbase')
-//    implementation 'com.github.gjb-cn.basis:zbase:1.0.1'
-    implementation project(path: ':user')
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+    if (zbaseMode.isLocalMode) {
+        implementation project(path: ':home')
+        implementation project(path: ':user')
+        implementation project(path: ':zbase')
+    } else {
+        if (userMode.isLocalMode) {
+            implementation project(path: ':user')
+        } else {
+            implementation 'com.github.gjb-cn.basis:user:' + cloudCode
+        }
 
-    implementation 'com.google.errorprone:error_prone_annotations:2.3.4'
+        if (homeMode.isLocalMode) {
+            implementation project(path: ':home')
+        } else {
+            implementation 'com.github.gjb-cn.basis:home:' + cloudCode
+        }
+        implementation 'com.github.gjb-cn.basis:zbase:' + cloudCode
+    }
 
 }

@@ -19,12 +19,32 @@ dependencyResolutionManagement {
     }
 }
 
+apply from:"config.gradle"
 rootProject.name = "YFTJoin"
 include ':app'
-include ':zbase'
-include ':home'
-include ':user'
-include ':latticeview'
-include ':xnet'
-include ':library'
-include ':statusutil'
+if (userMode.isLocalMode) {
+    include ':user'
+}
+if (homeMode.isLocalMode) {
+    include ':home'
+}
+if (zbaseMode.isLocalMode) {
+    if (!userMode.isLocalMode) {
+        include ':user'
+    }
+    if (!homeMode.isLocalMode) {
+        include ':home'
+    }
+    include ':zbase'
+    include ':latticeview'
+    include ':xnet'
+    include ':library'
+    include ':statusutil'
+}
+//include ':zbase'
+//include ':home'
+//include ':user'
+//include ':latticeview'
+//include ':xnet'
+//include ':library'
+//include ':statusutil'

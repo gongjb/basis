@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.chenenyu.router'
-
+apply from:"../config.gradle"
 android {
     compileSdk rootProject.ext.compileSdk
     namespace 'com.yft.user'
@@ -35,6 +35,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    implementation project(path: ':zbase')
-//    implementation 'com.github.gjb-cn.basis:zbase:1.0.1'
+    if (zbaseMode.isLocalMode) {
+        implementation project(path: ':zbase')
+    } else {
+        implementation 'com.github.gjb-cn.basis:zbase:' + cloudCode
+    }
+
 }
