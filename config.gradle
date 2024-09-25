@@ -3,7 +3,7 @@ ext{
     userMode = [isLocalMode:false]
     homeMode = [isLocalMode:false]
     zbaseMode = [isLocalMode:true] // zbaseMode 如果为true, 所有mode必须全使用true 使用本地代码,不然会引发冲突 。
-    cloudCode = "1.1.4" // 云上的版本号
+    cloudCode = "1.1.7" // 云上的版本号
 }
 
 
