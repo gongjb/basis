@@ -39,7 +39,6 @@ import java.util.TreeMap;
  * 封装请求方式
  */
 public class BaseModel {
-    private static final String PROMOTE_CHANNEL = "C10005"; //
     // 接口版本
     private String version = BuildConfig.versionCode;
     protected IXNet mNetWork;
@@ -280,7 +279,11 @@ public class BaseModel {
 
         @Override
         public String getPromoteChannel() {
-            return PROMOTE_CHANNEL;
+            String flavor = mUser.getFlavor();
+            if (TextUtils.isEmpty(flavor)) {
+                return "C100"; // 默认C100
+            }
+            return flavor;
         }
 
         @Override

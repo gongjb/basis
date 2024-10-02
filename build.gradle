@@ -30,5 +30,4 @@ ext {
     versionCode=10204
     versionName="1.2.4"
     buildToolsVersion="32.0.0"
-    cloudCode = "1.1.4" // 云上的版本号
 }

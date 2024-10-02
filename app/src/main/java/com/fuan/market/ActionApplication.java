@@ -7,6 +7,9 @@ import com.yft.zbase.ZBaseApplication;
 import com.yft.zbase.router.IRouter;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.router.ZbaseRouter;
+import com.yft.zbase.server.DynamicMarketManage;
+import com.yft.zbase.server.IServerAgent;
+import com.yft.zbase.server.IUser;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,5 +35,9 @@ public class ActionApplication extends ZBaseApplication {
 
         // 初始化所有页面
         RouterFactory.initPages(pagesMap);
+
+        // 注入渠道号, 为了解决渠道分发问题...
+        IUser iUser = DynamicMarketManage.getInstance().getServer(IServerAgent.USER_SERVER);
+        iUser.saveFlavor(BuildConfig.CNAME);
     }
 }

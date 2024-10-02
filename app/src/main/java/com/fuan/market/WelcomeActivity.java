@@ -36,7 +36,6 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeLayoutBinding, 
     @Override
     public void initView() {
         // 保存当前渠道
-        mViewModel.saveFlavor(BuildConfig.FLAVOR);
         AdapterCreateFactory.getInstance().cleanAllAdapter();
         ErrorCode.finishNotActivity(WelcomeActivity.class.getCanonicalName()); //
         LOGE("WelcomeActivity=>" + this.getClass().getCanonicalName());

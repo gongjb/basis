@@ -12,6 +12,8 @@ android {
         applicationId "com.hk.test"
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+        def name = "".equals(channel_name) ? "C100" : channel_name
+        buildConfigField 'String', 'CNAME', "\"${name}\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

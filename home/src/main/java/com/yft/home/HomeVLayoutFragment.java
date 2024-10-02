@@ -32,6 +32,7 @@ import com.yft.zbase.bean.ServiceBean;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.ui.DefineLoadMoreView;
 import com.yft.zbase.adapter.AdapterFactory;
+import com.yft.zbase.utils.ToastUtils;
 import com.yft.zbase.utils.Utils;
 import com.yft.zbase.widget.SearchBarView;
 
@@ -54,6 +55,8 @@ public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBindin
                 mColors);
         mDataBing.llHomeMain.setBackground(grad);
         addAlphaHelp();
+
+        //ToastUtils.toast("1111");
     }
 
     private void addAlphaHelp() {

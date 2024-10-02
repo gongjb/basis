@@ -133,8 +133,8 @@ public class WelcomeViewModel extends BaseViewModel {
     }
 
     public void saveFlavor(String flavor) {
-        if (getUserServer() != null) {
-            getUserServer().saveFlavor(flavor); // 保存渠道
-        }
+//        if (getUserServer() != null) {
+//            getUserServer().saveFlavor(flavor); // 保存渠道
+//        }
     }
 }

@@ -1,0 +1,11 @@
+
+config.gradle 文件说明
+
+#---  所有新增mode必须在config文件中配置
+
+#---  当zbaseMode 启用jitpack远程代码时 （isLocalMode=false）， 其它模块可自行选择使用远程代码还是本地代码
+
+#---  zbaseMode 启用本地代码 isLocalMode=true, 所有mode将自动切换为使用本地代码，不然会引发冲突 。
+
+初始化项目
+#--- 新增mode时 在ActionApplication中 RouterFactory.factoryRouterPages注册页面路由（无页面交互不需要注册）
