@@ -1,8 +1,8 @@
 ext{
     signature = [KEYSTORE_PASSWORD : "123456", KET_PASSWORD : "123456",KEY_ALIAS : "hk"]
-    userMode = [isLocalMode : false]
-    homeMode = [isLocalMode : false]
-    zbaseMode = [isLocalMode : true]
+    userMode = [isLocalMode : true]
+    homeMode = [isLocalMode : true]
+    zbaseMode = [isLocalMode : false]
     cloudCode = "1.1.8" // 云上的版本号
 }
 
