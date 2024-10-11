@@ -4,12 +4,12 @@ apply from:"../config.gradle"
 def channel_name = project.hasProperty("CNAME") ? "${CNAME}" : ""
 android {
     compileSdk rootProject.ext.compileSdk
-    namespace 'com.fuan.market'
+    namespace 'com.fuan.chameleon'
     defaultConfig {
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdkVer
         multiDexEnabled true
-        applicationId "com.hk.test"
+        applicationId "com.hkbyte.chameleon"
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         def name = "".equals(channel_name) ? "C100" : channel_name
@@ -46,11 +46,11 @@ android {
 
     productFlavors {
         releasehk {
-            applicationId "com.hk.test"
+            applicationId "com.hkbyte.chameleon"
         }
 
         sharehk {
-            applicationId "com.hk.share"
+            applicationId "com.hkbyte.chameleon"
         }
     }
 

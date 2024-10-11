@@ -1,4 +1,4 @@
-package com.fuan.market.model;
+package com.fuan.chameleon.model;
 
 import static com.yft.zbase.router.RouterFactory.TO_HOME_APPRAISE;
 import static com.yft.zbase.router.RouterFactory.TO_HOME_MINE;
@@ -9,13 +9,11 @@ import static com.yft.zbase.router.RouterFactory.TO_HOME_SHOPCAR;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.hk.xnet.Template;
 import com.hk.xnet.WebServiceThrowable;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.router.IToHomePageListener;
 import com.yft.zbase.router.RouterFactory;
-import com.yft.zbase.utils.UIUtils;
 import com.yft.zbase.xnet.ResponseDataListener;
 
 public class MainViewModel extends BaseViewModel {

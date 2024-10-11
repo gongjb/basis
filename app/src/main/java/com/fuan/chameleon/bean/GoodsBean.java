@@ -1,4 +1,4 @@
-package com.fuan.market.bean;
+package com.fuan.chameleon.bean;
 
 import java.io.Serializable;
 import java.util.List;

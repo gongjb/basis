@@ -1,4 +1,4 @@
-package com.fuan.market.bean;
+package com.fuan.chameleon.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

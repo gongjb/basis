@@ -1,4 +1,4 @@
-package com.fuan.market.router;
+package com.fuan.chameleon.router;
 
 import com.yft.zbase.router.IRouter;
 

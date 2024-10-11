@@ -1,15 +1,13 @@
-package com.fuan.market;
+package com.fuan.chameleon;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.graphics.Outline;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.chenenyu.router.annotation.Route;
-import com.fuan.market.router.AppRouter;
+import com.fuan.chameleon.router.AppRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.KVBean;
@@ -22,9 +20,9 @@ import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.listener.OnPageChangeListener;
 
-import com.fuan.market.databinding.ActivityGuideActivityBinding;
+import com.fuan.chameleon.databinding.ActivityGuideActivityBinding;
 
-import com.fuan.market.R;
+import com.fuan.chameleon.R;
 
 
 /**

@@ -1,29 +1,24 @@
-package com.fuan.market;
+package com.fuan.chameleon;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.JsonObject;
 import com.yft.zbase.base.BaseActivity;
-import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.router.RouterFactory;
-import com.yft.zbase.server.DynamicMarketManage;
-import com.yft.zbase.server.IServerAgent;
-import com.yft.zbase.server.IUser;
 import com.yft.zbase.utils.JsonUtil;
 import com.yft.zbase.utils.Utils;
 
 import java.util.List;
 
-import com.fuan.market.model.WelcomeViewModel;
+import com.fuan.chameleon.model.WelcomeViewModel;
 
-import com.fuan.market.R;
-import com.fuan.market.databinding.ActivityWelcomeLayoutBinding;
+import com.fuan.chameleon.R;
+import com.fuan.chameleon.databinding.ActivityWelcomeLayoutBinding;
 
 /**
  * 最主要做一个分发功能

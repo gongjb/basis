@@ -1,6 +1,6 @@
-package com.fuan.market;
+package com.fuan.chameleon;
 
-import com.fuan.market.router.AppRouter;
+import com.fuan.chameleon.router.AppRouter;
 import com.yft.home.router.HomeRouter;
 import com.yft.user.router.UserRouter;
 import com.yft.zbase.ZBaseApplication;

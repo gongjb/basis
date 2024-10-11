@@ -1,4 +1,4 @@
-package com.fuan.market.model;
+package com.fuan.chameleon.model;
 
 import com.yft.zbase.base.BaseModel;
 import com.yft.zbase.bean.TargetBean;

@@ -82,7 +82,7 @@
 
 -keep class android.net.**{*;}
 -keep class com.android.internal.http.multipart.**{*;}
--keep class com.fuan.market.databinding.**{*;}
+-keep class com.fuan.chameleon.databinding.**{*;}
 -keep class org.apache.**{*;}
 -keep class com.alibaba.**{ *;}
 -keep class com.chenenyu.**{ *;}
@@ -101,7 +101,7 @@
     @androidx.annotation.Keep *;
 }
 
--keep class com.fuan.market.WelcomeActivity
+-keep class com.fuan.chameleon.WelcomeActivity
 -keep class androidx.databinding.** { *; }
 -keep class com.shuyu.** { *; }
 -keep class tv.danmaku.** { *; }

@@ -1,23 +1,12 @@
-package com.fuan.market.model;
-
-import android.text.TextUtils;
+package com.fuan.chameleon.model;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.yft.zbase.base.BaseModel;
 import com.yft.zbase.base.BaseViewModel;
-import com.yft.zbase.bean.KVBean;
-import com.yft.zbase.bean.ServiceBean;
 import com.yft.zbase.bean.TargetBean;
-import com.yft.zbase.utils.Constant;
-import com.yft.zbase.xnet.InterfacePath;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.fuan.market.bean.AdBean;
 
 public class WelcomeViewModel extends BaseViewModel {
     private MutableLiveData<TargetBean> mAdBeanMutableLiveData = new MutableLiveData<>();

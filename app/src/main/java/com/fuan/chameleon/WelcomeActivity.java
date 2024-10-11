@@ -1,16 +1,14 @@
-package com.fuan.market;
+package com.fuan.chameleon;
 
 
 import static com.yft.zbase.utils.Logger.LOGE;
 
-import android.text.TextUtils;
 import android.view.View;
 
 import com.chenenyu.router.annotation.Route;
-import com.fuan.market.router.AppRouter;
+import com.fuan.chameleon.router.AppRouter;
 import com.yft.home.adapterutil.AdapterCreateFactory;
 import com.yft.zbase.base.BaseActivity;
-import com.yft.zbase.bean.KVBean;
 import com.yft.zbase.bean.ServiceBean;
 import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.error.ErrorCode;
@@ -19,11 +17,11 @@ import com.yft.zbase.ui.ButtonUtils;
 import com.yft.zbase.ui.SubFragmentDialog;
 import com.yft.zbase.utils.UIUtils;
 
-import com.fuan.market.model.WelcomeViewModel;
+import com.fuan.chameleon.model.WelcomeViewModel;
 
-import com.fuan.market.databinding.ActivityWelcomeLayoutBinding;
+import com.fuan.chameleon.databinding.ActivityWelcomeLayoutBinding;
 
-import com.fuan.market.R;
+import com.fuan.chameleon.R;
 
 
 @Route(AppRouter.ACTIVITY_WELCOME)

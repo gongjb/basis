@@ -1,4 +1,4 @@
-package com.fuan.market;
+package com.fuan.chameleon;
 
 import org.junit.Test;
 

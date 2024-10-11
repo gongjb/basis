@@ -1,4 +1,4 @@
-package com.fuan.market;
+package com.fuan.chameleon;
 
 import static com.yft.zbase.utils.Logger.LOGE;
 
@@ -19,12 +19,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.chenenyu.router.annotation.Route;
-import com.fuan.market.router.AppRouter;
+import com.fuan.chameleon.router.AppRouter;
 import com.gongjiebin.latticeview.BaseLatticeView;
 import com.gongjiebin.latticeview.LatticeView;
 
-import com.fuan.market.databinding.ActivityMainBinding;
-import com.fuan.market.model.MainViewModel;
+import com.fuan.chameleon.databinding.ActivityMainBinding;
+import com.fuan.chameleon.model.MainViewModel;
 
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.bean.DownLoadBean;
