@@ -3,7 +3,7 @@ ext{
     userMode = [isLocalMode : false]
     homeMode = [isLocalMode : false]
     zbaseMode = [isLocalMode : true]
-    cloudCode = "1.1.7" // 云上的版本号
+    cloudCode = "1.1.8" // 云上的版本号
 }
 
 
