@@ -62,17 +62,17 @@ public class VersionUpdateUtil {
 
             @Override
             public void updata(Dialog dialog) {
-                // 点击了开始更新
-                if (Versions.OFFICIAL_VERSION_NAME.getName().equals(shortName)) {
-                    // 正式下载
-                    startDownApk(apkUrl, con);
-                } else {
-                    // 分享的是调整到外部下载游览器下载
-                    TargetBean targetBean = new TargetBean();
-                    targetBean.setActionType(RouterFactory.JUMP_OUT_LINK_MODULE);
-                    targetBean.setTarget(apkUrl);
-                    RouterFactory.jumpToActivity(con, targetBean);
-                }
+                // 正式下载
+                startDownApk(apkUrl, con);
+//                if (Versions.OFFICIAL_VERSION_NAME.getName().equals(shortName)) {
+//                     startDownApk(apkUrl, con);
+//                } else {
+//                    // 分享的是调整到外部下载游览器下载
+//                    TargetBean targetBean = new TargetBean();
+//                    targetBean.setActionType(RouterFactory.JUMP_OUT_LINK_MODULE);
+//                    targetBean.setTarget(apkUrl);
+//                    RouterFactory.jumpToActivity(con, targetBean);
+//                }
             }
         });
         dialogUpData.show();

@@ -22,11 +22,8 @@ public class ZBaseApplication extends Application {
         super.onCreate();
         application = this;
         MMKV.initialize(this);
-        //OkGo.getInstance().init(this);
         // 初始化应用管理类
         DynamicMarketManage.getInstance().init(this);
-       // CrashReport.initCrashReport(getApplicationContext(), "13f61ad858", false);
-        XNetImpl.getInstance().initHttp(this, BuildConfig.DEBUG);
     }
 
     @Override

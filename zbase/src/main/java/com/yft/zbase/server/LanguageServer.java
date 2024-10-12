@@ -63,7 +63,6 @@ public class LanguageServer implements ILanguage {
         Locale locale = Locale.getDefault();
         // 获取语言代码，例如 "en", "zh" 等
         String language = locale.getLanguage();
-        LOGE(x + language);
         if (TextUtils.isEmpty(language)) {
             saveLanguage(EN_TYPE);
         } else {

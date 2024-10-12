@@ -188,10 +188,10 @@ public class SetActivity extends BaseActivity<ActivitySetLayoutBinding, UserView
                 ArrayList<String> arrayList = new ArrayList<>();
                 // 更新描述
                 arrayList.add(downLoadBean.getDescription());
-                LOGE("=渠道=>" + mViewModel.getUserServer().getFlavor());
+                LOGE("=渠道=>" + mViewModel.getDevice().getFlavor());
                 // 弹出更新软件的弹出框
                 versionUpdateUtil.showDownloadApkDialog(arrayList, downLoadBean.getUpdateUrl(), downLoadBean.isMustUpdate(), this.getPackageName(), this,
-                        mViewModel.getUserServer().getFlavor());
+                        mViewModel.getDevice().getFlavor());
             } else {
                 ToastUtils.toast(mViewModel.getString("当前已是最新版本!"));
             }

@@ -1,6 +1,7 @@
 package com.fuan.market;
 
 import com.fuan.market.router.AppRouter;
+import com.hk.xnet.XNetImpl;
 import com.yft.home.router.HomeRouter;
 import com.yft.user.router.UserRouter;
 import com.yft.zbase.ZBaseApplication;
@@ -8,6 +9,7 @@ import com.yft.zbase.router.IRouter;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.router.ZbaseRouter;
 import com.yft.zbase.server.DynamicMarketManage;
+import com.yft.zbase.server.IDevice;
 import com.yft.zbase.server.IServerAgent;
 import com.yft.zbase.server.IUser;
 
@@ -36,8 +38,14 @@ public class ActionApplication extends ZBaseApplication {
         // 初始化所有页面
         RouterFactory.initPages(pagesMap);
 
-        // 注入渠道号, 为了解决渠道分发问题...
-        IUser iUser = DynamicMarketManage.getInstance().getServer(IServerAgent.USER_SERVER);
-        iUser.saveFlavor(BuildConfig.CNAME);
+        // 注入当前调试模式、项目别名、版本号、渠道号
+        IDevice iDevice = DynamicMarketManage.getInstance().getServer(IServerAgent.DEVICE_SERVER);
+        iDevice.saveDebug(BuildConfig.DEBUG);
+        iDevice.saveAppAlias("hk"); // 项目别名
+        iDevice.saveVersion(BuildConfig.VERSION_NAME);
+        iDevice.saveFlavor(BuildConfig.CNAME);
+
+        // 初始化网络请求
+        XNetImpl.getInstance().initHttp(this, iDevice.isDebug());
     }
 }

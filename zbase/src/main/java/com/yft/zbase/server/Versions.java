@@ -5,7 +5,6 @@ import com.yft.zbase.BuildConfig;
 public enum Versions {
     OFFICIAL_VERSION_NAME("reelShort", BuildConfig.versionCode), // 正式版
     SHARE_VERSION_NAME("shareShort", BuildConfig.versionCode); // 分享版
-
     private String name;
     private String code;
     Versions(String name, String code) {

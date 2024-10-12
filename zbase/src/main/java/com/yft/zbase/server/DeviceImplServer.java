@@ -4,16 +4,21 @@ import android.content.Context;
 import android.media.MediaDrm;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Base64;
 
+import com.google.gson.reflect.TypeToken;
 import com.tencent.mmkv.MMKV;
 import com.yft.zbase.ZBaseApplication;
+import com.yft.zbase.bean.AddressBean;
 import com.yft.zbase.utils.Constant;
+import com.yft.zbase.utils.JsonUtil;
 import com.yft.zbase.utils.Md5Encryption;
 import com.yft.zbase.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -71,14 +76,54 @@ public class DeviceImplServer implements IDevice {
     }
 
     @Override
+    public void saveAppAlias(String alias) {
+        paraMk.encode(Constant.ALIAS_KEY, alias);
+    }
+
+    @Override
     public String getAppAlias() {
-        return "rshort";
+        String def = "hk";
+        if (!paraMk.containsKey(Constant.ALIAS_KEY)) {
+            return def;
+        }
+
+        return paraMk.decodeString(Constant.ALIAS_KEY, def);
     }
 
     @Override
     public String getModel() {
         return Build.MODEL;
     }
+
+    @Override
+    public boolean isDebug() {
+        if (!paraMk.containsKey(Constant.DEBUG_KEY)) {
+            return false;
+        }
+
+        return paraMk.decodeBool(Constant.DEBUG_KEY, false);
+    }
+
+    @Override
+    public void saveDebug(boolean isDebug) {
+        paraMk.encode(Constant.DEBUG_KEY, isDebug);
+    }
+
+    @Override
+    public String getVersion() {
+        String def = "v1.0.0";
+        if (!paraMk.containsKey(Constant.VERSION_KEY)) {
+            return def;
+        }
+
+        return paraMk.decodeString(Constant.VERSION_KEY, def);
+    }
+
+    @Override
+    public void saveVersion(String version) {
+        paraMk.encode(Constant.VERSION_KEY, version);
+    }
+
 
     public int getStatusBarHeight(Context context) {
         int statusBarHeight = paraMk.decodeInt(Constant.PARAMETER_STATUS_BAR_HI, 0);
@@ -160,5 +205,19 @@ public class DeviceImplServer implements IDevice {
     public String getDeviceOtherStr() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().replace("-", "");
+    }
+
+
+    @Override
+    public String getFlavor() {
+        return paraMk.decodeString(Constant.FLAVOR_KEY);
+    }
+
+    @Override
+    public boolean saveFlavor(String flavor) {
+        if (TextUtils.isEmpty(flavor)) {
+            return false;
+        }
+        return paraMk.encode(Constant.FLAVOR_KEY, flavor);
     }
 }

@@ -9,7 +9,6 @@ public class Constant {
     // 系统设备唯一码
     public static final String PARAMETER_KEY_UUID = "serialNumber";
 
-
     /* 用户信息相关 */
     public final static String USER = "user";
 
@@ -47,8 +46,15 @@ public class Constant {
     public final static String LANGUAGE = "language";
     // 当前语言环境
     public final static String LANGUAGE_TYPE = "language_type";
-
     public final static String NORMAL = "normal"; //普通区
     public final static String ACTIVITY = "activity"; // 活动区（品鉴区）
     public final static String SPECIAL = "special"; // 抽奖区
+
+
+    // -- 调试模式
+    public final static String DEBUG_KEY = "debug_key";
+    // -- 版本（软件版本）
+    public final static String VERSION_KEY = "version_key";
+    // -- 软件别名
+    public final static String ALIAS_KEY = "alias_key";
 }

@@ -148,18 +148,7 @@ public interface IUser extends IServerAgent {
      */
     boolean isStoragePermissions();
 
-    /**
-     * 获取当前渠道名称
-     * @return
-     */
-    String getFlavor();
 
-    /**
-     * 保存渠道名称
-     * @param flavor
-     * @return
-     */
-    boolean saveFlavor(String flavor);
 
     /**
      * 获取用户等级

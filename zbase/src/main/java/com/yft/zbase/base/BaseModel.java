@@ -40,11 +40,12 @@ import java.util.TreeMap;
  */
 public class BaseModel {
     // 接口版本
-    private String version = BuildConfig.versionCode;
     protected IXNet mNetWork;
     protected final IUser mUser;
     protected ILanguage iLanguage;
     protected final IDevice mDevice;
+
+    private IParameter iParameter;
 
     //渠道编码
     public BaseModel() {
@@ -52,6 +53,8 @@ public class BaseModel {
         iLanguage = DynamicMarketManage.getInstance().getServer(IServerAgent.LANGUAGE_SERVER);
         mUser = DynamicMarketManage.getInstance().getServer(IServerAgent.USER_SERVER);
         mDevice = DynamicMarketManage.getInstance().getServer(IServerAgent.DEVICE_SERVER);
+        //
+        iParameter = new Parameter(mUser, mDevice, iLanguage);
     }
 
     public ServiceBean getServiceBean() {
@@ -256,10 +259,23 @@ public class BaseModel {
         }
     }
 
-    private IParameter iParameter  = new IParameter() {
+    /**
+     * 避免内存泄露，尽量使用静态的内部类
+     */
+    public static class Parameter implements IParameter {
+        private IUser iUser;
+        private IDevice iDevice;
+        private   ILanguage iLanguage;
+        public Parameter(IUser iUser, IDevice iDevice, ILanguage iLanguage) {
+            this.iDevice = iDevice;
+            this.iUser = iUser;
+            this.iLanguage = iLanguage;
+        }
+
+
         @Override
         public String getVersion() {
-            return version;
+            return iDevice.getVersion();
         }
 
         @Override
@@ -269,40 +285,34 @@ public class BaseModel {
 
         @Override
         public String getDeviceId() {
-            return mDevice.getDeviceId();
+            return iDevice.getDeviceId();
         }
 
         @Override
         public String getAndroid() {
-            return mDevice.getAndroid();
+            return iDevice.getAndroid();
         }
 
         @Override
         public String getPromoteChannel() {
-            String flavor = mUser.getFlavor();
-            if (TextUtils.isEmpty(flavor)) {
-                return "C100"; // 默认C100
-            }
-            return flavor;
+            return iDevice.getFlavor();
         }
 
         @Override
         public String getToken() {
-            return mUser.getUserInfo() == null ? "" : mUser.getUserInfo().getToken();
+            return iUser.getUserInfo() == null ? "" : iUser.getUserInfo().getToken();
         }
 
         @Override
         public String getClientModel() {
-            return mDevice.getModel();
+            return iDevice.getModel();
         }
 
         @Override
         public String getKey(long requestTimestamp, String uuid, String token, String random) {
             return cn.sd.ld.ui.helper.Utils.getMD5KeyByRequest(requestTimestamp, String.valueOf(requestTimestamp), uuid, token, random);
         }
-    };
-
-
+    }
 
     public interface IServiceNotice {
         void onSuccess();

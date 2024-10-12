@@ -307,21 +307,6 @@ public class UserImplServer implements IUser {
         return mUserMk.decodeBool(Constant.STORAGE_PERMISSIONS, false);
     }
 
-    @Override
-    public String getFlavor() {
-        if (!mUserMk.containsKey(Constant.FLAVOR_KEY)) {
-            return Versions.OFFICIAL_VERSION_NAME.getName();
-        }
-        return mUserMk.decodeString(Constant.FLAVOR_KEY);
-    }
-
-    @Override
-    public boolean saveFlavor(String flavor) {
-        if (TextUtils.isEmpty(flavor)) {
-            return false;
-        }
-        return mUserMk.encode(Constant.FLAVOR_KEY, flavor);
-    }
 
     @Override
     public UserLevelType getUserLevel() {
