@@ -1,11 +1,16 @@
 package com.fuan.market;
 
+import android.content.Context;
+
 import com.fuan.market.router.AppRouter;
 import com.hk.xnet.XNetImpl;
+import com.hkbyte.bsbase.router.BasisJumpRouter;
 import com.yft.home.router.HomeRouter;
 import com.yft.user.router.UserRouter;
 import com.yft.zbase.ZBaseApplication;
+import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.router.IRouter;
+import com.yft.zbase.router.IToHomePageListener;
 import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.router.ZbaseRouter;
 import com.yft.zbase.server.DynamicMarketManage;
@@ -37,7 +42,7 @@ public class ActionApplication extends ZBaseApplication {
 
         // 初始化所有页面
         RouterFactory.getInstance().initPages(pagesMap);
-
+        RouterFactory.getInstance().setRouterJumpPages(BasisJumpRouter.getInstance());
         // 注入当前调试模式、项目别名、版本号、渠道号
         IDevice iDevice = DynamicMarketManage.getInstance().getServer(IServerAgent.DEVICE_SERVER);
         iDevice.saveDebug(BuildConfig.DEBUG);

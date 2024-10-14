@@ -398,7 +398,7 @@ public class WebJsInterface {
         }
         String goodsId = jsonObject.get("goodsId").getAsString();
         TargetBean targetBean = new TargetBean();
-        targetBean.setActionType(RouterFactory.JUMP_GOODS_DETAIL_MODULE);
+        targetBean.setActionType("videoDetail");
         targetBean.setTarget(goodsId);
 
         boolean isSuccess = RouterFactory.getInstance().jumpToActivity(iWebActivity.getActivity(), targetBean);

@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.JsonObject;
+import com.hkbyte.bsbase.router.BasisJumpRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.TargetBean;
@@ -84,7 +85,7 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
 //                        RouterFactory.startRouterBundleActivity(this , RouterFactory.ACTIVITY_WEB, bundle);
                         TargetBean targetBean = new TargetBean();
                         targetBean.setTarget(jsonObject.get(BODY_URL).getAsString());
-                        targetBean.setActionType(RouterFactory.JUMP_LINK_MODULE);
+                        targetBean.setActionType(BasisJumpRouter.JUMP_LINK_MODULE);
                         RouterFactory.getInstance().jumpToActivity(this, targetBean);
                         this.finish();
                     } else {
@@ -98,7 +99,7 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
                         targetBean.setPmc(jsonObject.get(pmc).getAsString());
                     }
                     targetBean.setTarget(id);
-                    targetBean.setActionType(RouterFactory.JUMP_GOODS_DETAIL_MODULE);
+                    targetBean.setActionType(BasisJumpRouter.JUMP_GOODS_DETAIL_MODULE);
                     RouterFactory.getInstance().jumpToActivity(this, targetBean);
                     finish();
                 }

@@ -26,6 +26,7 @@ import com.gongjiebin.latticeview.LatticeView;
 import com.fuan.market.databinding.ActivityMainBinding;
 import com.fuan.market.model.MainViewModel;
 
+import com.hkbyte.bsbase.router.BasisJumpRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.bean.DownLoadBean;
 import com.yft.zbase.bean.TargetBean;
@@ -170,19 +171,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 return;
             }
             switch (initPage) {
-                case RouterFactory.TO_HOME_PAGE:
+                case BasisJumpRouter.TO_HOME_PAGE:
                     onSuccess(0);
                     break;
-                case RouterFactory.TO_HOME_APPRAISE:
+                case BasisJumpRouter.TO_HOME_APPRAISE:
                     onSuccess(1);
                     break;
-                case RouterFactory.TO_HOME_NEWS:
+                case BasisJumpRouter.TO_HOME_NEWS:
                     onSuccess(2);
                     break;
-                case RouterFactory.TO_HOME_SHOPCAR:
+                case BasisJumpRouter.TO_HOME_SHOPCAR:
                     onSuccess(3);
                     break;
-                case RouterFactory.TO_HOME_MINE:
+                case BasisJumpRouter.TO_HOME_MINE:
                     onSuccess(4);
                     break;
                 default:{}

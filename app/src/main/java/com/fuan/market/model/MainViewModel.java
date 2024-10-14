@@ -1,21 +1,14 @@
 package com.fuan.market.model;
 
-import static com.yft.zbase.router.RouterFactory.TO_HOME_APPRAISE;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_MINE;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_NEWS;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_PAGE;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_SHOPCAR;
-
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.hk.xnet.Template;
 import com.hk.xnet.WebServiceThrowable;
+import com.hkbyte.bsbase.router.BasisJumpRouter;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.router.IToHomePageListener;
 import com.yft.zbase.router.RouterFactory;
-import com.yft.zbase.utils.UIUtils;
 import com.yft.zbase.xnet.ResponseDataListener;
 
 public class MainViewModel extends BaseViewModel {
@@ -35,7 +28,7 @@ public class MainViewModel extends BaseViewModel {
         super();
         mWelcomeModel = new WelcomeModel();
         // 注入jump跳转代码代码
-        RouterFactory.addToHomePageListener(iToHomePageListener);
+        RouterFactory.getInstance().addToHomePageListener(iToHomePageListener);
     }
 
 
@@ -43,19 +36,19 @@ public class MainViewModel extends BaseViewModel {
         @Override
         public void onToHomePage(TargetBean homeListBean) {
             switch (homeListBean.getTarget()) {
-                case TO_HOME_PAGE:
+                case BasisJumpRouter.TO_HOME_PAGE:
                     getMutableLiveData().postValue(0);
                     break;
-                case TO_HOME_APPRAISE:
+                case BasisJumpRouter.TO_HOME_APPRAISE:
                     getMutableLiveData().postValue(1);
                     break;
-                case TO_HOME_NEWS:
+                case BasisJumpRouter.TO_HOME_NEWS:
                     getMutableLiveData().postValue(2);
                     break;
-                case TO_HOME_SHOPCAR:
+                case BasisJumpRouter.TO_HOME_SHOPCAR:
                     getMutableLiveData().postValue(3);
                     break;
-                case TO_HOME_MINE:
+                case BasisJumpRouter.TO_HOME_MINE:
                     getMutableLiveData().postValue(4);
                     break;
                 default:{}
@@ -88,6 +81,6 @@ public class MainViewModel extends BaseViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        RouterFactory.removeToHomePageListener(iToHomePageListener);
+        RouterFactory.getInstance().removeToHomePageListener(iToHomePageListener);
     }
 }

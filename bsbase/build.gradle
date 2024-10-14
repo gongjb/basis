@@ -2,8 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.chenenyu.router'
 apply from:"../config.gradle"
 android {
+
     compileSdk rootProject.ext.compileSdk
-    namespace 'com.yft.user'
+    namespace 'com.hkbyte.bsbase'
     defaultConfig {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdkVer
@@ -22,9 +23,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     buildFeatures {
         viewBinding true
         dataBinding true
+
     }
 }
 
@@ -32,14 +35,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation project(path: ':bsbase')
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     if (zbaseMode.isLocalMode) {
         implementation project(path: ':zbase')
     } else {
         implementation 'com.github.gjb-cn.basis:zbase:' + cloudCode
     }
-
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }

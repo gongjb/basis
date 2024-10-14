@@ -22,6 +22,7 @@ dependencyResolutionManagement {
 apply from:"config.gradle"
 rootProject.name = "YFTJoin"
 include ':app'
+include ':bsbase'
 if (userMode.isLocalMode) {
     include ':user'
 }
@@ -48,3 +49,4 @@ if (zbaseMode.isLocalMode) {
 //include ':xnet'
 //include ':library'
 //include ':statusutil'
+
