@@ -82,8 +82,9 @@ public class RouterFactory {
     public final static String TO_HOME_NEWS = "toHomeNews";
     public final static String TO_HOME_SHOPCAR ="toHomeShopCar";
     public final static String TO_HOME_MINE = "toHomeMine";
+    @Deprecated
     private static List<IToHomePageListener> mToHomePageListener;
-
+    // app中全局只能设置一个地方集中跳转
     private static IRouterJumpPages iRouterJumpPages;
 
     public synchronized static void setRouterJumpPages(IRouterJumpPages iRouterJumpPages) {
@@ -92,6 +93,7 @@ public class RouterFactory {
         }
     }
 
+    @Deprecated
     public synchronized static void addToHomePageListener(IToHomePageListener iToHomePageListener) {
         if (mToHomePageListener == null) {
             mToHomePageListener = new ArrayList<>();
@@ -99,6 +101,7 @@ public class RouterFactory {
         RouterFactory.mToHomePageListener.add(iToHomePageListener);
     }
 
+    @Deprecated
     public synchronized static void removeToHomePageListener(IToHomePageListener iToHomePageListener) {
         if (RouterFactory.mToHomePageListener != null) {
             RouterFactory.mToHomePageListener.remove(iToHomePageListener);
@@ -120,13 +123,13 @@ public class RouterFactory {
                 .go(context, routerCallback);
     }
 
-    public synchronized static void startRouterBundleActivity(Context context, String path, Bundle bundle) {
+    public synchronized void startRouterBundleActivity(Context context, String path, Bundle bundle) {
         Router.build(path)
                 .with(bundle)
                 .go(context);
     }
 
-    public synchronized static void startRouterRequestActivity(Fragment fragment, String path, int requestCode,
+    public synchronized void startRouterRequestActivity(Fragment fragment, String path, int requestCode,
                                                   RouteCallback routerCallback) {
         Router.build(path)
                 .callback(routerCallback)
@@ -243,6 +246,7 @@ public class RouterFactory {
      * toBalanceList 跳转余额列表
      * toGiftVoucherList 跳转兑换券列表
      */
+    @Deprecated
     private synchronized boolean startInnerModule(Context context, TargetBean homeListBean) {
         IUser iUser = DynamicMarketManage.getInstance().getServer(IServerAgent.USER_SERVER);
         try {
@@ -263,7 +267,7 @@ public class RouterFactory {
                         String pageStr = homeListBean.getTarget();
                         Bundle bundle = new Bundle();
                         bundle.putString("initPage", pageStr);
-                        RouterFactory.startRouterBundleActivity(context, getPage("MainActivity"), bundle);
+                        RouterFactory.getInstance().startRouterBundleActivity(context, getPage("MainActivity"), bundle);
                     }
                     break;
 

@@ -54,7 +54,7 @@ public class AboutActivity extends BaseActivity<ActivityAboutLayoutBinding, Base
                 build.putString("title", "用户协议");
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getUserAgreementUrl());
                 //RouterFactory.ACTIVITY_WEB
-                RouterFactory.startRouterBundleActivity(AboutActivity.this,
+                RouterFactory.getInstance().startRouterBundleActivity(AboutActivity.this,
                         RouterFactory.getInstance().getPage("WebYftActivity"), build);
             }
         });
@@ -65,7 +65,7 @@ public class AboutActivity extends BaseActivity<ActivityAboutLayoutBinding, Base
                 Bundle build = new Bundle();
                 build.putString("title", "隐私政策");
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getPrivacyAgreementUrl());
-                RouterFactory.startRouterBundleActivity(AboutActivity.this,
+                RouterFactory.getInstance().startRouterBundleActivity(AboutActivity.this,
                         RouterFactory.getInstance().getPage("WebYftActivity"), build);
             }
         });

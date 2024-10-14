@@ -150,7 +150,7 @@ public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBindin
         Bundle bundle = new Bundle();
         bundle.putString("type", "normal");
         //ACTIVITY_SEARCH
-        RouterFactory.startRouterBundleActivity(HomeVLayoutFragment.this.getContext(),
+        RouterFactory.getInstance().startRouterBundleActivity(HomeVLayoutFragment.this.getContext(),
                 RouterFactory.getInstance().getPage("SearchActivity"), bundle);
     }
 

@@ -114,7 +114,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
                     bundle.putBoolean("isWebTitle", false);
                     bundle.putString("url", viewModel.getUserServer().getServiceUrl().getServiceLinkUrl());
 //                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.ACTIVITY_WEB, bundle);
-                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.getInstance().getPage("WebYftActivity"), bundle);
+                    RouterFactory.getInstance().startRouterBundleActivity(requireContext(), RouterFactory.getInstance().getPage("WebYftActivity"), bundle);
                 } else {
                     ToastUtils.toast(viewModel.getString("未匹配到客服!"));
                 }
