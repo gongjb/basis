@@ -59,8 +59,8 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeLayoutBinding, 
 //            }
 //            // 再次请求
 //            mViewModel.requestService();
-            LOGE("===>>",RouterFactory.getPage("MainActivity"));
-            RouterFactory.startRouterActivity(this, RouterFactory.getPage("MainActivity"));
+            LOGE("===>>",RouterFactory.getInstance().getPage("MainActivity"));
+            RouterFactory.getInstance().startRouterActivity(this, RouterFactory.getInstance().getPage("MainActivity"));
         });
 
         if (mViewModel.isFirst()) {
@@ -130,7 +130,7 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeLayoutBinding, 
 //        TargetBean targetBean = new TargetBean();
 //        targetBean.setActionType(RouterFactory.JUMP_INNER_MODULE);
 //        targetBean.setTarget(RouterFactory.TO_HOME_PAGE);
-        RouterFactory.jumpToActivity(this, mViewModel.getTargetBean());
+        RouterFactory.getInstance().jumpToActivity(this, mViewModel.getTargetBean());
         this.finish();
     }
 
@@ -150,7 +150,7 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeLayoutBinding, 
 
 
     private void goMainActivity() {
-        RouterFactory.startRouterActivity(this, RouterFactory.getPage("MainActivity"));
+        RouterFactory.getInstance().startRouterActivity(this, RouterFactory.getInstance().getPage("MainActivity"));
     }
 
     @Override

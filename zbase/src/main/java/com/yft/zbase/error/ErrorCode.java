@@ -132,7 +132,7 @@ public class ErrorCode {
         if (ButtonUtils.isFastDoubleClick()) return; // 重复调用无效
         Context mContext = ZBaseApplication.get();
         // 跳转到登录 ACTIVITY_USER_LOGIN
-        RouterFactory.startRouterActivity(mContext, RouterFactory.getPage("LoginActivity"));
+        RouterFactory.getInstance().startRouterActivity(mContext, RouterFactory.getInstance().getPage("LoginActivity"));
     }
 
     public static void toWelcomeActivity() {
@@ -142,7 +142,7 @@ public class ErrorCode {
         DynamicMarketManage.getInstance().cleanInfoAll();
         Context mContext = ZBaseApplication.get();
         // 跳转到欢迎页面
-        RouterFactory.startRouterActivity(mContext, RouterFactory.getPage("WelcomeActivity"));
+        RouterFactory.getInstance().startRouterActivity(mContext, RouterFactory.getInstance().getPage("WelcomeActivity"));
         finishNotActivity("com.fuan.market.WelcomeActivity");
     }
 
@@ -155,7 +155,7 @@ public class ErrorCode {
         AdapterFactoryManage.getInstance().cleanAllAdapter();
         Context mContext = ZBaseApplication.get();
         // 跳转到欢迎页面
-        RouterFactory.startRouterActivity(mContext, RouterFactory.getPage("WelcomeActivity"));
+        RouterFactory.getInstance().startRouterActivity(mContext, RouterFactory.getInstance().getPage("WelcomeActivity"));
         finishNotActivity("com.fuan.market.WelcomeActivity");
     }
 

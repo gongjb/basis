@@ -26,7 +26,7 @@ public class ActionApplication extends ZBaseApplication {
     public void onCreate() {
         super.onCreate();
         // 初始化各个模块的页面路径 （新增模块需在此配置）
-        List<IRouter> routers = RouterFactory.factoryRouterPages(new UserRouter(), new AppRouter(),
+        List<IRouter> routers = RouterFactory.getInstance().factoryRouterPages(new UserRouter(), new AppRouter(),
                 new HomeRouter(), new ZbaseRouter());
 
         ConcurrentMap<String, String> pagesMap = new ConcurrentHashMap<>();
@@ -36,7 +36,7 @@ public class ActionApplication extends ZBaseApplication {
         }
 
         // 初始化所有页面
-        RouterFactory.initPages(pagesMap);
+        RouterFactory.getInstance().initPages(pagesMap);
 
         // 注入当前调试模式、项目别名、版本号、渠道号
         IDevice iDevice = DynamicMarketManage.getInstance().getServer(IServerAgent.DEVICE_SERVER);

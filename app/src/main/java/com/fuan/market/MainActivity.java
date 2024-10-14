@@ -61,8 +61,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public void initView() {
         //UserFragment
-        mPageTags = new String[]{RouterFactory.getPage("HomeVLayoutFragment"),
-                RouterFactory.getPage("UserFragment")};
+        mPageTags = new String[]{RouterFactory.getInstance().getPage("HomeVLayoutFragment"),
+                RouterFactory.getInstance().getPage("UserFragment")};
 
         mPrivacyFragmentDialog = PrivacyFragmentDialog.newInstance();
         GradientDrawable grad = new GradientDrawable(//渐变色
@@ -99,7 +99,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         //imageTextParams.animation = createAnimation();
         mDataBing.llView.setImageTextParams(mImageTextParams);
         mDataBing.llView.startView(); // 开始加载布局
-        Fragment home = RouterFactory.getFragment(this, mPageTags[0]);
+        Fragment home = RouterFactory.getInstance().getFragment(this, mPageTags[0]);
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         String initPage = getIntent().getStringExtra("initPage");
@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             public void onClick(View v, ImageView imageView, Object[] urls, int position) {
                 if (position == 1) {
                     if (!mViewModel.isLogin()) {
-                        RouterFactory.startRouterActivity(MainActivity.this, RouterFactory.getPage("LoginActivity"));
+                        RouterFactory.getInstance().startRouterActivity(MainActivity.this, RouterFactory.getInstance().getPage("LoginActivity"));
                         mImageTextParams.selectIndex = mPageIndex;
                         mDataBing.llView.removeViews();
                         mDataBing.llView.startView();
@@ -233,7 +233,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 mFragmentTransaction.hide(fragment1);
             }
             mFragmentTransaction.add(R.id.frame_container,
-                    RouterFactory.getFragment(MainActivity.this, mPageTags[position]), mPageTags[position]);
+                    RouterFactory.getInstance().getFragment(MainActivity.this, mPageTags[position]), mPageTags[position]);
             mFragmentTransaction.commit();
             return;
         }

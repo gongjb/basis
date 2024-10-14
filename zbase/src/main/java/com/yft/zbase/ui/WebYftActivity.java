@@ -470,7 +470,7 @@ public class WebYftActivity extends BasePhotoActivity<ActivityWebviewLayoutBindi
     public void toLoginActivity(final String callbackFunction) {
         Bundle bundle = new Bundle();
         bundle.putString("function", callbackFunction);
-        RouterFactory.startRouterRequestActivity(WebYftActivity.this, RouterFactory.getPage("LoginActivity"), 10000, bundle, new RouteCallback() {
+        RouterFactory.getInstance().startRouterRequestActivity(WebYftActivity.this, RouterFactory.getInstance().getPage("LoginActivity"), 10000, bundle, new RouteCallback() {
             @Override
             public void callback(RouteStatus status, Uri uri, String message) {
             }
@@ -491,7 +491,7 @@ public class WebYftActivity extends BasePhotoActivity<ActivityWebviewLayoutBindi
         Bundle bundle = new Bundle();
         bundle.putString("function", callbackFunction);
         //ACTIVITY_USER_SITE
-        RouterFactory.startRouterRequestActivity(WebYftActivity.this, RouterFactory.getPage("UserSiteActivity"), 10002, bundle, new RouteCallback() {
+        RouterFactory.getInstance().startRouterRequestActivity(WebYftActivity.this, RouterFactory.getInstance().getPage("UserSiteActivity"), 10002, bundle, new RouteCallback() {
             @Override
             public void callback(RouteStatus status, Uri uri, String message) {
             }

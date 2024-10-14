@@ -151,7 +151,7 @@ public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBindin
         bundle.putString("type", "normal");
         //ACTIVITY_SEARCH
         RouterFactory.startRouterBundleActivity(HomeVLayoutFragment.this.getContext(),
-                RouterFactory.getPage("SearchActivity"), bundle);
+                RouterFactory.getInstance().getPage("SearchActivity"), bundle);
     }
 
     private SwipeRecyclerView.LoadMoreListener mLoadMoreListener = () -> {

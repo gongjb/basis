@@ -401,7 +401,7 @@ public class WebJsInterface {
         targetBean.setActionType(RouterFactory.JUMP_GOODS_DETAIL_MODULE);
         targetBean.setTarget(goodsId);
 
-        boolean isSuccess = RouterFactory.jumpToActivity(iWebActivity.getActivity(), targetBean);
+        boolean isSuccess = RouterFactory.getInstance().jumpToActivity(iWebActivity.getActivity(), targetBean);
         int succ = isSuccess ? 1 : 0;
         iWebActivity.getWebView().loadUrl("javascript:" + callbackFunction + "('" + succ + "')");
     }
@@ -460,7 +460,7 @@ public class WebJsInterface {
             targetBean.setTarget(target);
             targetBean.setPmc(pmc);
 
-            boolean isSuccess = RouterFactory.jumpToActivity(iWebActivity.getActivity(), targetBean);
+            boolean isSuccess = RouterFactory.getInstance().jumpToActivity(iWebActivity.getActivity(), targetBean);
             int succ = isSuccess ? 1 : 0;
             iWebActivity.getWebView().loadUrl("javascript:" + callbackFunction + "('" + succ + "')");
         } else {
@@ -497,7 +497,7 @@ public class WebJsInterface {
         }
         String callbackFunction = jsonObject.get("callbackFunction").getAsString();
         try {
-            RouterFactory.startRouterActivity(iWebActivity.getActivity(),  "com.yft.user.ActivityUserInformation");
+            RouterFactory.getInstance().startRouterActivity(iWebActivity.getActivity(),  "com.yft.user.ActivityUserInformation");
             iWebActivity.getWebView().loadUrl("javascript:" + callbackFunction + "('" + 1 + "')");
         } catch (Exception e) {
             iWebActivity.getWebView().loadUrl("javascript:" + callbackFunction + "('" + 0 + "')");

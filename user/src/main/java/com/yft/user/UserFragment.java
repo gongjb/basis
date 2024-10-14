@@ -114,7 +114,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
                     bundle.putBoolean("isWebTitle", false);
                     bundle.putString("url", viewModel.getUserServer().getServiceUrl().getServiceLinkUrl());
 //                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.ACTIVITY_WEB, bundle);
-                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.getPage("WebYftActivity"), bundle);
+                    RouterFactory.startRouterBundleActivity(requireContext(), RouterFactory.getInstance().getPage("WebYftActivity"), bundle);
                 } else {
                     ToastUtils.toast(viewModel.getString("未匹配到客服!"));
                 }
@@ -124,7 +124,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
         mDataBing.ivSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RouterFactory.startRouterActivity(getContext(), RouterFactory.getPage("SetActivity"));
+                RouterFactory.getInstance().startRouterActivity(getContext(), RouterFactory.getInstance().getPage("SetActivity"));
             }
         });
 
@@ -135,7 +135,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
                 }  else if (position == 1) {
                 } else if (position == 2) {
                 } else if(position == 3) {
-                    RouterFactory.startRouterActivity(getContext(), RouterFactory.getPage("InviteFriends2Activity"));
+                    RouterFactory.getInstance().startRouterActivity(getContext(), RouterFactory.getInstance().getPage("InviteFriends2Activity"));
                 }
             }
         });
@@ -145,7 +145,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
         mDataBing.rlD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RouterFactory.startRouterActivity(getContext(), RouterFactory.getPage("SetActivity"));
+                RouterFactory.getInstance().startRouterActivity(getContext(), RouterFactory.getInstance().getPage("SetActivity"));
             }
         });
         mDataBing.ivIcon.setOnClickListener(mGoToUserInfoClick);
@@ -198,7 +198,7 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
         @Override
         public void onClick(View view) {
             //ActivityUserInformation
-            RouterFactory.startRouterActivity(UserFragment.this.requireContext(), RouterFactory.getPage("ActivityUserInformation"));
+            RouterFactory.getInstance().startRouterActivity(UserFragment.this.requireContext(), RouterFactory.getInstance().getPage("ActivityUserInformation"));
         }
     };
 

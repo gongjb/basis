@@ -8,8 +8,9 @@ import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.databinding.ActivityTextLayoutBinding;
 import com.yft.zbase.router.RouterFactory;
+import com.yft.zbase.router.ZbaseRouter;
 
-@Route("com.yft.zbase.ui.TextActivity")
+@Route(ZbaseRouter.ACTIVITY_TEXT)
 public class TextActivity extends BaseActivity<ActivityTextLayoutBinding, BaseViewModel> {
 
     @Override

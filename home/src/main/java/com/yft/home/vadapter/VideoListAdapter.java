@@ -73,7 +73,7 @@ public class VideoListAdapter extends DelegateAdapter.Adapter<BaseLayoutHolder>{
         commodityLayoutBinding.setOnItemClick(new OnAdapterClickListener<HomeConfigBean.KingkongListBean>() {
             @Override
             public void onAdapterClick(View view, HomeConfigBean.KingkongListBean data, int position) {
-                RouterFactory.jumpToActivity(mContext, data);
+                RouterFactory.getInstance().jumpToActivity(mContext, data);
             }
         });
     }

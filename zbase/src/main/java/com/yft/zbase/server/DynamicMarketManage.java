@@ -2,6 +2,7 @@ package com.yft.zbase.server;
 
 import android.app.Application;
 import android.content.Context;
+import android.text.TextUtils;
 
 import java.util.HashMap;
 import java.util.Iterator;

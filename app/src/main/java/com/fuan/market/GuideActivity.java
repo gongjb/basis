@@ -49,7 +49,7 @@ public class GuideActivity extends BaseActivity<ActivityGuideActivityBinding, Ba
             @Override
             public void onClick(View view) {
                 // 去登陆页面
-                RouterFactory.startRouterActivity(GuideActivity.this, RouterFactory.getPage("MainActivity"));
+                RouterFactory.getInstance().startRouterActivity(GuideActivity.this, RouterFactory.getInstance().getPage("MainActivity"));
             }
         };
         onZoomClickListener.setThemeColor(getResources().getColor(com.yft.zbase.R.color.theme_assistant));
