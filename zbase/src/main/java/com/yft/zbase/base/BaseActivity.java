@@ -30,10 +30,10 @@ public abstract class BaseActivity<T extends ViewDataBinding, K extends BaseView
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setDarkMode(this);
+        // 默认使用黑暗模式
+        statusBarModel(true);
         getColors();
         mapActivity.put(getClass().getCanonicalName(), this);
-        //getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary_main));
 
         mDataBing = DataBindingUtil.setContentView(this, getLayout());
         // 给viewBing注入生命周期监听
@@ -57,25 +57,12 @@ public abstract class BaseActivity<T extends ViewDataBinding, K extends BaseView
     protected void handleServiceAddress(ServiceBean serviceBean) {
     }
 
-    private void fullScreen() {
-        //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
-//        Window window = getWindow();
-//        View decorView = window.getDecorView();
-//        //两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
-//        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-//        decorView.setSystemUiVisibility(option);
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        if (statusBarColor() != 0) {
-//            window.setStatusBarColor(statusBarColor());
-//        }
-//
-//        //导航栏颜色也可以正常设置
-//        window.setNavigationBarColor(THEME_STYLE);
-    }
-
-    protected int statusBarColor() {
-        return 0;
+    protected void statusBarModel(boolean isDarkMode) {
+        if (isDarkMode) {
+            StatusBarUtil.setDarkMode(this);
+        } else {
+            StatusBarUtil.setLightMode(this);
+        }
     }
 
     /**
