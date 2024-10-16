@@ -27,6 +27,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, K extends BaseView
     public static Map<String,FragmentActivity> mapActivity = new HashMap<>();
     protected int[] mColors;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, K extends BaseView
         mDataBing = DataBindingUtil.setContentView(this, getLayout());
         // 给viewBing注入生命周期监听
         mDataBing.setLifecycleOwner(this);
-        //fullScreen();
+
         mViewModel = getViewModel();
         initView();
         initListener();
