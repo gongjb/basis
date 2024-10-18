@@ -21,8 +21,8 @@ import com.yft.zbase.xnet.ResponseDataListener;
 
 import java.io.File;
 
-import top.zibin.luban.Luban;
-import top.zibin.luban.OnCompressListener;
+import top.zibin.luban2.Luban;
+import top.zibin.luban2.OnCompressListener;
 
 
 /**

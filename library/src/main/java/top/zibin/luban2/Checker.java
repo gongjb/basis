@@ -1,8 +1,6 @@
-package top.zibin.luban;
+package top.zibin.luban2;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;

@@ -1,4 +1,4 @@
-package top.zibin.luban;
+package top.zibin.luban2;
 
 import android.content.Context;
 import android.net.Uri;
