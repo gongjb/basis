@@ -37,8 +37,7 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="40dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/invitation_up"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.yft.zbase.widget.RoundLinearLayout
                 android:id="@+id/fl"
@@ -107,7 +106,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_up"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="@dimen/ui_20_dp"
-                android:background="@drawable/invitation_down"
                 android:layout_height="410dp">
 
                 <com.yft.zbase.widget.RoundRelativeLayout

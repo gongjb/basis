@@ -286,21 +286,7 @@ public class UIUtils {
 
     @BindingAdapter(value =  {"isProfitIng"})
     public static void setBackgroundSrc(ImageView imageView, boolean isFinish) {
-        if (TextUtils.equals(LanguageManage.getLanguageType(), ILanguage.EN_TYPE)) {
-            if (isFinish) {
-                imageView.setImageResource(R.mipmap.profit_finish_en);
-            } else {
-                imageView.setImageResource(R.mipmap.profit_return_en);
-            }
-        } else {
-            if (isFinish) {
-                imageView.setImageResource(R.mipmap.profit_finish_cn);
-            } else {
-                // 进行中
-                imageView.setImageResource(R.mipmap.profit_return_cn);
 
-            }
-        }
     }
 
 

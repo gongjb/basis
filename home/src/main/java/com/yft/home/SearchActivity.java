@@ -63,7 +63,6 @@ public class SearchActivity extends BaseActivity<ActivitySearchLayoutBinding, Ho
         autoEditParams.sel_type = AutoLineLayout.TYPE_NOT;
         if (isDel) {
             autoEditParams.isShowDelImg = true;
-            autoEditParams.delImg = R.mipmap.elect_delimg;
         } else {
             autoEditParams.isShowDelImg = false;
         }

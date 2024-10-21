@@ -25,7 +25,6 @@
             android:id="@+id/home_background"
             android:layout_width="match_parent"
             android:layout_height="209dp"
-            android:background="@mipmap/user_bg_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +49,6 @@
             android:layout_height="@dimen/ui_24_dp"
             android:layout_marginTop="@dimen/ui_20_dp"
             android:layout_marginEnd="@dimen/ui_20_dp"
-            android:src="@mipmap/icon_user_set"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/v_top" />
@@ -61,7 +59,6 @@
             android:layout_height="@dimen/ui_24_dp"
             android:layout_marginTop="@dimen/ui_20_dp"
             android:layout_marginEnd="@dimen/ui_20_dp"
-            android:src="@mipmap/icon_user_service"
             app:layout_constraintEnd_toStartOf="@+id/iv_setting"
             app:layout_constraintTop_toBottomOf="@+id/v_top" />
 
@@ -73,10 +70,10 @@
             android:layout_marginStart="@dimen/ui_12_dp"
             android:layout_marginTop="@dimen/ui_10_dp"
             android:scaleType="fitXY"
-            app:error="@{R.mipmap.about_icon}"
+            app:error="@{R.mipmap.ic_launcher}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_kf"
-            app:placeholder="@{R.mipmap.about_icon}"
+            app:placeholder="@{R.mipmap.ic_launcher}"
             app:setViewRadius="@{R.dimen.ui_24_dp}"
             app:url="@{user.logo}" />
 
@@ -171,8 +168,6 @@
                             android:text='@{user.amount+""}'
                             android:textColor="@color/white"
                             android:textSize="@dimen/ui_22_dp"
-                            android:drawableStart="@mipmap/balance_usdt"
-                            android:drawableEnd="@mipmap/balance_dollar"
                             android:textStyle="bold"
                             android:gravity="center_vertical"
                             android:lines="1"
@@ -221,8 +216,6 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="@dimen/ui_22_dp"
-                            android:drawableStart="@mipmap/balance_usdt"
-                            android:drawableEnd="@mipmap/balance_dollar"
                             android:gravity="center_vertical"
                             android:text='@{user.amountComing+""}'
                             android:textStyle="bold"
@@ -308,8 +301,7 @@
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
-                        android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_sc"/>
+                        android:layout_height="@dimen/ui_22_dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -357,8 +349,7 @@
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
-                        android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_td"/>
+                        android:layout_height="@dimen/ui_22_dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -403,8 +394,7 @@
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
-                        android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_tl"/>
+                        android:layout_height="@dimen/ui_22_dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -449,8 +439,7 @@
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
-                        android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_gd"/>
+                        android:layout_height="@dimen/ui_22_dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

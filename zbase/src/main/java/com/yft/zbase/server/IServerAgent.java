@@ -33,6 +33,11 @@ public interface IServerAgent {
     String LANGUAGE_SERVER ="language_server";
 
     /**
+     * 自由存储服务
+     */
+    String FREE_STORAGE = "free_storage_server";
+
+    /**
      * 初始化程序
      */
     void initServer(Context context);

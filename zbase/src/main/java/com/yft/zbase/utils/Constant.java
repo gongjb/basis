@@ -46,6 +46,11 @@ public class Constant {
     public final static String LANGUAGE = "language";
     // 当前语言环境
     public final static String LANGUAGE_TYPE = "language_type";
+
+    /* 存储相关(提供给关联的app) */
+    public final static String FREE_STORAGE = "free_storage";
+
+
     public final static String NORMAL = "normal"; //普通区
     public final static String ACTIVITY = "activity"; // 活动区（品鉴区）
     public final static String SPECIAL = "special"; // 抽奖区

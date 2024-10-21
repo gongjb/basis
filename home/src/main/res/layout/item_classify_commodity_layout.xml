@@ -82,7 +82,6 @@
             android:maxLines="3"
             android:ellipsize="end"/>
 
-<!--android:text='@{"共" + bean.episodes + "集"}'-->
         <TextView
             android:id="@+id/tag_money"
             android:layout_width="wrap_content"
@@ -90,8 +89,7 @@
             android:textColor="@color/sd_d_white"
             android:textSize="@dimen/ui_11_dp"
             app:layout_constraintStart_toStartOf="@+id/tv_des"
-            app:layout_constraintBottom_toBottomOf="@+id/ai_image"
-            android:text='@{LanguageManage.getStringIn("共%s集",  bean.episodes+"")}'/>
+            app:layout_constraintBottom_toBottomOf="@+id/ai_image"/>
 
 
         <View

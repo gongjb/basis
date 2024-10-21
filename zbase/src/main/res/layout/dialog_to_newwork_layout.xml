@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text='@{LanguageManage.getString("选择网络")}'
+            android:text='@{LanguageManage.getString("选择")}'
             tools:text="选择网络" />
 
         <View

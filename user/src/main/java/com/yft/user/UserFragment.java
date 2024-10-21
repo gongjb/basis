@@ -43,12 +43,12 @@ public class UserFragment extends BaseFragment<FragmentUserLayoutBinding, UserVi
 
         // 未被选中图片
         imageTextParams1.images = new Integer[] {
-                R.mipmap.user_img_cz,
-                R.mipmap.user_img_tx,
-                R.mipmap.user_img_hz,
-                R.mipmap.user_img_yq};
+                0,
+                0,
+                0,
+                0};
 
-        imageTextParams1.text = new String[]{viewModel.getString("充值"), viewModel.getString("提现"), viewModel.getString("互转"), viewModel.getString("邀请")};
+        imageTextParams1.text = new String[]{viewModel.getString("1"), viewModel.getString("2"), viewModel.getString("3"), viewModel.getString("4")};
         imageTextParams1.maxLine = 4; // 每一行显示的个数
         imageTextParams1.imageHigh = 25;
         imageTextParams1.imageLoader = new ImageGlideLoader();

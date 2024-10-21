@@ -19,18 +19,13 @@ public class DynamicMarketManage {
 
     private DynamicMarketManage() {
         mServerAgent = new ConcurrentHashMap<>();
-        IServerAgent userImplServer = new UserImplServer();
-        IServerAgent deviceImplServer = new DeviceImplServer();
-        IServerAgent addressImplServer = new AddressImplServer();
-        IServerAgent shareImplServer = new ShareImplServer();
-        IServerAgent payImplServer = new PayImplServer();
-        IServerAgent languageServer = new LanguageServer();
-        mServerAgent.put(IServerAgent.USER_SERVER, userImplServer);
-        mServerAgent.put(IServerAgent.DEVICE_SERVER, deviceImplServer);
-        mServerAgent.put(IServerAgent.ADDRESS_SERVER, addressImplServer);
-        mServerAgent.put(IServerAgent.SHARE_SERVER, shareImplServer);
-        mServerAgent.put(IServerAgent.PAY_SERVER, payImplServer);
-        mServerAgent.put(IServerAgent.LANGUAGE_SERVER, languageServer);
+        mServerAgent.put(IServerAgent.USER_SERVER, new UserImplServer());
+        mServerAgent.put(IServerAgent.DEVICE_SERVER, new DeviceImplServer());
+        mServerAgent.put(IServerAgent.ADDRESS_SERVER, new AddressImplServer());
+        mServerAgent.put(IServerAgent.SHARE_SERVER, new ShareImplServer());
+        mServerAgent.put(IServerAgent.PAY_SERVER, new PayImplServer());
+        mServerAgent.put(IServerAgent.LANGUAGE_SERVER, new LanguageServer());
+        mServerAgent.put(IServerAgent.FREE_STORAGE, new FreeStorageServer());
     }
 
     public static synchronized DynamicMarketManage getInstance() {

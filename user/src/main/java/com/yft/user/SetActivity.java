@@ -72,11 +72,7 @@ public class SetActivity extends BaseActivity<ActivitySetLayoutBinding, UserView
     }
 
     protected void initItemData() {
-        mList.add(new MeItemBean(1, mViewModel.getString("关于我们"), "", false, "", false, R.mipmap.ic_set_gywm));
-        mList.add(new MeItemBean(3, mViewModel.getString("语言切换"), "", false, "", false, R.mipmap.home_setimg));
-        mList.add(new MeItemBean(2, mViewModel.getString("缓存清理"), "", false, "", false, R.mipmap.ic_set_qlhc));
-        //  mList.add(new MeItemBean(3,"联系我们","", false, "", false, R.mipmap.ic_set_lxwm));
-        mList.add(new MeItemBean(6, mViewModel.getString("版本更新"), "", false, "", false, R.mipmap.ic_set_bbgx));
+        mList.add(new MeItemBean(1, mViewModel.getString("关于我们"), "", false, "", false,0));
     }
 
 

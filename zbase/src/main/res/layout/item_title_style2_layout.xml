@@ -63,7 +63,6 @@
                 android:layout_height="@dimen/ui_14_dp"
                 app:layout_constraintEnd_toStartOf="@+id/tv_address"
                 app:layout_constraintTop_toTopOf="@+id/tv_title"
-                android:src="@mipmap/icon_adderss_location"
                 android:layout_marginStart="@dimen/ui_12_dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_title"/>
