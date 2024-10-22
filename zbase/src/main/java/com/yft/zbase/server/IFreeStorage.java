@@ -2,6 +2,9 @@ package com.yft.zbase.server;
 
 import android.os.Parcelable;
 
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.List;
 
 public interface IFreeStorage extends IServerAgent {
@@ -56,5 +59,5 @@ public interface IFreeStorage extends IServerAgent {
      * @return
      * @param <T>
      */
-    <T extends Parcelable> List<T> getList(String key, List<T> ls);
+    <T extends Parcelable> List<T> getList(String key, Type ls);
 }

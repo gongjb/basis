@@ -11,6 +11,7 @@ import com.yft.zbase.utils.Constant;
 import com.yft.zbase.utils.JsonUtil;
 import com.yft.zbase.utils.Utils;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class FreeStorageServer implements IFreeStorage {
@@ -100,10 +101,6 @@ public class FreeStorageServer implements IFreeStorage {
             return false;
         }
 
-        if (Utils.isCollectionEmpty(ls)) {
-            return false;
-        }
-
         return mStorageMk.encode(key, JsonUtil.listToJson(ls));
     }
 
@@ -111,11 +108,11 @@ public class FreeStorageServer implements IFreeStorage {
     /**
      * 获取集合
      * @param key
-     * @param ls
+     * @param c
      * @return
      * @param <T>
      */
-    public <T extends Parcelable> List<T> getList(String key, List<T> ls) {
+    public <T extends Parcelable> List<T> getList(String key,  Type c) {
         if (TextUtils.isEmpty(key)) {
             return null;
         }
@@ -123,7 +120,8 @@ public class FreeStorageServer implements IFreeStorage {
         if (mStorageMk.containsKey(key)) {
             String listJson = mStorageMk.decodeString(key, "");
             if (!TextUtils.isEmpty(listJson)) {
-                return JsonUtil.parseJsonToList(listJson, new TypeToken<List<T>>() {}.getType());
+                //new TypeToken<List<T>>() {}.getType()
+                return JsonUtil.parseJsonToList(listJson, c);
             }
         }
 
