@@ -151,4 +151,12 @@ public abstract class BaseFragmentDialog<T extends ViewDataBinding, K extends Ba
         super.onDismiss(dialog);
         isShow = false;
     }
+
+    /**
+     * 重置show的状态
+     * @param show
+     */
+    public void setShow(boolean show) {
+        isShow = show;
+    }
 }
