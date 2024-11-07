@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.chenenyu.router'
+apply from:"../config.gradle"
+
+android {
+
+    compileSdk rootProject.ext.compileSdk
+    namespace 'com.hkbyte.ad'
+    defaultConfig {
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdkVer
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    if (zbaseMode.isLocalMode) {
+        implementation project(path: ':zbase')
+    } else {
+        implementation 'com.github.gjb-cn.basis:zbase:' + cloudCode
+    }
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //在您的app项目的build.gradle中添加
+    implementation "com.pangle.cn:mediation-sdk:6.4.1.5"
+    implementation "com.pangle.cn:mediation-gdt-adapter:4.591.1461.2"
+    implementation(name: "GDTSDK.unionNormal.4.591.1461", ext: 'aar')
+
+    implementation "com.pangle.cn:mediation-test-tools:6.4.1.5" //groMore 测试工具，仅在测试阶段使用，请勿带到线上
+
+
+}

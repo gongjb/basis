@@ -72,11 +72,7 @@ public class SetActivity extends BaseActivity<ActivitySetLayoutBinding, UserView
     }
 
     protected void initItemData() {
-        mList.add(new MeItemBean(1, mViewModel.getString("关于我们"), "", false, "", false, R.mipmap.ic_set_gywm));
-        mList.add(new MeItemBean(3, mViewModel.getString("语言切换"), "", false, "", false, R.mipmap.home_setimg));
-        mList.add(new MeItemBean(2, mViewModel.getString("缓存清理"), "", false, "", false, R.mipmap.ic_set_qlhc));
-        //  mList.add(new MeItemBean(3,"联系我们","", false, "", false, R.mipmap.ic_set_lxwm));
-        mList.add(new MeItemBean(6, mViewModel.getString("版本更新"), "", false, "", false, R.mipmap.ic_set_bbgx));
+        mList.add(new MeItemBean(1, mViewModel.getString("关于我们"), "", false, "", false, com.yft.zbase.R.mipmap.ic_launcher));
     }
 
 
@@ -188,10 +184,10 @@ public class SetActivity extends BaseActivity<ActivitySetLayoutBinding, UserView
                 ArrayList<String> arrayList = new ArrayList<>();
                 // 更新描述
                 arrayList.add(downLoadBean.getDescription());
-                LOGE("=渠道=>" + mViewModel.getUserServer().getFlavor());
+                LOGE("=渠道=>" + mViewModel.getDevice().getFlavor());
                 // 弹出更新软件的弹出框
                 versionUpdateUtil.showDownloadApkDialog(arrayList, downLoadBean.getUpdateUrl(), downLoadBean.isMustUpdate(), this.getPackageName(), this,
-                        mViewModel.getUserServer().getFlavor());
+                        mViewModel.getDevice().getFlavor());
             } else {
                 ToastUtils.toast(mViewModel.getString("当前已是最新版本!"));
             }

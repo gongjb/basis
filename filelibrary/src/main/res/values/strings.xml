@@ -1,0 +1,33 @@
+<resources>
+    <string name="file_tips">文件经过本地加密处理，他人无法知道文件的真实内容</string>
+    <string name="private_video">私密视频</string>
+    <string name="private_image">私密图片</string>
+    <string name="private_audio">私密音频</string>
+    <string name="private_documentation">私密文档</string>
+
+    <string name="new_dirs">新建文件夹</string>
+    <string name="new_dirs_not_null_tips">文件目录名称不能为空</string>
+    <string name="files_dirs_create_error">文件目录创建失败, 请检查文件存储权限是否打开。</string>
+    <string name="files_dirs_create_exists_error">文件目录已存在，请重新创建！</string>
+    <string name="files_dirs_create_name_tips">请输入文件目录名称</string>
+    <string name="files_copy_error_tips">导入文件出错， 请重试...</string>
+    <string name="files_copy_success">复制成功</string>
+    <string name="copy_progress_tips">已完成 %1$d/%2$d，请稍后。</string>
+    <string name="find_preview_error_tips">无法找到可以预览的软件</string>
+    <string name="delete_the_original_files_tips">有%1$d个文件已经导入隐藏文件夹，是否删除手机系统内原文件？</string>
+    <string name="prompt">提示</string>
+    <string name="sure">确定</string>
+    <string name="delete_sure_tips">"已为您删除了%1$d个系统内的原文件"</string>
+    <string name="delete_sure_join_tips">"已为您删除了%1$d个文件"</string>
+    <string name="delete_error_tips">"已为您删除了%1$d个系统内的原文件, 因为文件被占用还有%2$d个文件未被删除，请前往相册手动删除。"</string>
+    <string name="importing_tips">正在导入，请勿取消！</string>
+    <string name="exporting_tips">正在导出，请勿取消！</string>
+    <string name="task_not_over_tips">上个复制任务还未结束，请稍后。</string>
+    <string name="file_copy_channel">文件复制通道</string>
+    <string name="file_rename">文件重命名</string>
+    <string name="please_select_file_rename">请选择需要重命名的文件</string>
+    <string name="task_in_progress_tips">复制任务正在进行中，请稍后！</string>
+    <string name="select_exported_file_tips">请选择导出的文件</string>
+    <string name="select_files_delete_tips">请选择需要删除的文件</string>
+    <string name="exporting_in_background_tips">文件正在后台导出，请稍等...</string>
+</resources>

@@ -32,10 +32,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_icon_abc"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="@dimen/ui_40_dp"
+            android:layout_height="@dimen/ui_40_dp"
             android:scaleType="fitXY"
-            app:url="@{DbBean.image}"
+            app:url="@{DbBean.thatImageId}"
             app:placeholder="@{R.drawable.ic_start_load}"
             app:error="@{R.drawable.ic_start_error}"
             app:radius="@{14}" />
@@ -44,9 +44,9 @@
             android:id="@+id/iv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_33"
             android:textSize="@dimen/ui_12_dp"
             android:layout_marginTop="@dimen/ui_8_dp"
+            android:textStyle="bold"
             tools:text="@{DbBean.name}" />
     </LinearLayout>
 </layout>

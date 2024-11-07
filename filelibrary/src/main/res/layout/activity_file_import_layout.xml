@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.yft.zbase.widget.TitleBarView
+            android:id="@+id/tlt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_16_dp"
+            android:layout_marginTop="@dimen/ui_12_dp"
+            android:layout_marginEnd="@dimen/ui_16_dp"
+            android:text="@string/file_tips"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tlt" />
+
+
+        <FrameLayout
+            android:id="@+id/fl_group"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/ui_12_dp"
+            android:layout_weight="8"
+            android:background="@drawable/bg_home_top_left_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips">
+
+            <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                android:id="@+id/rv_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/ui_16_dp"
+                android:layout_marginTop="@dimen/ui_26_dp"
+                android:layout_marginEnd="@dimen/ui_16_dp" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/cv_add"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="@dimen/ui_18_dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/ui_60_dp"
+                android:layout_height="@dimen/ui_60_dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/theme_red"
+                app:cardCornerRadius="@dimen/ui_30_dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="@dimen/ui_36_dp"
+                    android:layout_height="@dimen/ui_36_dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_file_add_import" />
+
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fl_fun"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_120_dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            android:background="@drawable/bg_file_edit_top_left_right"
+            app:layout_constraintStart_toStartOf="parent">
+            <com.gongjiebin.latticeview.LatticeView
+                android:id="@+id/ll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

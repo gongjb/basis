@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+
+        <variable
+            name="DbBean"
+            type="com.hkbyte.filelibrary.bean.FileBean" />
+
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+
+        <variable
+            name="tag"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="onClick"
+            type="com.yft.zbase.adapter.OnAdapterClickListener" />
+
+        <variable
+            name="onLongClick"
+            type="com.hkbyte.cnbase.listener.OnAdapterLongClickListener" />
+
+        <import type="com.hkbyte.filelibrary.viewmodel.FileViewModel"></import>
+
+        <import type="android.view.View" />
+
+        <import type="com.hkbyte.file.R" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{v -> onClick.onAdapterClick(v, DbBean, position)}"
+            android:onLongClick="@{v -> onLongClick.onAdapterLongClick(v, DbBean, position)}"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ui_80_dp"
+                app:error="@{R.mipmap.icon_dirs2}"
+                app:placeholder="@{R.mipmap.icon_dirs2}"
+                app:radius="@{0}"
+                app:url="@{DbBean.imageIntId}" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/ui_8_dp"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:maxLength="28"
+                android:maxLines="2"
+                android:text="@{DbBean.name}"
+                android:textColor="@color/login_backcolor"
+                tools:text="新建文件夹" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_80_dp"
+            android:background="@drawable/bg_progress_stream"
+            android:gravity="center"
+            android:visibility="gone"
+            app:tvFileNumber="@{DbBean}"
+            tools:text="123" />
+
+        <FrameLayout
+            android:id="@+id/check_box_fl"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_progress_stream"
+            android:onClick="@{v -> onClick.onAdapterClick(v, DbBean, position)}"
+            android:visibility="@{tag ? View.VISIBLE : View.GONE,default=gone}">
+
+            <CheckBox
+                android:id="@+id/check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/ui_12_dp"
+                android:layout_marginEnd="@dimen/ui_12_dp"
+                android:background="@drawable/ps_checkbox_click_values"
+                android:button="@null"
+                android:checked="@{DbBean.check}"
+                android:clickable="false" />
+
+        </FrameLayout>
+    </FrameLayout>
+
+
+</layout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_pro"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:tag="layout/item_home_bottom_layout_0">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ui_12_dp"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/pro_bar"
+            android:layout_width="@dimen/ui_32_dp"
+            android:layout_height="@dimen/ui_32_dp"
+            android:indeterminateDrawable="@drawable/style_pro" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_20_dp"
+            android:text="正在加载，请稍等..."
+            android:textColor="@color/black"
+            android:textSize="@dimen/ui_12_sp" />
+    </LinearLayout>
+
+</LinearLayout>

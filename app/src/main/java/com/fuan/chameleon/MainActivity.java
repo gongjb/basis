@@ -26,6 +26,7 @@ import com.gongjiebin.latticeview.LatticeView;
 import com.fuan.chameleon.databinding.ActivityMainBinding;
 import com.fuan.chameleon.model.MainViewModel;
 
+import com.hkbyte.cnbase.router.ChameleonJumpRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.bean.DownLoadBean;
 import com.yft.zbase.bean.TargetBean;
@@ -57,14 +58,26 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
      * 存放fragment页面路径
      */
     private String[] mPageTags;
+    //
+    private static final String VIP_PAGE = "vip_page";
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        getWindow().setNavigationBarColor(getResources().getColor(com.hkbyte.cnbase.R.color.chameleon_theme_color));
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public void initView() {
         //UserFragment
-        mPageTags = new String[]{RouterFactory.getPage("HomeVLayoutFragment"),
-                RouterFactory.getPage("UserFragment")};
+        mPageTags = new String[]{
+                RouterFactory.getInstance().getPage("ChameleonHomeFragment"),
+                RouterFactory.getInstance().getPage("ToolsFragment"),
+                VIP_PAGE,
+                RouterFactory.getInstance().getPage("ChameleonUserFragment")};
 
         mPrivacyFragmentDialog = PrivacyFragmentDialog.newInstance();
+
         GradientDrawable grad = new GradientDrawable(//渐变色
                 GradientDrawable.Orientation.BOTTOM_TOP,
                 mColors);
@@ -75,15 +88,26 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         // 未被选中图片
         mImageTextParams.images = new Integer[] {
                 com.yft.zbase.R.mipmap.icon_home_off,
+                com.yft.zbase.R.mipmap.icon_me_off,
+                com.yft.zbase.R.mipmap.icon_home_off,
                 com.yft.zbase.R.mipmap.icon_me_off};
 
 
         // 选中之后应该展示的图片
         mImageTextParams.selectImages = new Integer[] {
                 com.yft.zbase.R.mipmap.icon_home_on,
+                com.yft.zbase.R.mipmap.icon_me_on,
+                com.yft.zbase.R.mipmap.icon_home_on,
                 com.yft.zbase.R.mipmap.icon_me_on};
 
-        mImageTextParams.text = new String[]{mViewModel.getString("首页"), mViewModel.getString("我的")};
+        // 工具
+        mImageTextParams.text = new String[]{
+                getResources().getString(R.string.home),
+                mViewModel.getString("工具"),
+                mViewModel.getString("会员"),
+                mViewModel.getString("我的")};
+
+
         mImageTextParams.maxLine = mImageTextParams.text.length; // 每一行显示的个数
         mImageTextParams.imageLoader = new ImageGlideLoader();
         mImageTextParams.imageHigh = 20;
@@ -95,11 +119,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mImageTextParams.textSelectColor = com.yft.zbase.R.color.theme_red;
         mImageTextParams.imageType = ImageView.ScaleType.FIT_XY;
         // imageTextParams.textSelectColor = com.yft.zbase.R.color.theme_text_color; // 字体被选中的颜色
-        mImageTextParams.bg_color = "#222432";
-        //imageTextParams.animation = createAnimation();
+        mImageTextParams.bg_color_int = getResources().getColor(com.hkbyte.cnbase.R.color.chameleon_theme_color);
+        //mImageTextParams.animation = createAnimation();
         mDataBing.llView.setImageTextParams(mImageTextParams);
         mDataBing.llView.startView(); // 开始加载布局
-        Fragment home = RouterFactory.getFragment(this, mPageTags[0]);
+        Fragment home = RouterFactory.getInstance().getFragment(this, mPageTags[0]);
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         String initPage = getIntent().getStringExtra("initPage");
@@ -119,12 +143,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         }
     }
 
+
+
+    @Override
+    protected void statusBarModel(boolean isDarkMode) {
+        super.statusBarModel(false);
+
+
+    }
+
     @Override
     protected void getColors() {
         mColors = new int[]{
-                ColorUtils.setAlphaComponent(getResources().getColor(com.yft.zbase.R.color.themeMainColorTwo), 250),
-                ColorUtils.setAlphaComponent(getResources().getColor(com.yft.zbase.R.color.themeMainColorTwo), 100),
-                ColorUtils.setAlphaComponent(getResources().getColor(com.yft.zbase.R.color.themeMainColorTwo), 0)};
+                ColorUtils.setAlphaComponent(getResources().getColor(com.hkbyte.cnbase.R.color.chameleon_theme_color), 250),
+                ColorUtils.setAlphaComponent(getResources().getColor(com.hkbyte.cnbase.R.color.chameleon_theme_color), 50),
+                ColorUtils.setAlphaComponent(getResources().getColor(com.hkbyte.cnbase.R.color.chameleon_theme_color), 0)};
     }
 
     @Override
@@ -146,17 +179,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
             @Override
             public void onClick(View v, ImageView imageView, Object[] urls, int position) {
-                if (position == 1) {
-                    if (!mViewModel.isLogin()) {
-                        RouterFactory.startRouterActivity(MainActivity.this, RouterFactory.getPage("LoginActivity"));
-                        mImageTextParams.selectIndex = mPageIndex;
-                        mDataBing.llView.removeViews();
-                        mDataBing.llView.startView();
-                        return;
-                    }
-                } else {
-                    mPageIndex = position;
+                if (position == 2) {
+                    UIUtils.showToast("跳转会员页面");
+                    mImageTextParams.selectIndex = mPageIndex;
+                    mDataBing.llView.removeViews();
+                    mDataBing.llView.startView();
+                    return;
                 }
+                mPageIndex = position;
                 selectTab(position);
             }
         });
@@ -165,25 +195,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private void initPage() {
         String initPage = getIntent().getStringExtra("initPage");
         if (!TextUtils.isEmpty(initPage)) {
-            if (!mViewModel.isLogin()) {
-                // 未登录， 不做跳转
-                return;
-            }
             switch (initPage) {
-                case RouterFactory.TO_HOME_PAGE:
+                case ChameleonJumpRouter.TO_HOME_PAGE:
                     onSuccess(0);
                     break;
-                case RouterFactory.TO_HOME_APPRAISE:
+                case ChameleonJumpRouter.TO_HOME_TOOLS:
                     onSuccess(1);
                     break;
-                case RouterFactory.TO_HOME_NEWS:
-                    onSuccess(2);
+                case ChameleonJumpRouter.TO_HOME_VIP:
+                    UIUtils.showToast("跳转会员页面");
                     break;
-                case RouterFactory.TO_HOME_SHOPCAR:
+                case ChameleonJumpRouter.TO_HOME_MINE:
                     onSuccess(3);
-                    break;
-                case RouterFactory.TO_HOME_MINE:
-                    onSuccess(4);
                     break;
                 default:{}
             }
@@ -225,7 +248,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
 
     private void selectTab(int position) {
-        Fragment fragment = mFragmentManager.findFragmentByTag(mPageTags[position]);
+        String tags = mPageTags[position];
+        Fragment fragment = mFragmentManager.findFragmentByTag(tags);
         if (fragment == null) {
             mFragmentTransaction = mFragmentManager.beginTransaction();
             for (Fragment fragment1 : mFragmentManager.getFragments()) {
@@ -233,7 +257,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 mFragmentTransaction.hide(fragment1);
             }
             mFragmentTransaction.add(R.id.frame_container,
-                    RouterFactory.getFragment(MainActivity.this, mPageTags[position]), mPageTags[position]);
+                    RouterFactory.getInstance().getFragment(MainActivity.this, mPageTags[position]), mPageTags[position]);
             mFragmentTransaction.commit();
             return;
         }

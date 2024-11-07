@@ -75,7 +75,7 @@ public class ActivityUserInformation extends BasePhotoActivity<ActivityUserInfor
                     mDialogPhotoFragment.show(getSupportFragmentManager(), getClass().getCanonicalName());
                 }
             } else if (meItemBean.getId() == 2) {
-                RouterFactory.startRouterActivity(ActivityUserInformation.this, "com.yft.user.NicknameActivity");
+                RouterFactory.getInstance().startRouterActivity(ActivityUserInformation.this, "com.yft.user.NicknameActivity");
             } else if (meItemBean.getId() == 4) {
                 //RouterFactory.startRouterActivity(ActivityUserInformation.this, RouterFactory.ACTIVITY_BIND_PHONE);
                 if (mFragmentMessageDialog != null && !mFragmentMessageDialog.isShow()) {

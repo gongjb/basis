@@ -24,7 +24,7 @@
             android:layout_height="@dimen/ui_60_dp"
             android:layout_marginTop="115dp"
             android:text="欢迎登录ReelShort"
-            android:src="@mipmap/about_icon"
+            android:src="@mipmap/ic_launcher"
             android:textColor="@color/text_color_33"
             android:textSize="@dimen/ui_20_dp"
             app:layout_constraintEnd_toEndOf="parent"

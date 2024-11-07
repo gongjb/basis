@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_file_new_dirs"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_order_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ui_50_dp"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:text="@string/new_dirs"
+                    android:textColor="@color/sd_b_white"
+                    android:textSize="@dimen/ui_14_dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/v_line_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginStart="@dimen/ui_8_dp"
+                    android:layout_marginEnd="@dimen/ui_8_dp"
+                    android:background="@color/ui_dialog_text_color" />
+
+                <EditText
+                    android:id="@+id/et_dir_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ui_50_dp"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:background="@null"
+                    android:hint="@string/files_dirs_create_name_tips"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/sd_d_white"
+                    android:textSize="@dimen/ui_14_dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="@dimen/ui_2_dp"
+                    android:layout_marginEnd="@dimen/ui_2_dp"
+                    android:background="@color/chameleon_theme_color" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="@dimen/ui_40_dp"
+                android:gravity="center"
+                android:paddingStart="@dimen/ui_6_dp"
+                android:textColor="@color/sd_d_white"
+                android:textSize="@dimen/ui_12_dp"
+                android:text="@string/cancel"
+                tools:text="取消" />
+
+
+            <TextView
+                android:id="@+id/tv_yes"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="@dimen/ui_40_dp"
+                android:gravity="center"
+                android:paddingStart="@dimen/ui_6_dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/ui_12_dp"
+                android:text="@string/sure"
+                tools:text="确定"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

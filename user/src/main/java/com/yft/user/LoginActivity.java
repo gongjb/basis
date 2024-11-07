@@ -271,7 +271,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginActivityBinding, Lo
                 build.putString("title", mViewModel.getString("用户协议"));
                 build.putBoolean("isWebTitle", false);
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getUserAgreementUrl());
-                RouterFactory.startRouterBundleActivity(LoginActivity.this, RouterFactory.getPage("WebYftActivity"), build);
+                RouterFactory.getInstance().startRouterBundleActivity(LoginActivity.this, RouterFactory.getInstance().getPage("WebYftActivity"), build);
             }
         });
 
@@ -282,7 +282,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginActivityBinding, Lo
                 build.putString("title", mViewModel.getString("隐私政策"));
                 build.putBoolean("isWebTitle", false);
                 build.putString("url", mViewModel.getUserServer().getServiceUrl().getPrivacyAgreementUrl());
-                RouterFactory.startRouterBundleActivity(LoginActivity.this, RouterFactory.getPage("WebYftActivity"), build);
+                RouterFactory.getInstance().startRouterBundleActivity(LoginActivity.this, RouterFactory.getInstance().getPage("WebYftActivity"), build);
             }
         });
     }

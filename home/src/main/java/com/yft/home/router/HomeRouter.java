@@ -11,11 +11,15 @@ public class HomeRouter implements IRouter {
     // 搜索
     public final static String ACTIVITY_SEARCH = "com/yft/home/SearchActivity";
 
+    public final static String FRAGMENT_CHAMELEON_HOME = "com/fuan/chameleon/ChameleonHomeFragment";
+
+
     @Override
     public ConcurrentMap<String, String> initPages() {
         ConcurrentMap<String, String> routerMap = new ConcurrentHashMap<>();
         routerMap.put("HomeVLayoutFragment", FRAGMENT_HOME_VLAYOUT);
         routerMap.put("SearchActivity", ACTIVITY_SEARCH);
+        routerMap.put("ChameleonHomeFragment", FRAGMENT_CHAMELEON_HOME);
         return routerMap;
     }
 }

@@ -1,15 +1,18 @@
 package com.fuan.chameleon.model;
 
-import static com.yft.zbase.router.RouterFactory.TO_HOME_APPRAISE;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_MINE;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_NEWS;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_PAGE;
-import static com.yft.zbase.router.RouterFactory.TO_HOME_SHOPCAR;
 
+
+
+
+import static com.hkbyte.cnbase.router.ChameleonJumpRouter.TO_HOME_MINE;
+import static com.hkbyte.cnbase.router.ChameleonJumpRouter.TO_HOME_PAGE;
+import static com.hkbyte.cnbase.router.ChameleonJumpRouter.TO_HOME_TOOLS;
+import static com.hkbyte.cnbase.router.ChameleonJumpRouter.TO_HOME_VIP;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.hk.xnet.WebServiceThrowable;
+import com.hkbyte.cnbase.router.ChameleonJumpRouter;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.router.IToHomePageListener;
@@ -33,7 +36,7 @@ public class MainViewModel extends BaseViewModel {
         super();
         mWelcomeModel = new WelcomeModel();
         // 注入jump跳转代码代码
-        RouterFactory.addToHomePageListener(iToHomePageListener);
+        ChameleonJumpRouter.getInstance().addToHomePageListener(iToHomePageListener);
     }
 
 
@@ -44,17 +47,14 @@ public class MainViewModel extends BaseViewModel {
                 case TO_HOME_PAGE:
                     getMutableLiveData().postValue(0);
                     break;
-                case TO_HOME_APPRAISE:
+                case TO_HOME_TOOLS:
                     getMutableLiveData().postValue(1);
                     break;
-                case TO_HOME_NEWS:
+                case TO_HOME_VIP:
                     getMutableLiveData().postValue(2);
                     break;
-                case TO_HOME_SHOPCAR:
-                    getMutableLiveData().postValue(3);
-                    break;
                 case TO_HOME_MINE:
-                    getMutableLiveData().postValue(4);
+                    getMutableLiveData().postValue(3);
                     break;
                 default:{}
             }
@@ -86,6 +86,6 @@ public class MainViewModel extends BaseViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        RouterFactory.removeToHomePageListener(iToHomePageListener);
+        ChameleonJumpRouter.getInstance().removeToHomePageListener(iToHomePageListener);
     }
 }

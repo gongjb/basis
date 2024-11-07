@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import com.chenenyu.router.annotation.Route;
+import com.hkbyte.cnbase.router.ChameleonJumpRouter;
 import com.yft.user.databinding.ActivityInviteFriendLayoutBinding;
 import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
@@ -53,7 +54,7 @@ public class InviteFriendsActivity extends BaseActivity<ActivityInviteFriendLayo
                 String pmc = mViewModel.getUserInfo().getRecommendCode();
                 String url = "/short/h5/#/pages/register/register?pmc="+pmc+"&"
                         + mViewModel.getDevice().getAppAlias() + "=1&actionType="
-                        +RouterFactory.JUMP_INVITE_FRIEND;
+                        + ChameleonJumpRouter.JUMP_INVITE_FRIEND;
 
                 //mViewModel.getUserServer().getShareURL() + url
                 Bitmap bitmap1 = ZxingUtils.createImage(mViewModel.getUserServer().getShareURL() + url,  mDataBing.ivCode.getWidth(), mDataBing.ivCode.getWidth(), bitmap);

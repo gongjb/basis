@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.yft.zbase.R"></import>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_file_new_dirs"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ui_60_dp"
+            android:gravity="center"
+            android:textColor="@color/sd_white"
+            android:text="请选择导入的APP"/>
+
+        <com.yanzhenjie.recyclerview.SwipeRecyclerView
+            android:id="@+id/rv_apps_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"/>
+
+        <FrameLayout
+            android:id="@+id/fl_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_24_dp"
+            android:layout_marginBottom="@dimen/ui_24_dp"
+            android:layout_below="@+id/tv_title">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/ui_32_dp"
+                android:layout_height="@dimen/ui_32_dp"
+                android:indeterminateDrawable="@drawable/style_pro" />
+
+        </FrameLayout>
+
+    </RelativeLayout>
+</layout>

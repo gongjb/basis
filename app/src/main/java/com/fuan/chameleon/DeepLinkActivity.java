@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.Nullable;
 
 import com.google.gson.JsonObject;
+import com.hkbyte.cnbase.router.ChameleonJumpRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.bean.TargetBean;
 import com.yft.zbase.router.RouterFactory;
@@ -36,7 +37,7 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
     private static final String BODY_CONTENT = "json";
     // web页面的title
     private static final String BODY_TITLE = "title";
-    // web页面跳转的url
+    // web页面跳转的url 更换图标 replaceicon 计算器
     private static final String BODY_URL = "url";
 
     @Override
@@ -48,7 +49,7 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
             if (!TextUtils.isEmpty(scheme)) {
                 List<String> params = data.getPathSegments();
                 if (Utils.isCollectionEmpty(params)) {
-                    RouterFactory.startRouterActivity(this, "com.fuan.market.WelcomeActivity");
+                    RouterFactory.getInstance().startRouterActivity(this, "com.fuan.market.WelcomeActivity");
                     this.finish();
                     return;
                 }
@@ -56,7 +57,7 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
                 String testId = params.get(0);
                 if (TextUtils.isEmpty(testId)) {
                     // 无法匹配路径
-                    RouterFactory.startRouterActivity(this, "com.fuan.market.WelcomeActivity");
+                    RouterFactory.getInstance().startRouterActivity(this, "com.fuan.market.WelcomeActivity");
                     this.finish();
                     return;
                 }
@@ -65,7 +66,7 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
                 JsonObject jsonObject = JsonUtil.parseJsonToJsonObj(json);
                 if (jsonObject == null) {
                     // 无法获取关键参数
-                    RouterFactory.startRouterActivity(this, "com.fuan.market.WelcomeActivity");
+                    RouterFactory.getInstance().startRouterActivity(this, "com.fuan.market.WelcomeActivity");
                     this.finish();
                     return;
                 }
@@ -79,11 +80,11 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
 //                        RouterFactory.startRouterBundleActivity(this , RouterFactory.ACTIVITY_WEB, bundle);
                         TargetBean targetBean = new TargetBean();
                         targetBean.setTarget(jsonObject.get(BODY_URL).getAsString());
-                        targetBean.setActionType(RouterFactory.JUMP_LINK_MODULE);
-                        RouterFactory.jumpToActivity(this, targetBean);
+                        targetBean.setActionType(ChameleonJumpRouter.JUMP_LINK_MODULE);
+                        RouterFactory.getInstance().jumpToActivity(this, targetBean);
                         this.finish();
                     } else {
-                        RouterFactory.startRouterActivity(this, "com.fuan.market.WelcomeActivity");
+                        RouterFactory.getInstance().startRouterActivity(this, "com.fuan.market.WelcomeActivity");
                         this.finish();
                     }
                 } else if (DETAILS.equals(testId)) {
@@ -93,12 +94,12 @@ public class DeepLinkActivity extends BaseActivity<ActivityWelcomeLayoutBinding,
                         targetBean.setPmc(jsonObject.get(pmc).getAsString());
                     }
                     targetBean.setTarget(id);
-                    targetBean.setActionType(RouterFactory.JUMP_GOODS_DETAIL_MODULE);
-                    RouterFactory.jumpToActivity(this, targetBean);
+                    targetBean.setActionType(ChameleonJumpRouter.JUMP_GOODS_DETAIL_MODULE);
+                    RouterFactory.getInstance().jumpToActivity(this, targetBean);
                     finish();
                 }
             } else {
-                RouterFactory.startRouterActivity(this, "com.fuan.market.WelcomeActivity");
+                RouterFactory.getInstance().startRouterActivity(this, "com.fuan.market.WelcomeActivity");
                 this.finish();
             }
         } catch (Exception e) {

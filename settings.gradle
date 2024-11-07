@@ -4,24 +4,40 @@ pluginManagement {
         google()
         jcenter()
         mavenCentral()
+
         maven { url 'https://maven.google.com' }
         maven { url 'https://jitpack.io' }
+        maven { url "https://artifact.bytedance.com/repository/pangle"} //融合 SDK依赖
+
+        flatDir {
+            dirs 'cnad/libs'
+        }
     }
 }
+
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         jcenter()
         mavenCentral()
+
         maven { url 'https://maven.google.com' }
         maven { url 'https://jitpack.io' }
+        maven {url "https://artifact.bytedance.com/repository/pangle"} //融合 SDK依赖
+
+        flatDir {
+            dirs 'cnad/libs'
+        }
     }
 }
 
 apply from:"config.gradle"
 rootProject.name = "YFTJoin"
 include ':app'
+include ':cnbase' // 变色龙应用base
+include ':cnad' // 广告模块
 if (userMode.isLocalMode) {
     include ':user'
 }
@@ -48,3 +64,8 @@ if (zbaseMode.isLocalMode) {
 //include ':xnet'
 //include ':library'
 //include ':statusutil'
+
+
+include ':filelibrary'
+include ':filepicker'
+include ':replaceicon'

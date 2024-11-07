@@ -2,8 +2,13 @@ package com.fuan.chameleon.model;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.hkbyte.cnbase.Configs;
+import com.hkbyte.cnbase.util.Constant;
 import com.yft.zbase.base.BaseViewModel;
 import com.yft.zbase.bean.TargetBean;
+import com.yft.zbase.server.DynamicMarketManage;
+import com.yft.zbase.server.IFreeStorage;
+import com.yft.zbase.server.IServerAgent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,14 +26,29 @@ public class WelcomeViewModel extends BaseViewModel {
     private String mToAdUrl = "";
     private boolean isOpenAd;
     private TargetBean mTargetBean;
+    private IFreeStorage mFreeStorage; //
 
     public boolean isOpenAd() {
         // 是否有广告
         return isOpenAd;
     }
 
+
+    /**
+     * 获取当前样式
+     * @return
+     */
+    public int getConfigStyle() {
+        Configs configs = mFreeStorage.getParcelable(Constant.CONFIG_INFO, Configs.class);
+        if (configs == null) {
+            return 0;
+        }
+        return configs.getStyle();
+    }
+
     public WelcomeViewModel() {
         super();
+        mFreeStorage = DynamicMarketManage.getInstance().getServer(IServerAgent.FREE_STORAGE);
         mTargetBean = getUserServer().getPreloadOpen();
         isOpenAd =(mTargetBean != null);
     }

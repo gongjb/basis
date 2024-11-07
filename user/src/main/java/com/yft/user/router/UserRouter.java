@@ -29,7 +29,8 @@ public class UserRouter implements IRouter {
     public final static String ACTIVITY_ABOUT = "com/yft/user/AboutActivity";
     // 我的
     public final static String FRAGMENT_USER = "com/yft/user/UserFragment";
-
+    // 变色龙我的
+    public final static String FRAGMENT_CHAMELEON_USER = "com/yft/user/ChameleonUserFragment";
 
     @Override
     public ConcurrentMap<String, String> initPages() {
@@ -44,6 +45,7 @@ public class UserRouter implements IRouter {
         routerMap.put("UserSiteActivity", ACTIVITY_USER_SITE);
         routerMap.put("AboutActivity", ACTIVITY_ABOUT);
         routerMap.put("UserFragment", FRAGMENT_USER);
+        routerMap.put("ChameleonUserFragment", FRAGMENT_CHAMELEON_USER);
         return routerMap;
     }
 }

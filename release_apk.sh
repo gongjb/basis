@@ -7,6 +7,6 @@
 ./gradlew clean
 
 # 打包正式版
-./gradlew assembleSharehkRelease -PCNAME=XM100
+./gradlew assembleReleasehkRelease -PCNAME=XM100
 
 

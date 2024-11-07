@@ -46,7 +46,6 @@ public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBindin
     private DefineLoadMoreView defineLoadMoreView;
     private float height;
 
-
     @Override
     public void initView() {
         height = Utils.getScreenHeight(getContext()) * 2;
@@ -150,8 +149,8 @@ public class HomeVLayoutFragment extends BaseFragment<HomeFragmentV2LayoutBindin
         Bundle bundle = new Bundle();
         bundle.putString("type", "normal");
         //ACTIVITY_SEARCH
-        RouterFactory.startRouterBundleActivity(HomeVLayoutFragment.this.getContext(),
-                RouterFactory.getPage("SearchActivity"), bundle);
+        RouterFactory.getInstance().startRouterBundleActivity(HomeVLayoutFragment.this.getContext(),
+                RouterFactory.getInstance().getPage("SearchActivity"), bundle);
     }
 
     private SwipeRecyclerView.LoadMoreListener mLoadMoreListener = () -> {

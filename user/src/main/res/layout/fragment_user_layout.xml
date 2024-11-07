@@ -25,7 +25,6 @@
             android:id="@+id/home_background"
             android:layout_width="match_parent"
             android:layout_height="209dp"
-            android:background="@mipmap/user_bg_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +49,6 @@
             android:layout_height="@dimen/ui_24_dp"
             android:layout_marginTop="@dimen/ui_20_dp"
             android:layout_marginEnd="@dimen/ui_20_dp"
-            android:src="@mipmap/icon_user_set"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/v_top" />
@@ -61,7 +59,6 @@
             android:layout_height="@dimen/ui_24_dp"
             android:layout_marginTop="@dimen/ui_20_dp"
             android:layout_marginEnd="@dimen/ui_20_dp"
-            android:src="@mipmap/icon_user_service"
             app:layout_constraintEnd_toStartOf="@+id/iv_setting"
             app:layout_constraintTop_toBottomOf="@+id/v_top" />
 
@@ -73,10 +70,10 @@
             android:layout_marginStart="@dimen/ui_12_dp"
             android:layout_marginTop="@dimen/ui_10_dp"
             android:scaleType="fitXY"
-            app:error="@{R.mipmap.about_icon}"
+            app:error="@{R.mipmap.ic_launcher}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_kf"
-            app:placeholder="@{R.mipmap.about_icon}"
+            app:placeholder="@{R.mipmap.ic_launcher}"
             app:setViewRadius="@{R.dimen.ui_24_dp}"
             app:url="@{user.logo}" />
 
@@ -171,8 +168,8 @@
                             android:text='@{user.amount+""}'
                             android:textColor="@color/white"
                             android:textSize="@dimen/ui_22_dp"
-                            android:drawableStart="@mipmap/balance_usdt"
-                            android:drawableEnd="@mipmap/balance_dollar"
+                            android:drawableStart="@mipmap/ic_launcher"
+                            android:drawableEnd="@mipmap/ic_launcher"
                             android:textStyle="bold"
                             android:gravity="center_vertical"
                             android:lines="1"
@@ -186,8 +183,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ui_6_dp"
-                        android:text='@{LanguageManage.getString("余额")}'
-                        tools:text="余额"
                         android:textColor="@color/sd_white"
                         android:textSize="@dimen/ui_14_dp" />
 
@@ -221,8 +216,8 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="@dimen/ui_22_dp"
-                            android:drawableStart="@mipmap/balance_usdt"
-                            android:drawableEnd="@mipmap/balance_dollar"
+                            android:drawableStart="@mipmap/ic_launcher"
+                            android:drawableEnd="@mipmap/ic_launcher"
                             android:gravity="center_vertical"
                             android:text='@{user.amountComing+""}'
                             android:textStyle="bold"
@@ -238,8 +233,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ui_6_dp"
-                        android:text='@{LanguageManage.getString("待分润")}'
-                        tools:text="待分润"
                         android:textColor="@color/sd_white"
                         android:textSize="@dimen/ui_14_dp" />
 
@@ -309,7 +302,7 @@
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
                         android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_sc"/>
+                        android:src="@mipmap/ic_launcher"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -358,7 +351,7 @@
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
                         android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_td"/>
+                        android:src="@mipmap/ic_launcher"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -404,7 +397,7 @@
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
                         android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_tl"/>
+                        android:src="@mipmap/ic_launcher"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -450,7 +443,7 @@
                     <ImageView
                         android:layout_width="@dimen/ui_22_dp"
                         android:layout_height="@dimen/ui_22_dp"
-                        android:src="@mipmap/user_img_gd"/>
+                        android:src="@mipmap/ic_launcher"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -107,7 +107,7 @@ public class VideoHomeBannerAdapter extends DelegateAdapter.Adapter<BaseLayoutHo
                 @Override
                 public void onBannerItemClick(BGABanner banner, View itemView, @Nullable HomeConfigBean.BannerListBean data, int position) {
                     HomeConfigBean.BannerListBean bannerListBean = (HomeConfigBean.BannerListBean) itemView.getTag();
-                    RouterFactory.jumpToActivity(mContext, bannerListBean);
+                    RouterFactory.getInstance().jumpToActivity(mContext, bannerListBean);
                 }
             });
 
