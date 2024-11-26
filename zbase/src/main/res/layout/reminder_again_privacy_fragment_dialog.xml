@@ -8,9 +8,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cl_privacy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_dialog_background"
         app:setViewRadius="@{R.dimen.ui_10_dp}">
 
         <ImageView
@@ -33,7 +33,6 @@
             android:maxLines="1"
             android:minHeight="@dimen/ui_50_dp"
             android:text="温馨提示"
-            android:textColor="@color/sd_white"
             android:textSize="@dimen/ui_16_dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +47,6 @@
             android:layout_marginStart="@dimen/ui_12_dp"
             android:layout_marginTop="@dimen/ui_8_dp"
             android:layout_marginEnd="@dimen/ui_12_dp"
-            android:background="@color/ui_dialog_text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
@@ -63,7 +61,6 @@
             android:layout_marginEnd="@dimen/ui_16_dp"
             android:gravity="center|left"
             android:padding="5dp"
-            android:text="如您不同意《用户服务协议》与《隐私政策》，我们将无法为您提供 ReelShort App的完整功能，您可以选择使用仅游览模式或直接退出应用"
             android:textColor="@color/sd_b_white"
             android:textSize="@dimen/ui_14_dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,8 +90,7 @@
                 android:gravity="center"
                 android:maxWidth="240dp"
                 android:minWidth="100dp"
-                android:text="不同意,进入仅游览模式"
-                android:textColor="@color/sd_d_white" />
+                android:text="不同意,进入仅游览模式" />
 
             <View
                 android:layout_width="1px"
@@ -111,7 +107,6 @@
                 android:maxWidth="240dp"
                 android:minWidth="100dp"
                 android:text="同意"
-                android:textColor="@color/btn_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_content" />

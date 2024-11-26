@@ -2,6 +2,7 @@ package com.yft.zbase.privacy;
 
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -25,9 +26,14 @@ import com.yft.zbase.utils.UIUtils;
 public class PrivacyFragmentDialog extends BaseFragmentDialog<FragmentPrivacyDialogLayoutBinding, BaseViewModel> {
 
     private ReminderAgainPrivacyFragmentDialog mReminderAgainPrivacyFragmentDialog;
+    private IOnPrivacyClick mOnPrivacyClick;
     public static PrivacyFragmentDialog newInstance() {
         PrivacyFragmentDialog fragment = new PrivacyFragmentDialog();
         return fragment;
+    }
+
+    public void setOnPrivacyClick(IOnPrivacyClick mOnPrivacyClick) {
+        this.mOnPrivacyClick = mOnPrivacyClick;
     }
 
     @Override
@@ -36,8 +42,61 @@ public class PrivacyFragmentDialog extends BaseFragmentDialog<FragmentPrivacyDia
         mReminderAgainPrivacyFragmentDialog = ReminderAgainPrivacyFragmentDialog.newInstance();
         //阅读完整的《用户服务协议》与《隐私政策》了解详细内容
         setCustomTextWithLinks(mDataBing.tvThree, "阅读完整的《用户服务协议》与《隐私政策》了解详细内容");
+        mDataBing.vLineA.setBackgroundColor(getLineColor());
         UIUtils.startToScale(mDataBing.vLineA);
+        mDataBing.clPrivacyA.setBackground(getClPrivacy());
+        mDataBing.tvContent.setTextColor(getTextContentColor());
+        mDataBing.tvTwo.setTextColor(getTextContentColor());
+        mDataBing.tvThree.setTextColor(getTextContentColor());
+        mDataBing.tvNo.setTextColor(getTextNoColor());
+        mDataBing.tvYes.setTextColor(getTextYesColor());
+        mDataBing.tvTitle.setTextColor(getTextTitleColor());
     }
+
+    private int getTextTitleColor() {
+        return getResources().getColor(R.color.sd_white);
+    }
+
+    /**
+     * 容器背景（可自定义）
+     * @return
+     */
+    protected Drawable getClPrivacy() {
+        return getResources().getDrawable(R.drawable.item_dialog_background);
+    }
+
+    /**
+     * title line
+     * @return
+     */
+    protected int getLineColor() {
+        return getResources().getColor(R.color.ui_dialog_text_color);
+    }
+
+    /**
+     * 内容文本颜色
+     * @return
+     */
+    protected int getTextContentColor() {
+        return getResources().getColor(R.color.sd_b_white);
+    }
+
+    /**
+     * no text color
+     * @return
+     */
+    protected int getTextNoColor() {
+        return getResources().getColor(R.color.sd_d_white);
+    }
+
+    /**
+     * yes text color
+     * @return
+     */
+    protected int getTextYesColor() {
+        return getResources().getColor(R.color.btn_color);
+    }
+
 
 
     @Override
@@ -51,6 +110,9 @@ public class PrivacyFragmentDialog extends BaseFragmentDialog<FragmentPrivacyDia
             @Override
             public void onClick(View view) {
                 viewModel.getUserServer().setPrivacy(true); // 同意啦。
+                if (mOnPrivacyClick != null){
+                    mOnPrivacyClick.onPrivacyClick(IOnPrivacyClick.consent);
+                }
                 dismiss();
             }
         });
@@ -58,6 +120,9 @@ public class PrivacyFragmentDialog extends BaseFragmentDialog<FragmentPrivacyDia
         mDataBing.tvNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mOnPrivacyClick != null) {
+                    mReminderAgainPrivacyFragmentDialog.setOnPrivacyClick(mOnPrivacyClick);
+                }
                 // 再次提示
                 mReminderAgainPrivacyFragmentDialog.show(getActivity().getSupportFragmentManager(),"mReminderAgainPrivacyFragmentDialog");
                 dismiss();

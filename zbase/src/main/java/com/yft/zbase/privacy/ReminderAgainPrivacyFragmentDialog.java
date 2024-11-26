@@ -2,6 +2,7 @@ package com.yft.zbase.privacy;
 
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -11,6 +12,7 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yft.zbase.BuildConfig;
 import com.yft.zbase.R;
 import com.yft.zbase.base.BaseFragmentDialog;
 import com.yft.zbase.base.BaseViewModel;
@@ -23,18 +25,87 @@ import com.yft.zbase.utils.Utils;
 
 public class ReminderAgainPrivacyFragmentDialog  extends BaseFragmentDialog<ReminderAgainPrivacyFragmentDialogBinding, BaseViewModel> {
 
+    private IOnPrivacyClick mOnPrivacyClick;
+
     public static ReminderAgainPrivacyFragmentDialog newInstance() {
         ReminderAgainPrivacyFragmentDialog fragment = new ReminderAgainPrivacyFragmentDialog();
         return fragment;
+    }
+
+    public void setOnPrivacyClick(IOnPrivacyClick mOnPrivacyClick) {
+        this.mOnPrivacyClick = mOnPrivacyClick;
     }
 
     @Override
     public void initView() {
         getDialog().setCanceledOnTouchOutside(false);
         //阅读完整的《用户服务协议》与《隐私政策》了解详细内容
-        setCustomTextWithLinks(mDataBing.tvContent, viewModel.getString("如您不同意《用户服务协议》与《隐私政策》，我们将无法为您提供 ReelShort App的完整功能，您可以选择使用仅游览模式或直接退出应用"));
+        String tips = String.format("如您不同意《用户服务协议》与《隐私政策》，我们将无法为您提供 %s App的完整功能，您可以选择使用仅游览模式或直接退出应用", getAppName());
+        setCustomTextWithLinks(mDataBing.tvContent, tips);
+        mDataBing.vLineA.setBackgroundColor(getLineColor());
         UIUtils.startToScale(mDataBing.vLineA);
+        mDataBing.clPrivacy.setBackground(getClPrivacy());
+        mDataBing.tvContent.setTextColor(getTextContentColor());
+        mDataBing.tvNo.setTextColor(getTextNoColor());
+        mDataBing.tvYes.setTextColor(getTextYesColor());
+        mDataBing.tvTitle.setTextColor(getTextTitleColor());
     }
+
+
+
+    private int getTextTitleColor() {
+        return getResources().getColor(R.color.sd_white);
+    }
+
+    /**
+     * app name
+     * @return
+     */
+    protected String getAppName() {
+        // 复写此方法
+        return "Gong-jb";
+    }
+
+    /**
+     * 容器背景（可自定义）
+     * @return
+     */
+    protected Drawable getClPrivacy() {
+        return getResources().getDrawable(R.drawable.item_dialog_background);
+    }
+
+    /**
+     * title line
+     * @return
+     */
+    protected int getLineColor() {
+        return getResources().getColor(R.color.ui_dialog_text_color);
+    }
+
+    /**
+     * 内容文本颜色
+     * @return
+     */
+    protected int getTextContentColor() {
+        return getResources().getColor(R.color.sd_b_white);
+    }
+
+    /**
+     * no text color
+     * @return
+     */
+    protected int getTextNoColor() {
+        return getResources().getColor(R.color.sd_d_white);
+    }
+
+    /**
+     * yes text color
+     * @return
+     */
+    protected int getTextYesColor() {
+        return getResources().getColor(R.color.btn_color);
+    }
+
 
 
     @Override
@@ -48,6 +119,9 @@ public class ReminderAgainPrivacyFragmentDialog  extends BaseFragmentDialog<Remi
             @Override
             public void onClick(View view) {
                 viewModel.getUserServer().setPrivacy(true); // 同意啦。
+                if (mOnPrivacyClick != null){
+                    mOnPrivacyClick.onPrivacyClick(IOnPrivacyClick.consent);
+                }
                 dismiss();
             }
         });
@@ -56,6 +130,9 @@ public class ReminderAgainPrivacyFragmentDialog  extends BaseFragmentDialog<Remi
             @Override
             public void onClick(View view) {
                 // 再次提示
+                if (mOnPrivacyClick != null) {
+                    mOnPrivacyClick.onPrivacyClick(IOnPrivacyClick.not);
+                }
                 dismiss();
             }
         });

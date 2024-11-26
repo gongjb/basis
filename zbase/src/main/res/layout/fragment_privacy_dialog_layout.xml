@@ -7,9 +7,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cl_privacy_a"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_dialog_background"
         app:setViewRadius="@{R.dimen.ui_10_dp}">
 
         <ImageView
@@ -34,7 +34,6 @@
             android:ellipsize="end"
             android:gravity="center"
             android:minHeight="@dimen/ui_50_dp"
-            android:textColor="@color/sd_white"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/ui_10_dp"
             android:text="用户协议与隐私政策"
@@ -65,7 +64,7 @@
             android:layout_marginStart="@dimen/ui_16_dp"
             android:layout_marginEnd="@dimen/ui_16_dp"
             android:layout_marginTop="@dimen/ui_12_dp"
-            android:textColor="@color/sd_b_white"
+
             android:padding="5dp"
             android:text="（1）《隐私政策》中关于个人设备用户信息的收集和使用的说明"
             tools:text="（1）《隐私政策》中关于个人设备用户信息的收集和使用的说明"/>
@@ -82,7 +81,6 @@
             android:layout_marginStart="@dimen/ui_16_dp"
             android:layout_marginEnd="@dimen/ui_16_dp"
             android:layout_marginTop="@dimen/ui_6_dp"
-            android:textColor="@color/sd_b_white"
             android:padding="5dp"
             android:text="（2）《隐私政策》中与第三方SDK类服务商数据共享、相关信息收集和使用的说明"
             tools:text="（2）《隐私政策》中与第三方SDK类服务商数据共享、相关信息收集和使用的说明"/>
@@ -98,10 +96,8 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_two"
             android:layout_marginStart="@dimen/ui_16_dp"
             android:layout_marginTop="@dimen/ui_16_dp"
-            android:textColor="@color/sd_b_white"
             android:layout_marginEnd="@dimen/ui_16_dp"
             android:padding="5dp"
-            android:text="阅读完整的《用户服务协议》与《隐私政策》了解详细内容"
             tools:text="阅读完整的《用户服务协议》与《隐私政策》了解详细内容"/>
 
         <View
@@ -123,7 +119,6 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:textColor="@color/sd_b_white"
                 android:maxWidth="240dp"
                 android:minWidth="100dp"
                 android:text="不同意"/>
@@ -142,7 +137,6 @@
                 android:maxWidth="240dp"
                 android:minWidth="100dp"
                 android:gravity="center"
-                android:textColor="@color/btn_color"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="同意并继续"
