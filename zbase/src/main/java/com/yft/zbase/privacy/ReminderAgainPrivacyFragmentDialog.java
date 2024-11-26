@@ -12,6 +12,8 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.yft.zbase.BuildConfig;
 import com.yft.zbase.R;
 import com.yft.zbase.base.BaseFragmentDialog;
@@ -42,19 +44,15 @@ public class ReminderAgainPrivacyFragmentDialog  extends BaseFragmentDialog<Remi
         //阅读完整的《用户服务协议》与《隐私政策》了解详细内容
         String tips = String.format("如您不同意《用户服务协议》与《隐私政策》，我们将无法为您提供 %s App的完整功能，您可以选择使用仅游览模式或直接退出应用", getAppName());
         setCustomTextWithLinks(mDataBing.tvContent, tips);
-        mDataBing.vLineA.setBackgroundColor(getLineColor());
+
+
+        initLineColor(mDataBing.vLineA);
         UIUtils.startToScale(mDataBing.vLineA);
-        mDataBing.clPrivacy.setBackground(getClPrivacy());
-        mDataBing.tvContent.setTextColor(getTextContentColor());
-        mDataBing.tvNo.setTextColor(getTextNoColor());
-        mDataBing.tvYes.setTextColor(getTextYesColor());
-        mDataBing.tvTitle.setTextColor(getTextTitleColor());
-    }
-
-
-
-    private int getTextTitleColor() {
-        return getResources().getColor(R.color.sd_white);
+        initClPrivacy(mDataBing.clPrivacy);
+        initTextContentColor(mDataBing.tvContent);
+        initTextNoColor(mDataBing.tvNo);
+        initTextYesColor(mDataBing.tvYes);
+        initTextTitleColor(mDataBing.tvTitle);
     }
 
     /**
@@ -66,44 +64,51 @@ public class ReminderAgainPrivacyFragmentDialog  extends BaseFragmentDialog<Remi
         return "Gong-jb";
     }
 
+    protected void initTextTitleColor(TextView tvTitle) {
+        tvTitle.setTextColor(getResources().getColor(R.color.sd_white));
+    }
+
     /**
      * 容器背景（可自定义）
      * @return
      */
-    protected Drawable getClPrivacy() {
-        return getResources().getDrawable(R.drawable.item_dialog_background);
+    protected void initClPrivacy(ConstraintLayout constraintLayout) {
+        constraintLayout.setBackground(getResources().getDrawable(R.drawable.item_dialog_background));
     }
 
     /**
      * title line
      * @return
      */
-    protected int getLineColor() {
-        return getResources().getColor(R.color.ui_dialog_text_color);
+    protected void initLineColor(View view) {
+        view.setBackgroundColor(getResources().getColor(R.color.ui_dialog_text_color));
     }
 
     /**
      * 内容文本颜色
      * @return
      */
-    protected int getTextContentColor() {
-        return getResources().getColor(R.color.sd_b_white);
+    protected void initTextContentColor(TextView...tvs) {
+        if (tvs == null) return;
+        for (int i = 0; i < tvs.length; i ++) {
+            tvs[i].setTextColor(getResources().getColor(R.color.sd_b_white));
+        }
     }
 
     /**
      * no text color
      * @return
      */
-    protected int getTextNoColor() {
-        return getResources().getColor(R.color.sd_d_white);
+    protected void initTextNoColor(TextView tvNo) {
+        tvNo.setTextColor(getResources().getColor(R.color.sd_d_white));
     }
 
     /**
      * yes text color
      * @return
      */
-    protected int getTextYesColor() {
-        return getResources().getColor(R.color.btn_color);
+    protected void initTextYesColor(TextView tvYes) {
+        tvYes.setTextColor(getResources().getColor(R.color.btn_color));
     }
 
 
