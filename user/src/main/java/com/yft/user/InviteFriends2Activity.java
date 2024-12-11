@@ -50,7 +50,7 @@ public class InviteFriends2Activity extends BaseActivity<ActivityInviteFriendTwo
                 if (InviteFriends2Activity.this.isFinishing()) {
                     return;
                 }
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), com.yft.zbase.R.mipmap.ic_launcher);
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_a);
                 String pmc = mViewModel.getUserInfo().getRecommendCode();
                 String url = "/short/h5/#/pages/register/register?pmc="+pmc+"&"
                         + mViewModel.getDevice().getAppAlias() + "=1&actionType="

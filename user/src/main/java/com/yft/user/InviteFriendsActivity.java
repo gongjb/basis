@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.view.View;
@@ -18,13 +17,11 @@ import com.yft.user.databinding.ActivityInviteFriendLayoutBinding;
 import com.yft.user.router.UserRouter;
 import com.yft.zbase.base.BaseActivity;
 import com.yft.zbase.base.BaseViewModel;
-import com.yft.zbase.router.RouterFactory;
 import com.yft.zbase.server.DynamicMarketManage;
 import com.yft.zbase.server.IServerAgent;
 import com.yft.zbase.server.IShare;
 import com.yft.zbase.ui.ButtonUtils;
 import com.yft.zbase.utils.ToastUtils;
-import com.yft.zbase.utils.Utils;
 import com.yft.zbase.utils.ZxingUtils;
 
 
@@ -50,7 +47,7 @@ public class InviteFriendsActivity extends BaseActivity<ActivityInviteFriendLayo
                 if (InviteFriendsActivity.this.isFinishing()) {
                     return;
                 }
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), com.yft.zbase.R.mipmap.ic_launcher);
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_a);
                 String pmc = mViewModel.getUserInfo().getRecommendCode();
                 String url = "/short/h5/#/pages/register/register?pmc="+pmc+"&"
                         + mViewModel.getDevice().getAppAlias() + "=1&actionType="

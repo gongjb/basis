@@ -48,7 +48,7 @@
             android:layout_width="84dp"
             android:layout_height="84dp"
             app:setViewRadius="@{R.dimen.ui_10_dp}"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/ic_launcher_a"
             android:visibility="@{isShow? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

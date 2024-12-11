@@ -37,12 +37,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:url="@{DbBean.showImage}"
-                app:placeholder="@{R.mipmap.ic_launcher}"
-                app:error="@{R.mipmap.ic_launcher}"
                 app:radius="@{0}"/>
 
             <TextView
@@ -95,7 +92,6 @@
                 <ImageView
                     android:layout_width="@dimen/ui_16_dp"
                     android:layout_height="@dimen/ui_16_dp"
-                    android:src="@mipmap/ic_launcher"
                     android:layout_marginStart="6dp"/>
 
                 <TextView

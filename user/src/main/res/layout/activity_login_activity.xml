@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.yft.zbase.R" />
+
         <import type="com.yft.zbase.server.LanguageManage"></import>
     </data>
 
@@ -23,8 +25,8 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/ui_60_dp"
             android:layout_marginTop="115dp"
+            android:src="@mipmap/ic_launcher_a"
             android:text="欢迎登录ReelShort"
-            android:src="@mipmap/ic_launcher"
             android:textColor="@color/text_color_33"
             android:textSize="@dimen/ui_20_dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,13 +50,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
-                android:maxLines="1"
-                android:lines="1"
                 android:gravity="left|center_vertical"
                 android:hint='@{LanguageManage.getString("请输入手机号或者邮箱")}'
+                android:lines="1"
+                android:maxLines="1"
                 android:paddingStart="@dimen/ui_20_dp"
-                android:textColorHint="@color/text_hint_tip"
                 android:textColor="@color/text_color_33"
+                android:textColorHint="@color/text_hint_tip"
                 android:textCursorDrawable="@drawable/edittext_cursor"
                 android:textSize="16dp" />
 
@@ -79,16 +81,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:background="@null"
-                android:maxLines="1"
-                android:lines="1"
                 android:gravity="left|center_vertical"
                 android:hint='@{LanguageManage.getString("请输入验证码")}'
-                android:textColorHint="@color/text_hint_tip"
-                android:textColor="@color/text_color_33"
-                android:textCursorDrawable="@drawable/edittext_cursor"
                 android:inputType="number"
+                android:lines="1"
                 android:maxLength="8"
+                android:maxLines="1"
                 android:paddingStart="@dimen/ui_20_dp"
+                android:textColor="@color/text_color_33"
+                android:textColorHint="@color/text_hint_tip"
+                android:textCursorDrawable="@drawable/edittext_cursor"
                 android:textSize="16dp" />
 
 
@@ -125,11 +127,11 @@
                 android:gravity="left|center_vertical"
                 android:hint='@{LanguageManage.getString("请输入邀请码（选填）")}'
                 android:inputType="phone"
-                android:maxLines="1"
                 android:lines="1"
+                android:maxLines="1"
                 android:paddingStart="@dimen/ui_20_dp"
-                android:textColorHint="@color/text_hint_tip"
                 android:textColor="@color/text_color_33"
+                android:textColorHint="@color/text_hint_tip"
                 android:textSize="16dp" />
 
         </com.yft.zbase.widget.RoundRelativeLayout>
@@ -188,8 +190,8 @@
             android:layout_marginTop="@dimen/ui_20_dp"
             android:padding="@dimen/ui_10_dp"
             android:text='@{LanguageManage.getString("立即注册")}'
-            android:textSize="@dimen/ui_14_dp"
             android:textColor="@color/sd_white"
+            android:textSize="@dimen/ui_14_dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rl_lgoin" />
@@ -197,45 +199,45 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ui_10_dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/tv_register"
             android:layout_marginTop="@dimen/ui_20_dp"
+            android:layout_marginBottom="@dimen/ui_10_dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_icc"
                 android:layout_width="@dimen/ui_22_dp"
                 android:layout_height="@dimen/ui_22_dp"
-                android:src="@mipmap/icon_on"/>
+                android:src="@mipmap/icon_on" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/ui_12_dp"
                 android:layout_marginStart="@dimen/ui_6_dp"
+                android:text='@{LanguageManage.getString("我已阅读并同意")}'
                 android:textColor="@color/sd_white"
-                android:text='@{LanguageManage.getString("我已阅读并同意")}' />
+                android:textSize="@dimen/ui_12_dp" />
 
             <TextView
                 android:id="@+id/tv_xieyi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/theme_red"
                 android:layout_marginStart="@dimen/ui_4_dp"
-                android:textSize="@dimen/ui_12_dp"
-                android:text='@{LanguageManage.getString("《用户服务协议》")}'/>
+                android:text='@{LanguageManage.getString("《用户服务协议》")}'
+                android:textColor="@color/theme_red"
+                android:textSize="@dimen/ui_12_dp" />
 
             <TextView
                 android:id="@+id/tv_yinsi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/theme_red"
                 android:layout_marginStart="@dimen/ui_4_dp"
-                android:textSize="@dimen/ui_12_dp"
-                android:text='@{LanguageManage.getString("《隐私协议》")}'/>
+                android:text='@{LanguageManage.getString("《隐私协议》")}'
+                android:textColor="@color/theme_red"
+                android:textSize="@dimen/ui_12_dp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

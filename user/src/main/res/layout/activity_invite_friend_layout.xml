@@ -67,9 +67,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:scaleType="fitXY"
-                    app:url="@{user.logo}"
-                    app:error="@{R.mipmap.ic_launcher}"
-                    app:placeholder="@{R.mipmap.ic_launcher}"/>
+                    app:url="@{user.logo}"/>
             </com.yft.zbase.widget.RoundLinearLayout>
 
 
