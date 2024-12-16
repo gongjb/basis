@@ -13,6 +13,8 @@ public class ZBaseApplication extends Application {
 
     private static Application application;
 
+    public boolean isInit;
+
     public static Application get() {
         return application;
     }
@@ -21,9 +23,26 @@ public class ZBaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
+        if (!isInit) {
+            init();
+        }
+    }
+
+    /**
+     * 交给子类去初始化
+     */
+    protected void init() {
         MMKV.initialize(this);
         // 初始化应用管理类
         DynamicMarketManage.getInstance().init(this);
+        isInit = true;
+    }
+
+    protected void init(Context base) {
+        MMKV.initialize(base);
+        // 初始化应用管理类
+        DynamicMarketManage.getInstance().init(base);
+        isInit = true;
     }
 
     @Override
@@ -31,6 +50,4 @@ public class ZBaseApplication extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
-
-
 }

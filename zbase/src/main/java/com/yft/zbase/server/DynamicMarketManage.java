@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.tencent.mmkv.MMKV;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
