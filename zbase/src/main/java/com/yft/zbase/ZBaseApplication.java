@@ -13,10 +13,14 @@ public class ZBaseApplication extends Application {
 
     private static Application application;
 
-    public boolean isInit;
+    private static boolean isInit;
 
     public static Application get() {
         return application;
+    }
+
+    public static boolean isInit() {
+        return isInit;
     }
 
     @Override
