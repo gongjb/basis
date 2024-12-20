@@ -31,7 +31,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation files('libs/okgo-3.0.4.jar')
     implementation files('libs/okserver-2.0.4.jar')
-    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    api 'com.squareup.okhttp3:okhttp:3.8.1'
 //    implementation files('libs/okhttp-3.8.1.jar')
 //    implementation files('libs/okhttp-3.8.1.jar')
 //
