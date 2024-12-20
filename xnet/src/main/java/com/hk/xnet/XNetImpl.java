@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.hk.xnet.task.RequestTaskManages;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -29,7 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -146,6 +149,10 @@ public class XNetImpl implements IXNet {
 
     @Override
     public <T extends String> IXNet easyPostAny(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener) {
+        final long genId = RequestTaskManages.getInstance().genId();
+        if (responseDataListener != null && responseDataListener.timedTasks()) {
+            RequestTaskManages.getInstance().startTask(genId, url, responseDataListener);
+        }
         setTimeoutPeriod(responseDataListener);
         //LOGE("XNet", "h5请求路径=>" + url);
         Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
@@ -160,6 +167,9 @@ public class XNetImpl implements IXNet {
         request.execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
+                if (responseDataListener != null && responseDataListener.timedTasks()) {
+                    RequestTaskManages.getInstance().stopTask(genId);
+                }
                 // LOGE("XNet", "h5请求结果=>" + ((T) response.body()));
                 responseDataListener.success((T) response.body());
             }
@@ -167,7 +177,13 @@ public class XNetImpl implements IXNet {
             @Override
             public void onError(Response<String> response) {
                 if (responseDataListener != null) {
+                    if (responseDataListener.timedTasks()) {
+                        RequestTaskManages.getInstance().stopTask(genId);
+                    }
                     responseDataListener.fail(response.getException());
+                    if (responseDataListener.aPublicMethodIsRequired()) {
+                        responseDataListener.aPublicFail(response.getException());
+                    }
                 }
             }
         });
@@ -195,6 +211,10 @@ public class XNetImpl implements IXNet {
 
     @Override
     public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener, final Class<?> cls, String tag) {
+        final long genId = RequestTaskManages.getInstance().genId();
+        if (responseDataListener != null && responseDataListener.timedTasks()) {
+            RequestTaskManages.getInstance().startTask(genId, url, responseDataListener);
+        }
         setTimeoutPeriod(responseDataListener);
         Set<?> set = kv.entrySet();
         Iterator<?> iterator = set.iterator();
@@ -214,6 +234,9 @@ public class XNetImpl implements IXNet {
         request.execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
+                if (responseDataListener != null && responseDataListener.timedTasks()) {
+                    RequestTaskManages.getInstance().stopTask(genId);
+                }
                 responseJson(responseDataListener, response.body(), cls);
             }
 
@@ -221,7 +244,13 @@ public class XNetImpl implements IXNet {
             public void onError(Response<String> response) {
                 super.onError(response);
                 if (responseDataListener != null) {
+                    if (responseDataListener.timedTasks()) {
+                        RequestTaskManages.getInstance().stopTask(genId);
+                    }
                     responseDataListener.fail(response.getException());
+                    if (responseDataListener.aPublicMethodIsRequired()) {
+                        responseDataListener.aPublicFail(response.getException());
+                    }
                 }
             }
         });
@@ -230,6 +259,10 @@ public class XNetImpl implements IXNet {
 
     @Override
     public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener, final Type list, final String tag) {
+        final long genId = RequestTaskManages.getInstance().genId();
+        if (responseDataListener != null && responseDataListener.timedTasks()) {
+            RequestTaskManages.getInstance().startTask(genId, url, responseDataListener);
+        }
         setTimeoutPeriod(responseDataListener);
         Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
         Iterator<?> iterator = set.iterator();
@@ -247,6 +280,9 @@ public class XNetImpl implements IXNet {
         request.execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
+                if (responseDataListener != null && responseDataListener.timedTasks()) {
+                    RequestTaskManages.getInstance().stopTask(genId);
+                }
                 responseJson(responseDataListener, response.body(), list);
             }
 
@@ -254,15 +290,26 @@ public class XNetImpl implements IXNet {
             public void onError(Response<String> response) {
                 super.onError(response);
                 if (responseDataListener != null) {
+                    if (responseDataListener.timedTasks()) {
+                        RequestTaskManages.getInstance().stopTask(genId);
+                    }
                     responseDataListener.fail(response.getException());
+                    if (responseDataListener.aPublicMethodIsRequired()) {
+                        responseDataListener.aPublicFail(response.getException());
+                    }
                 }
             }
         });
         return this;
     }
 
+
     @Override
     public <T> IXNet easyGet(final String url, final ResponseDataListener<T> responseDataListener, final Class<?> cls) {
+        final long genId = RequestTaskManages.getInstance().genId();
+        if (responseDataListener != null && responseDataListener.timedTasks()) {
+            RequestTaskManages.getInstance().startTask(genId, url, responseDataListener);
+        }
         setTimeoutPeriod(responseDataListener);
         GetRequest<String> getRequest = OkGo.<String>get(url);//
         getRequest.tag(url);//
@@ -270,13 +317,24 @@ public class XNetImpl implements IXNet {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        if (responseDataListener != null && responseDataListener.timedTasks()) {
+                            RequestTaskManages.getInstance().stopTask(genId);
+                        }
                         responseJson(responseDataListener, response.body(), cls);
                     }
 
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        responseDataListener.fail(response.getException());
+                        if (responseDataListener != null) {
+                            if (responseDataListener.timedTasks()) {
+                                RequestTaskManages.getInstance().stopTask(genId);
+                            }
+                            responseDataListener.fail(response.getException());
+                            if (responseDataListener.aPublicMethodIsRequired()) {
+                                responseDataListener.aPublicFail(response.getException());
+                            }
+                        }
                     }
                 });
         return this;
@@ -284,6 +342,10 @@ public class XNetImpl implements IXNet {
 
     @Override
     public <T> IXNet easyGet(final String url, final ResponseDataListener<T> responseDataListener, final Type list) {
+        final long genId = RequestTaskManages.getInstance().genId();
+        if (responseDataListener != null && responseDataListener.timedTasks()) {
+            RequestTaskManages.getInstance().startTask(genId, url, responseDataListener);
+        }
         setTimeoutPeriod(responseDataListener);
         GetRequest<String> getRequest = OkGo.<String>get(url);//
         getRequest.tag(url);//
@@ -291,13 +353,24 @@ public class XNetImpl implements IXNet {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        if (responseDataListener != null && responseDataListener.timedTasks()) {
+                            RequestTaskManages.getInstance().stopTask(genId);
+                        }
                         responseJson(responseDataListener, response.body(), list);
                     }
 
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        responseDataListener.fail(response.getException());
+                        if (responseDataListener != null) {
+                            if (responseDataListener.timedTasks()) {
+                                RequestTaskManages.getInstance().stopTask(genId);
+                            }
+                            responseDataListener.fail(response.getException());
+                            if (responseDataListener.aPublicMethodIsRequired()) {
+                                responseDataListener.aPublicFail(response.getException());
+                            }
+                        }
                     }
                 });
         return this;
@@ -542,9 +615,9 @@ public class XNetImpl implements IXNet {
         OkHttpClient okHttpClient = OkGo.getInstance().getOkHttpClient();
         // 创建OkHttpClient的新实例，并设置超时时间
         OkHttpClient newOkHttpClient = okHttpClient.newBuilder()
-                .connectTimeout(responseDataListener.getTimeoutPeriod()[0], TimeUnit.MILLISECONDS)       // 设置连接超时时间为10秒
-                .readTimeout(responseDataListener.getTimeoutPeriod()[1], TimeUnit.MILLISECONDS)          // 设置读取超时时间为30秒
-                .writeTimeout(responseDataListener.getTimeoutPeriod()[2], TimeUnit.MILLISECONDS)         // 设置写入超时时间为30秒
+                .connectTimeout(responseDataListener.getTimeoutPeriod()[0], TimeUnit.MILLISECONDS)
+                .readTimeout(responseDataListener.getTimeoutPeriod()[1], TimeUnit.MILLISECONDS)
+                .writeTimeout(responseDataListener.getTimeoutPeriod()[2], TimeUnit.MILLISECONDS)
                 .build();
         // 将新的OkHttpClient设置到OKGo实例中
         OkGo.getInstance().setOkHttpClient(newOkHttpClient);

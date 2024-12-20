@@ -2,6 +2,7 @@ package com.yft.home.model;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.hk.xnet.task.TaskGen;
 import com.yft.home.adapterutil.AdapterCreateFactory;
 import com.yft.home.bean.HomeConfigBean;
 import com.yft.zbase.base.BaseViewModel;

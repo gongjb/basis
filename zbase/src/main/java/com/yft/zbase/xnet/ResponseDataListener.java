@@ -11,4 +11,9 @@ public abstract class ResponseDataListener<T> implements com.hk.xnet.ResponseDat
     public void specialError(XNetSystemErrorCode code) {
         ErrorCode.errorStartActivity(code);
     }
+
+    @Override
+    public void aPublicFail(Throwable throwable) {
+        // 公共异常处理
+    }
 }
