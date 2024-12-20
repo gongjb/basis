@@ -36,6 +36,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 public class XNetImpl implements IXNet {
 
@@ -67,141 +68,6 @@ public class XNetImpl implements IXNet {
         }
         return instance;
     }
-
-    @Override
-    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener,final Class<?> cls) {
-        easyPost(url, kv, responseDataListener, cls, "");
-        return this;
-    }
-
-    @Override
-    public <T extends String> IXNet easyPostAny(final String url,final Map<String, String> kv,final ResponseDataListener<T> responseDataListener) {
-        //LOGE("XNet", "h5请求路径=>" + url);
-        Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
-        Iterator<?> iterator = set.iterator();
-        PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
-        request.tag(this);
-        while (iterator.hasNext()) {
-            Map.Entry<String,String> mapentry = (Map.Entry) iterator.next();
-            request.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
-        }
-
-        request.execute(new StringCallback() {
-            @Override
-            public void onSuccess(Response<String> response) {
-               // LOGE("XNet", "h5请求结果=>" + ((T) response.body()));
-                responseDataListener.success((T) response.body());
-            }
-
-            @Override
-            public void onError(Response<String> response) {
-                if(responseDataListener != null) {
-                    responseDataListener.fail(response.getException());
-                }
-            }
-        });
-        return this;
-    }
-
-    @Override
-    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener, final Type list) {
-        easyPost(url, kv, responseDataListener, list, "");
-        return this;
-    }
-
-
-    @Override
-    public IXNet cancelAllRequest() {
-        // 取消全部网络请求。
-        OkGo.getInstance().cancelAll();
-        return this;
-    }
-
-    @Override
-    public IXNet cancelTagRequest(String tag) {
-        OkGo.getInstance().cancelTag(tag);
-        return this;
-    }
-
-    @Override
-    public <T> IXNet easyPost(final String url,final Map<String, String> kv,final ResponseDataListener<T> responseDataListener,final Class<?> cls, String tag) {
-        Set<?> set = kv.entrySet();
-        Iterator<?> iterator = set.iterator();
-        PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
-       // LOGE("XNet", " 请求路径=>" + url);
-        request.tag(url);
-        while (iterator.hasNext()) {
-            Map.Entry mapentry = (Map.Entry) iterator.next();
-            request.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
-        }
-
-        request.execute(new StringCallback() {
-            @Override
-            public void onSuccess(Response<String> response) {
-                responseJson(responseDataListener, response.body(), cls);
-            }
-
-            @Override
-            public void onError(Response<String> response) {
-                if(responseDataListener != null) {
-                    responseDataListener.fail(response.getException());
-                }
-            }
-        });
-        return this;
-    }
-
-    @Override
-    public <T> IXNet easyPost(final String url, final Map<String, String> kv,final ResponseDataListener<T> responseDataListener,final Type list, final String tag) {
-        Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
-        Iterator<?> iterator = set.iterator();
-        PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
-        request.tag(url);
-        //LOGE("XNet", " 请求路径=>" + url);
-        while (iterator.hasNext()) {
-            Map.Entry mapentry = (Map.Entry) iterator.next();
-            request.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
-        }
-        request.execute(new StringCallback() {
-            @Override
-            public void onSuccess(Response<String> response) {
-                responseJson(responseDataListener, response.body(), list);
-            }
-
-            @Override
-            public void onError(Response<String> response) {
-                if(responseDataListener != null) {
-                    responseDataListener.fail(response.getException());
-                }
-            }
-        });
-        return this;
-    }
-
-    @Override
-    public <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener) {
-        if(OkUpload.getInstance().getTask(path) != null) {
-            return this;
-        }
-        PostRequest<String> postRequest = OkGo.<String>post(path);//
-        Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
-        Iterator<?> iterator = set.iterator();
-       // LOGE("XNetImpl", " 请求路径=>" + path);
-        while (iterator.hasNext()) {
-            Map.Entry mapentry = (Map.Entry) iterator.next();
-            postRequest.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
-        }
-        postRequest.params("file", files);
-        postRequest .converter(new StringConvert());
-
-        OkUpload.request(files.getAbsolutePath(), postRequest)//
-                .extra1(path)//
-                .save()
-                .register(new DesUpLoadListener(listener))
-                .start();
-        return this;
-    }
-
 
     @Override
     public void initHttp(Application application, boolean isDebug) {
@@ -245,6 +111,223 @@ public class XNetImpl implements IXNet {
         //.addCommonHeaders(headers)                      //全局公共头
         //.addCommonParams(params);                       //全局公共参数
     }
+
+    /**
+     * 抛出去进行初始化
+     * @param application
+     * @param isDebug
+     * @param builder
+     * @param cacheMode
+     * @param cacheEntity
+     */
+    @Override
+    public void initHttp(Application application, boolean isDebug, OkHttpClient.Builder builder, CacheMode cacheMode, long cacheEntity) {
+        if (builder == null) {
+            // 配置
+            initHttp(application, isDebug);
+            return;
+        }
+
+        OkGo.getInstance().init(application)                           //必须调用初始化
+                .setOkHttpClient(builder.build())               //建议设置OkHttpClient，不设置会使用默认的
+                .setCacheMode(cacheMode)               //全局统一缓存模式，默认不使用缓存，可以不传
+                .setCacheTime(cacheEntity)   //全局统一缓存时间，默认永不过期，可以不传
+                .setRetryCount(3);                              //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
+    }
+
+    @Override
+    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener,final Class<?> cls) {
+        easyPost(url, kv, responseDataListener, cls, "");
+        return this;
+    }
+
+
+    @Override
+    public <T extends String> IXNet easyPostAny(final String url,final Map<String, String> kv,final ResponseDataListener<T> responseDataListener) {
+        setTimeoutPeriod(responseDataListener);
+        //LOGE("XNet", "h5请求路径=>" + url);
+        Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
+        Iterator<?> iterator = set.iterator();
+        PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
+        request.tag(this);
+        while (iterator.hasNext()) {
+            Map.Entry<String,String> mapentry = (Map.Entry) iterator.next();
+            request.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
+        }
+
+        request.execute(new StringCallback() {
+            @Override
+            public void onSuccess(Response<String> response) {
+               // LOGE("XNet", "h5请求结果=>" + ((T) response.body()));
+                responseDataListener.success((T) response.body());
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                if(responseDataListener != null) {
+                    responseDataListener.fail(response.getException());
+                }
+            }
+        });
+        return this;
+    }
+
+    @Override
+    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener, final Type list) {
+        easyPost(url, kv, responseDataListener, list, "");
+        return this;
+    }
+
+    @Override
+    public IXNet cancelAllRequest() {
+        // 取消全部网络请求。
+        OkGo.getInstance().cancelAll();
+        return this;
+    }
+
+    @Override
+    public IXNet cancelTagRequest(String tag) {
+        OkGo.getInstance().cancelTag(tag);
+        return this;
+    }
+
+    @Override
+    public <T> IXNet easyPost(final String url,final Map<String, String> kv,final ResponseDataListener<T> responseDataListener,final Class<?> cls, String tag) {
+        setTimeoutPeriod(responseDataListener);
+        Set<?> set = kv.entrySet();
+        Iterator<?> iterator = set.iterator();
+        PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
+       // LOGE("XNet", " 请求路径=>" + url);
+        if (TextUtils.isEmpty(tag)) {
+            request.tag(url);
+        } else {
+            request.tag(tag);
+        }
+
+        while (iterator.hasNext()) {
+            Map.Entry mapentry = (Map.Entry) iterator.next();
+            request.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
+        }
+
+        request.execute(new StringCallback() {
+            @Override
+            public void onSuccess(Response<String> response) {
+                responseJson(responseDataListener, response.body(), cls);
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                super.onError(response);
+                if(responseDataListener != null) {
+                    responseDataListener.fail(response.getException());
+                }
+            }
+        });
+        return this;
+    }
+
+    @Override
+    public <T> IXNet easyPost(final String url, final Map<String, String> kv,final ResponseDataListener<T> responseDataListener,final Type list, final String tag) {
+        setTimeoutPeriod(responseDataListener);
+        Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
+        Iterator<?> iterator = set.iterator();
+        PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
+        if (TextUtils.isEmpty(tag)) {
+            request.tag(url);
+        } else {
+            request.tag(tag);
+        }
+        //LOGE("XNet", " 请求路径=>" + url);
+        while (iterator.hasNext()) {
+            Map.Entry mapentry = (Map.Entry) iterator.next();
+            request.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
+        }
+        request.execute(new StringCallback() {
+            @Override
+            public void onSuccess(Response<String> response) {
+                responseJson(responseDataListener, response.body(), list);
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                super.onError(response);
+                if(responseDataListener != null) {
+                    responseDataListener.fail(response.getException());
+                }
+            }
+        });
+        return this;
+    }
+
+    @Override
+    public <T> IXNet easyGet(final String url,final ResponseDataListener<T> responseDataListener,final Class<?> cls) {
+        setTimeoutPeriod(responseDataListener);
+        GetRequest<String> getRequest = OkGo.<String>get(url);//
+        getRequest.tag(url);//
+        getRequest.converter(new StringConvert())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        responseJson(responseDataListener, response.body(), cls);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        responseDataListener.fail(response.getException());
+                    }
+                });
+        return this;
+    }
+
+    @Override
+    public <T> IXNet easyGet(final String url,final ResponseDataListener<T> responseDataListener,final Type list) {
+        setTimeoutPeriod(responseDataListener);
+        GetRequest<String> getRequest = OkGo.<String>get(url);//
+        getRequest.tag(url);//
+        getRequest.converter(new StringConvert())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        responseJson(responseDataListener, response.body(), list);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        responseDataListener.fail(response.getException());
+                    }
+                });
+        return this;
+    }
+
+
+
+
+
+    @Override
+    public <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener) {
+        if(OkUpload.getInstance().getTask(path) != null) {
+            return this;
+        }
+        PostRequest<String> postRequest = OkGo.<String>post(path);//
+        Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
+        Iterator<?> iterator = set.iterator();
+        // LOGE("XNetImpl", " 请求路径=>" + path);
+        while (iterator.hasNext()) {
+            Map.Entry mapentry = (Map.Entry) iterator.next();
+            postRequest.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
+        }
+        postRequest.params("file", files);
+        postRequest .converter(new StringConvert());
+        OkUpload.request(files.getAbsolutePath(), postRequest)//
+                .extra1(path)//
+                .save()
+                .register(new DesUpLoadListener(listener))
+                .start();
+        return this;
+    }
+
 
     public IXNet downLoadFile(final String path, final ResponseDataListener listener) {
         //这里只是演示，表示请求可以传参，怎么传都行，和okgo使用方法一样
@@ -440,4 +523,20 @@ public class XNetImpl implements IXNet {
         return null;
     }
 
+    /**
+     * 设置新的超时时间
+     * @param responseDataListener
+     */
+    public void setTimeoutPeriod(ResponseDataListener responseDataListener) {
+        // 获取OKGo实例
+        OkHttpClient okHttpClient = OkGo.getInstance().getOkHttpClient();
+        // 创建OkHttpClient的新实例，并设置超时时间
+        OkHttpClient newOkHttpClient = okHttpClient.newBuilder()
+                .connectTimeout(responseDataListener.getTimeoutPeriod()[0], TimeUnit.MILLISECONDS)       // 设置连接超时时间为10秒
+                .readTimeout(responseDataListener.getTimeoutPeriod()[1], TimeUnit.SECONDS)          // 设置读取超时时间为30秒
+                .writeTimeout(responseDataListener.getTimeoutPeriod()[2], TimeUnit.SECONDS)         // 设置写入超时时间为30秒
+                .build();
+        // 将新的OkHttpClient设置到OKGo实例中
+        OkGo.getInstance().setOkHttpClient(newOkHttpClient);
+    }
 }

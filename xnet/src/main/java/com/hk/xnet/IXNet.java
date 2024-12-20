@@ -2,9 +2,14 @@ package com.hk.xnet;
 
 import android.app.Application;
 
+import com.lzy.okgo.cache.CacheEntity;
+import com.lzy.okgo.cache.CacheMode;
+
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.Map;
+
+import okhttp3.OkHttpClient;
 
 public interface IXNet {
 
@@ -12,6 +17,16 @@ public interface IXNet {
       发起post请求，返回结果是一个实体
      */
     <T> IXNet easyPost(final String url, final Map<String, String> kv,final ResponseDataListener<T> responseDataListener,final Class<?> cls);
+
+    /**
+     * 发起get请求
+     * @param url
+     * @param responseDataListener
+     * @param cls
+     * @return
+     * @param <T>
+     */
+    <T> IXNet easyGet(final String url, final ResponseDataListener<T> responseDataListener,final Class<?> cls);
 
     /*
       返回一个字符串
@@ -28,6 +43,16 @@ public interface IXNet {
      * @return
      */
     <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener,final Type list);
+
+    /**
+     *  发起get请求，返回结果是一个array list
+     * @param url
+     * @param responseDataListener
+     * @param list
+     * @param <T>
+     * @return
+     */
+    <T> IXNet easyGet(final String url,  final ResponseDataListener<T> responseDataListener,final Type list);
 
     /*
       取消全部请求
@@ -84,5 +109,20 @@ public interface IXNet {
      */
     <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener);
 
+    /**
+     * 初始化 （默认配置）
+     * @param application
+     * @param isDebug
+     */
     void initHttp(Application application, boolean isDebug);
+
+    /**
+     * 初始化（自定义配置）
+     * @param application
+     * @param isDebug
+     * @param builder
+     * @param cacheMode
+     * @param cacheEntity
+     */
+    void initHttp(Application application, boolean isDebug, OkHttpClient.Builder builder, CacheMode cacheMode, long cacheEntity);
 }
