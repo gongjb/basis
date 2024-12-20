@@ -24,6 +24,7 @@ import com.lzy.okserver.OkUpload;
 import com.lzy.okserver.download.DownloadListener;
 import com.lzy.okserver.upload.UploadListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -114,6 +115,7 @@ public class XNetImpl implements IXNet {
 
     /**
      * 抛出去进行初始化
+     *
      * @param application
      * @param isDebug
      * @param builder
@@ -136,14 +138,14 @@ public class XNetImpl implements IXNet {
     }
 
     @Override
-    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener,final Class<?> cls) {
+    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener, final Class<?> cls) {
         easyPost(url, kv, responseDataListener, cls, "");
         return this;
     }
 
 
     @Override
-    public <T extends String> IXNet easyPostAny(final String url,final Map<String, String> kv,final ResponseDataListener<T> responseDataListener) {
+    public <T extends String> IXNet easyPostAny(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener) {
         setTimeoutPeriod(responseDataListener);
         //LOGE("XNet", "h5请求路径=>" + url);
         Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
@@ -151,20 +153,20 @@ public class XNetImpl implements IXNet {
         PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
         request.tag(this);
         while (iterator.hasNext()) {
-            Map.Entry<String,String> mapentry = (Map.Entry) iterator.next();
+            Map.Entry<String, String> mapentry = (Map.Entry) iterator.next();
             request.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
         }
 
         request.execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
-               // LOGE("XNet", "h5请求结果=>" + ((T) response.body()));
+                // LOGE("XNet", "h5请求结果=>" + ((T) response.body()));
                 responseDataListener.success((T) response.body());
             }
 
             @Override
             public void onError(Response<String> response) {
-                if(responseDataListener != null) {
+                if (responseDataListener != null) {
                     responseDataListener.fail(response.getException());
                 }
             }
@@ -192,12 +194,12 @@ public class XNetImpl implements IXNet {
     }
 
     @Override
-    public <T> IXNet easyPost(final String url,final Map<String, String> kv,final ResponseDataListener<T> responseDataListener,final Class<?> cls, String tag) {
+    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener, final Class<?> cls, String tag) {
         setTimeoutPeriod(responseDataListener);
         Set<?> set = kv.entrySet();
         Iterator<?> iterator = set.iterator();
         PostRequest<String> request = OkGo.<String>post(url).isMultipart(true);
-       // LOGE("XNet", " 请求路径=>" + url);
+        // LOGE("XNet", " 请求路径=>" + url);
         if (TextUtils.isEmpty(tag)) {
             request.tag(url);
         } else {
@@ -218,7 +220,7 @@ public class XNetImpl implements IXNet {
             @Override
             public void onError(Response<String> response) {
                 super.onError(response);
-                if(responseDataListener != null) {
+                if (responseDataListener != null) {
                     responseDataListener.fail(response.getException());
                 }
             }
@@ -227,7 +229,7 @@ public class XNetImpl implements IXNet {
     }
 
     @Override
-    public <T> IXNet easyPost(final String url, final Map<String, String> kv,final ResponseDataListener<T> responseDataListener,final Type list, final String tag) {
+    public <T> IXNet easyPost(final String url, final Map<String, String> kv, final ResponseDataListener<T> responseDataListener, final Type list, final String tag) {
         setTimeoutPeriod(responseDataListener);
         Set<?> set = kv.entrySet();/// 返回此映射所包含的映射关系的 Set 视图。
         Iterator<?> iterator = set.iterator();
@@ -251,7 +253,7 @@ public class XNetImpl implements IXNet {
             @Override
             public void onError(Response<String> response) {
                 super.onError(response);
-                if(responseDataListener != null) {
+                if (responseDataListener != null) {
                     responseDataListener.fail(response.getException());
                 }
             }
@@ -260,7 +262,7 @@ public class XNetImpl implements IXNet {
     }
 
     @Override
-    public <T> IXNet easyGet(final String url,final ResponseDataListener<T> responseDataListener,final Class<?> cls) {
+    public <T> IXNet easyGet(final String url, final ResponseDataListener<T> responseDataListener, final Class<?> cls) {
         setTimeoutPeriod(responseDataListener);
         GetRequest<String> getRequest = OkGo.<String>get(url);//
         getRequest.tag(url);//
@@ -281,7 +283,7 @@ public class XNetImpl implements IXNet {
     }
 
     @Override
-    public <T> IXNet easyGet(final String url,final ResponseDataListener<T> responseDataListener,final Type list) {
+    public <T> IXNet easyGet(final String url, final ResponseDataListener<T> responseDataListener, final Type list) {
         setTimeoutPeriod(responseDataListener);
         GetRequest<String> getRequest = OkGo.<String>get(url);//
         getRequest.tag(url);//
@@ -302,12 +304,9 @@ public class XNetImpl implements IXNet {
     }
 
 
-
-
-
     @Override
     public <T> IXNet updateFile(final String path, final Map<String, String> kv, final File files, final ResponseDataListener listener) {
-        if(OkUpload.getInstance().getTask(path) != null) {
+        if (OkUpload.getInstance().getTask(path) != null) {
             return this;
         }
         PostRequest<String> postRequest = OkGo.<String>post(path);//
@@ -319,7 +318,7 @@ public class XNetImpl implements IXNet {
             postRequest.params((String) mapentry.getKey(), (String) mapentry.getValue());        //
         }
         postRequest.params("file", files);
-        postRequest .converter(new StringConvert());
+        postRequest.converter(new StringConvert());
         OkUpload.request(files.getAbsolutePath(), postRequest)//
                 .extra1(path)//
                 .save()
@@ -331,7 +330,7 @@ public class XNetImpl implements IXNet {
 
     public IXNet downLoadFile(final String path, final ResponseDataListener listener) {
         //这里只是演示，表示请求可以传参，怎么传都行，和okgo使用方法一样
-        if(OkDownload.getInstance().getTask(path) != null) {
+        if (OkDownload.getInstance().getTask(path) != null) {
             return this;
         }
         GetRequest<File> request = OkGo.<File>get(path).tag(path);
@@ -344,8 +343,9 @@ public class XNetImpl implements IXNet {
     }
 
 
-    private class DesUpLoadListener extends UploadListener{
+    private class DesUpLoadListener extends UploadListener {
         private ResponseDataListener listener;
+
         public DesUpLoadListener(ResponseDataListener tag) {
             super(tag);
             this.listener = tag;
@@ -382,6 +382,7 @@ public class XNetImpl implements IXNet {
     private class DesListener extends DownloadListener {
         private ResponseDataListener listener;
         private String task;
+
         DesListener(ResponseDataListener listener, String taskPath) {
             super(listener);
             this.listener = listener;
@@ -428,7 +429,6 @@ public class XNetImpl implements IXNet {
     }
 
 
-
     /**
      * 解析请求过来的数据
      *
@@ -437,24 +437,28 @@ public class XNetImpl implements IXNet {
      */
     private void responseJson(final ResponseDataListener listener, final String responseJson, final Class<?> cls) {
         try {
-            //LOGE("XNet", " 请求结果=>" + responseJson);
-            JSONObject jsonObject = new JSONObject(responseJson);
-            String code = jsonObject.optString(listener.getTemplate().getCode());
-            if (TextUtils.isEmpty(code) || !code.equals(listener.getTemplate().successCode())) {
-                XNetSystemErrorCode xNetSystemErrorCode = isSystemErrorCode(code);
-                if (xNetSystemErrorCode != null) {
-                    // 处理公共的错误码。
-                    listener.specialError(xNetSystemErrorCode);
+            if (isJSON(responseJson) || isJSONArray(responseJson)) {
+                JSONObject jsonObject = new JSONObject(responseJson);
+                String code = jsonObject.optString(listener.getTemplate().getCode());
+                if (TextUtils.isEmpty(code) || !code.equals(listener.getTemplate().successCode())) {
+                    XNetSystemErrorCode xNetSystemErrorCode = isSystemErrorCode(code);
+                    if (xNetSystemErrorCode != null) {
+                        // 处理公共的错误码。
+                        listener.specialError(xNetSystemErrorCode);
+                        return;
+                    }
+                    listener.fail(new WebServiceThrowable().setErrorCode(code).setErrorMsg(jsonObject.optString(listener.getTemplate().getMessage())));
                     return;
                 }
-                listener.fail(new WebServiceThrowable().setErrorCode(code).setErrorMsg(jsonObject.optString(listener.getTemplate().getMessage())));
-                return;
-            }
 
-            if (listener != null) {
-                String dataJson = jsonObject.optString(listener.getTemplate().getBody());
-                Gson gson = new Gson();
-                listener.success(gson.fromJson(dataJson, cls));
+                if (listener != null) {
+                    String dataJson = jsonObject.optString(listener.getTemplate().getBody());
+                    Gson gson = new Gson();
+                    listener.success(gson.fromJson(dataJson, cls));
+                }
+            } else {
+                // 抛给上级处理
+                listener.success(responseJson);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -474,25 +478,29 @@ public class XNetImpl implements IXNet {
      * @param listener
      * @param responseJson
      */
-    private void responseJson(final ResponseDataListener listener,final String responseJson,final Type type) {
+    private void responseJson(final ResponseDataListener listener, final String responseJson, final Type type) {
         try {
-            JSONObject jsonObject = new JSONObject(responseJson);
-            String code = jsonObject.optString(listener.getTemplate().getCode());
-            if (TextUtils.isEmpty(code) || !code.equals(listener.getTemplate().successCode())) {
-                XNetSystemErrorCode xNetSystemErrorCode = isSystemErrorCode(code);
-                if (xNetSystemErrorCode != null) {
-                    // 处理公共的错误码。
-                    listener.specialError(xNetSystemErrorCode);
+            if (isJSON(responseJson) || isJSONArray(responseJson)) {
+                JSONObject jsonObject = new JSONObject(responseJson);
+                String code = jsonObject.optString(listener.getTemplate().getCode());
+                if (TextUtils.isEmpty(code) || !code.equals(listener.getTemplate().successCode())) {
+                    XNetSystemErrorCode xNetSystemErrorCode = isSystemErrorCode(code);
+                    if (xNetSystemErrorCode != null) {
+                        // 处理公共的错误码。
+                        listener.specialError(xNetSystemErrorCode);
+                        return;
+                    }
+                    listener.fail(new WebServiceThrowable().setErrorCode(code).setErrorMsg(jsonObject.optString(listener.getTemplate().getMessage())));
                     return;
                 }
-                listener.fail(new WebServiceThrowable().setErrorCode(code).setErrorMsg(jsonObject.optString(listener.getTemplate().getMessage())));
-                return;
-            }
 
-            if (listener != null) {
-                String dataJson = jsonObject.optString(listener.getTemplate().getBody());
-                Gson gson = new Gson();
-                listener.success(gson.fromJson(dataJson, type));
+                if (listener != null) {
+                    String dataJson = jsonObject.optString(listener.getTemplate().getBody());
+                    Gson gson = new Gson();
+                    listener.success(gson.fromJson(dataJson, type));
+                }
+            } else {
+                listener.success(responseJson);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -508,6 +516,7 @@ public class XNetImpl implements IXNet {
 
     /**
      * 是否出现系统级别的错误
+     *
      * @param code 错误码
      * @return 是否是系统级别错误吗
      */
@@ -516,7 +525,7 @@ public class XNetImpl implements IXNet {
             return null;
         }
         for (XNetSystemErrorCode errorCode : XNetSystemErrorCode.values()) {
-            if(errorCode.isSystemErrorCode(code)) {
+            if (errorCode.isSystemErrorCode(code)) {
                 return errorCode;
             }
         }
@@ -525,6 +534,7 @@ public class XNetImpl implements IXNet {
 
     /**
      * 设置新的超时时间
+     *
      * @param responseDataListener
      */
     public void setTimeoutPeriod(ResponseDataListener responseDataListener) {
@@ -538,5 +548,43 @@ public class XNetImpl implements IXNet {
                 .build();
         // 将新的OkHttpClient设置到OKGo实例中
         OkGo.getInstance().setOkHttpClient(newOkHttpClient);
+    }
+
+    /**
+     * 判断字符串是否是 JSON 格式
+     *
+     * @param str 待判断的字符串
+     * @return 如果是 JSON 格式返回 true，否则返回 false
+     */
+    public static boolean isJSON(String str) {
+        if (str == null || str.trim().isEmpty()) {
+            return false;
+        }
+        try {
+            // 解析为 JSONObject
+            new JSONObject(str);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * 判断字符串是否是 JSON 格式
+     *
+     * @param str 待判断的字符串
+     * @return 如果是 JSON 格式返回 true，否则返回 false
+     */
+    public static boolean isJSONArray(String str) {
+        if (str == null || str.trim().isEmpty()) {
+            return false;
+        }
+        try {
+            // 解析为 JSONObject
+            new JSONArray(str);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
