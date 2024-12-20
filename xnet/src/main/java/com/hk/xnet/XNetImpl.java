@@ -108,7 +108,7 @@ public class XNetImpl implements IXNet {
                 .setOkHttpClient(builder.build())               //建议设置OkHttpClient，不设置会使用默认的
                 .setCacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)               //全局统一缓存模式，默认不使用缓存，可以不传
                 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE)   //全局统一缓存时间，默认永不过期，可以不传
-                .setRetryCount(3);                              //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
+                .setRetryCount(ResponseDataListener.RETRY_COUNT);                              //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
         //.addCommonHeaders(headers)                      //全局公共头
         //.addCommonParams(params);                       //全局公共参数
     }
@@ -134,7 +134,7 @@ public class XNetImpl implements IXNet {
                 .setOkHttpClient(builder.build())               //建议设置OkHttpClient，不设置会使用默认的
                 .setCacheMode(cacheMode)               //全局统一缓存模式，默认不使用缓存，可以不传
                 .setCacheTime(cacheEntity)   //全局统一缓存时间，默认永不过期，可以不传
-                .setRetryCount(3);                              //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
+                .setRetryCount(ResponseDataListener.RETRY_COUNT);                              //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
     }
 
     @Override
@@ -543,11 +543,12 @@ public class XNetImpl implements IXNet {
         // 创建OkHttpClient的新实例，并设置超时时间
         OkHttpClient newOkHttpClient = okHttpClient.newBuilder()
                 .connectTimeout(responseDataListener.getTimeoutPeriod()[0], TimeUnit.MILLISECONDS)       // 设置连接超时时间为10秒
-                .readTimeout(responseDataListener.getTimeoutPeriod()[1], TimeUnit.SECONDS)          // 设置读取超时时间为30秒
-                .writeTimeout(responseDataListener.getTimeoutPeriod()[2], TimeUnit.SECONDS)         // 设置写入超时时间为30秒
+                .readTimeout(responseDataListener.getTimeoutPeriod()[1], TimeUnit.MILLISECONDS)          // 设置读取超时时间为30秒
+                .writeTimeout(responseDataListener.getTimeoutPeriod()[2], TimeUnit.MILLISECONDS)         // 设置写入超时时间为30秒
                 .build();
         // 将新的OkHttpClient设置到OKGo实例中
         OkGo.getInstance().setOkHttpClient(newOkHttpClient);
+        OkGo.getInstance().setRetryCount(responseDataListener.getRetryCount());
     }
 
     /**

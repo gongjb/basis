@@ -8,6 +8,8 @@ public interface ResponseDataListener<T> {
     long READ_TIME = 5000l;
     // 写入超时时长
     long WRITE_TIME = 5000l;
+    // 重试次数 (默认不重试)
+    int RETRY_COUNT = 0;
 
     void success(T data);
     void fail(Throwable throwable);
@@ -40,6 +42,14 @@ public interface ResponseDataListener<T> {
      * @return
      */
     default long[] getTimeoutPeriod() {
-        return new long[]{CONNECTION_TIME,READ_TIME,WRITE_TIME};
+        return new long[]{CONNECTION_TIME, READ_TIME, WRITE_TIME};
+    }
+
+    /**
+     * 重试次数
+     * @return
+     */
+    default int getRetryCount() {
+        return RETRY_COUNT;
     }
 }
